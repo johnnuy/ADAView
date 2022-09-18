@@ -1,0 +1,86 @@
+import { createRouter, createWebHashHistory } from 'vue-router'
+import Wallet from '@/components/pages/Wallet'
+import Roadmap from '@/components/pages/Roadmap'
+import WalletDetails from '@/components/wallet/WalletDetails'
+import WalletTabs from '@/components/wallet/WalletTabs'
+import TransactionDetails from '@/components/wallet/transactions/TransactionDetails'
+import StakePoolDetails from '@/components/wallet/stakePools/StakePoolDetails'
+import { useSettings, networks } from '@/composables/useSettings'
+
+const { setNetwork } = useSettings()
+
+// TODO lazy load these routes
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Wallet,
+    props: true,
+    children: [
+      {
+        name: 'WalletDetails',
+        path: ':network/:address',
+        component: WalletDetails,
+        props: true,
+        children: [
+          {
+            name: 'WalletHome',
+            path: '',
+            component: WalletTabs,
+            props: true,
+            meta: {
+              // Adding this here to store the scroll position for when
+              // the user returns to the wallet home from one of the subroutes
+              scrollPos: {
+                top: 0,
+                left: 0,
+              },
+            },
+          },
+          {
+            name: 'TransactionDetails',
+            path: 'transactions/:transactionId',
+            component: TransactionDetails,
+            props: true,
+          },
+          {
+            name: 'StakePoolDetails',
+            path: 'stakepools/:poolId',
+            component: StakePoolDetails,
+            props: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: '/roadmap',
+    name: 'Roadmap',
+    component: Roadmap,
+    props: true,
+  },
+]
+
+const router = createRouter({
+  scrollBehavior(to, from, savedPosition) {
+    // if the route has a scrollPos saved, use this to determine scroll position
+    if (to.meta?.scrollPos) return to.meta?.scrollPos
+    // otherwise use the browser's savedPosition, or 0
+    else return savedPosition || { top: 0, left: 0 }
+  },
+  history: createWebHashHistory(),
+  routes,
+})
+
+router.beforeEach((to, from, next) => {
+  // only bother saving the scroll position for routes with the scrollPos prop
+  from.meta?.scrollPos && (from.meta.scrollPos.top = window.scrollY)
+
+  // any route with a :network in it's path will set the global network property
+  to.params.network && setNetwork(to.params.network === networks.MAIN ? networks.MAIN : networks.TEST)
+
+  // proceed
+  next()
+})
+
+export default router
