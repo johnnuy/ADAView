@@ -10,19 +10,20 @@
     <div class="Stats flex align-items-center justify-content-center flex-wrap">
       <div class="flex flex-column align-items-center justify-content-center mx-2">
         <div class="text-500">{{ L('Pledge') }}</div>
-        <div v-if="stakePool.details.pledgeAda">
-          {{ formatLovelace(stakePool.details.pledgeAda) }}
-        </div>
+        <span v-if="stakePool.details.pledgeAda">{{ formatLovelace(stakePool.details.pledgeAda) }}</span>
+        <span v-else>{{ formatLovelace(0) }}</span>
       </div>
 
       <div class="flex flex-column align-items-center justify-content-center mx-2">
         <div class="text-500">{{ L('Fixed Cost') }}</div>
         <span v-if="stakePool.details.fixedCostAda">{{ formatLovelace(stakePool.details.fixedCostAda) }}</span>
+        <span v-else>{{ formatLovelace(0) }}</span>
       </div>
 
       <div class="flex flex-column align-items-center justify-content-center mx-2">
         <div class="text-500">{{ L('Margin Cost') }}</div>
-        <div v-if="stakePool.details.marginCost">{{ stakePool.details.marginCost }}%</div>
+        <span v-if="stakePool.details.marginCost">{{ stakePool.details.marginCost }}%</span>
+        <span v-else>0.0%</span>
       </div>
     </div>
     <div class="Description align-items-center justify-content-center text-center">
