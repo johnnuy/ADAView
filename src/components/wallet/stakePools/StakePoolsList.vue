@@ -14,24 +14,41 @@
     selection-mode="single"
     @page="onPage($event)"
     @row-click="onClick"
-  >
-    <Column field="stakePool.details.ticker" :header="L('Ticker')"></Column>
-    <Column field="stakePool.details.name" :header="L('Name')"></Column>
+  >    
+    <Column :header="L('Pool Id')">
+      <template #body="{ data }">
+        <CopyToClipboardLink :text="data.stakePool?.poolId" :copy-text="data.stakePool?.poolId" break />
+      </template>
+    </Column>
+
+    <Column :header="L('Ticker')">
+      <template #body="{ data }">
+        <span v-if="data.stakePool.details">{{ data.stakePool.details.ticker }}</span>        
+      </template>
+    </Column>
+
+    <Column :header="L('Name')">
+      <template #body="{ data }">
+        <span v-if="data.stakePool.details">{{ data.stakePool.details.name }}</span>
+      </template>
+    </Column>
 
     <Column :header="L('Pledge')">
       <template #body="{ data }">
-        {{ formatLovelace(data.stakePool.details.pledgeAda) }}
+        <span v-if="data.stakePool.details">{{ formatLovelace(data.stakePool.details.pledgeAda) }}</span>
       </template>
     </Column>
 
     <Column :header="L('Fixed Cost')">
       <template #body="{ data }">
-        {{ formatLovelace(data.stakePool.details.fixedCostAda) }}
+        <span v-if="data.stakePool.details">{{ formatLovelace(data.stakePool.details.fixedCostAda) }}</span>
       </template>
     </Column>
 
     <Column :header="L('Margin Cost')">
-      <template #body="{ data }"> {{ data.stakePool.details.marginCost }}% </template>
+      <template #body="{ data }"> 
+        <span v-if="data.stakePool.details">{{ data.stakePool.details.marginCost }}% </span>
+      </template>
     </Column>
   </DataTable>
 </template>
@@ -40,6 +57,7 @@
 import { onMounted } from 'vue'
 import { formatLovelace } from '@/utils/utils'
 import { useStakePools } from '@/composables/useStakePools'
+import CopyToClipboardLink from '@/components/common/CopyToClipboardLink'
 import router from '@/router'
 
 const props = defineProps({
