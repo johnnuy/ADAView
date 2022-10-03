@@ -4,7 +4,7 @@ import { useSettings } from '@/composables/useSettings'
 
 const { getApiUrl } = useSettings()
 
-export const useStakePools = () => {
+export const useFetchStakePools = () => {
   const stakePools = ref(null)
   const count = ref(0)
   const loading = ref(false)
@@ -44,7 +44,7 @@ export const useStakePools = () => {
   }
 }
 
-export const useStakePool = () => {
+export const useFetchStakePool = () => {
   const stakePool = ref(null)
   const loading = ref(false)
   const error = ref(null)

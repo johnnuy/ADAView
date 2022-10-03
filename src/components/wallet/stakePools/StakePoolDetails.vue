@@ -8,7 +8,7 @@
 
 <script setup>
 import { onMounted, watch } from 'vue'
-import { useStakePool } from '@/composables/useStakePools'
+import { useFetchStakePool } from '@/composables/useFetchStakePools'
 import StakePoolCard from './StakePoolCard.vue'
 import router from '@/router'
 import Error from '@/components/common/Error'
@@ -19,9 +19,9 @@ const props = defineProps({
   poolId: String,
 })
 
-const { stakePool, loading, error, getStakePool } = useStakePool()
+const { stakePool, loading, error, getStakePool } = useFetchStakePool()
 onMounted(() => getStakePool(props.address, props.poolId))
-watch([() => props.address, () => props.poolId], () => useStakePool(props.address, props.poolId))
+watch([() => props.address, () => props.poolId], () => getStakePool(props.address, props.poolId))
 
 const onClose = () => router.push({ name: 'WalletHome', params: { network: props.network, address: props.address } })
 </script>

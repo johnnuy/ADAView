@@ -10,51 +10,52 @@
     <div class="Stats flex align-items-center justify-content-center flex-wrap">
       <div class="flex flex-column align-items-center justify-content-center mx-2">
         <div class="text-500">{{ L('Pledge') }}</div>
-        <div>
-          {{ formatLovelace(stakePool.details.pledgeAda) }}
-        </div>
+        <span v-if="stakePool.details.pledgeAda">{{ formatLovelace(stakePool.details.pledgeAda) }}</span>
+        <span v-else>{{ formatLovelace(0) }}</span>
       </div>
 
       <div class="flex flex-column align-items-center justify-content-center mx-2">
         <div class="text-500">{{ L('Fixed Cost') }}</div>
-        <span>{{ formatLovelace(stakePool.details.fixedCostAda) }}</span>
+        <span v-if="stakePool.details.fixedCostAda">{{ formatLovelace(stakePool.details.fixedCostAda) }}</span>
+        <span v-else>{{ formatLovelace(0) }}</span>
       </div>
 
       <div class="flex flex-column align-items-center justify-content-center mx-2">
         <div class="text-500">{{ L('Margin Cost') }}</div>
-        <div>{{ stakePool.details.marginCost }}%</div>
+        <span v-if="stakePool.details.marginCost">{{ stakePool.details.marginCost }}%</span>
+        <span v-else>0.0%</span>
       </div>
     </div>
     <div class="Description align-items-center justify-content-center text-center">
-      {{ stakePool.details.description }}
+      <span v-if="stakePool.details.description">{{ stakePool.details.description }}</span>
     </div>
-    <div class="Social flex align-items-center justify-content-center">
-      <a v-if="stakePool.details.socialMedia.facebookHandles[0]" :href="`https://facebook.com/${stakePool.details.socialMedia.facebookHandles[0]}`" class="social-href">
+    <div v-if="stakePool.details.socialMedia" class="Social flex align-items-center justify-content-center">
+      <a v-if="stakePool.details.socialMedia.facebookHandles && stakePool.details.socialMedia.facebookHandles[0]" :href="`https://facebook.com/${stakePool.details.socialMedia.facebookHandles[0]}`" class="social-href">
         <i class="pi pi-facebook mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.redditHandles[0]" :href="`https://www.reddit.com/user/${stakePool.details.socialMedia.redditHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.redditHandles && stakePool.details.socialMedia.redditHandles[0]" :href="`https://www.reddit.com/user/${stakePool.details.socialMedia.redditHandles[0]}`" class="social-href">
         <i class="pi pi-reddit mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.twitterHandles[0]" :href="`https://twitter.com/${stakePool.details.socialMedia.twitterHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.twitterHandles && stakePool.details.socialMedia.twitterHandles[0]" :href="`https://twitter.com/${stakePool.details.socialMedia.twitterHandles[0]}`" class="social-href">
         <i class="pi pi-twitter mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.discordHandles[0]" :href="`https://discordapp.com/users/${stakePool.details.socialMedia.discordHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.discordHandles && stakePool.details.socialMedia.discordHandles[0]" :href="`https://discordapp.com/users/${stakePool.details.socialMedia.discordHandles[0]}`" class="social-href">
         <i class="pi pi-discord mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.githubHandles[0]" :href="`https://github.com/${stakePool.details.socialMedia.githubHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.githubHandles && stakePool.details.socialMedia.githubHandles[0]" :href="`https://github.com/${stakePool.details.socialMedia.githubHandles[0]}`" class="social-href">
         <i class="pi pi-github mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.youtubeHandles[0]" :href="`https://youtube.com/c/${stakePool.details.socialMedia.youtubeHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.youtubeHandles && stakePool.details.socialMedia.youtubeHandles[0]" :href="`https://youtube.com/c/${stakePool.details.socialMedia.youtubeHandles[0]}`" class="social-href">
         <i class="pi pi-youtube mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
       <!-- no primevue icon for twitch -- leave out for now -->
-      <!-- <a v-if="stakePool.details.socialMedia.twitchHandles[0]" :href="`https://twitch.tv/${stakePool.details.socialMedia.twitchHandles[0]}`" class="social-href">
+      <!-- <a v-if="stakePool.details.socialMedia.twitchHandles && stakePool.details.socialMedia.twitchHandles[0]" :href="`https://twitch.tv/${stakePool.details.socialMedia.twitchHandles[0]}`" class="social-href">
         <i class="pi pi-twitch mx-1 social-icon" style="font-size: 1.5rem">Twitch</i>
       </a> -->
-      <a v-if="stakePool.details.socialMedia.instagramHandles[0]" :href="`https://instagram.com/${stakePool.details.socialMedia.instagramHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.instagramHandles && stakePool.details.socialMedia.instagramHandles[0]" :href="`https://instagram.com/${stakePool.details.socialMedia.instagramHandles[0]}`" class="social-href">
         <i class="pi pi-instagram mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.telegramHandles[0]" :href="`https://t.me/${stakePool.details.socialMedia.telegramHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.telegramHandles && stakePool.details.socialMedia.telegramHandles[0]" :href="`https://t.me/${stakePool.details.socialMedia.telegramHandles[0]}`" class="social-href">
         <i class="pi pi-telegram mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
     </div>

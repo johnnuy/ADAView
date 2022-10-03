@@ -27,9 +27,9 @@ export const useFetchWallet = () => {
     axios
       .get(`${getApiUrl()}/wallets/${address}`, { signal: abortController.signal })
       .then((response) => {
-        wallet.value = response.data
+        wallet.value = response.data.data
         loading.value = false
-        addSearch({ address, name: wallet.value.data.avatar.name, network: wallet.value.network })
+        addSearch({ address, name: wallet.value.avatar.name, network: response.data.network })
       })
       .catch((err) => {
         axios.isAxiosError
