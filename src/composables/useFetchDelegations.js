@@ -4,7 +4,7 @@ import { useSettings } from '@/composables/useSettings'
 
 const { getApiUrl } = useSettings()
 
-export const useDelegations = () => {
+export const useFetchDelegations = () => {
   const delegations = ref(null)
   const count = ref(0)
   const loading = ref(false)

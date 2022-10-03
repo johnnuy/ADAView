@@ -6,6 +6,8 @@
 </template>
 
 <script setup>
+import WalletSearch from '@/components/wallet/WalletSearch'
+
 defineProps({
   address: {
     type: String,
@@ -17,5 +19,4 @@ defineProps({
   },
 })
 
-import WalletSearch from '@/components/wallet/WalletSearch'
 </script>
