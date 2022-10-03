@@ -2,14 +2,14 @@
   <TabView>
     <TabPanel :header="L('Transactions')">
       <TransactionsList :address="address" />
-    </TabPanel>
-    <TabPanel v-if="wallet?.data.delegationsCount > 0" :header="L('Stake Delegations')">
-      <StakingList :address="address" />
-    </TabPanel>
+    </TabPanel>    
     <TabPanel :header="L('Addresses')">
       <AddressesList :address="address" />
     </TabPanel>
-    <TabPanel v-if="wallet?.data.ownedStakepoolsCount > 0" :header="L('Stake Pools')">
+    <TabPanel v-if="wallet.delegationsCount > 0" :header="L('Stake Delegations')">
+      <StakingList :address="address" />
+    </TabPanel>
+    <TabPanel v-if="wallet.ownedStakepoolsCount > 0" :header="L('Stake Pools')">
       <StakePoolsList :address="address" />
     </TabPanel>
   </TabView>

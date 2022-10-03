@@ -26,7 +26,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { useDelegations } from '@/composables/useDelegations'
+import { useFetchDelegations } from '@/composables/useFetchDelegations'
 import CopyToClipboardLink from '@/components/common/CopyToClipboardLink'
 
 const props = defineProps({
@@ -36,15 +36,12 @@ const props = defineProps({
   },
 })
 
-const { delegations, count, loading, getDelegations } = useDelegations()
+const { delegations, count, loading, getDelegations } = useFetchDelegations()
 
 onMounted(() => getDelegations(props.address, 1, 10))
 
 const onPage = (event) => getDelegations(props.address, event.page + 1, event.rows)
 
-const getShortenedHash = (hash) => {
-  return hash && hash.substring(0, 8) + '...' + hash.substr(hash.length - 8)
-}
 </script>
 
 <style></style>

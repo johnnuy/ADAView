@@ -17,8 +17,8 @@
           <div class="card h-full">
             <div class="flex flex-column justify-content-center h-full">
               <div class="flex flex-column align-items-center">
-                <img :src="wallet.data.avatar.image" class="avatar" />
-                <span class="block text-500 font-medium">{{ wallet.data.avatar.name }} </span>
+                <img :src="wallet.avatar.image" class="avatar" />
+                <span class="block text-500 font-medium">{{ wallet.avatar.name }} </span>
               </div>
             </div>
           </div>
@@ -29,20 +29,20 @@
             <div class="flex flex-column justify-content-between h-full">
               <div class="mb-3">
                 <span class="block text-500 font-medium mb-3">{{ L('Balance') }}</span>
-                <div class="text-900 font-medium text-xl">{{ formatLovelace(wallet.data.balance) }}</div>
+                <div class="text-900 font-medium text-xl">{{ formatLovelace(wallet.balance) }}</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- only show this is the wallet supports staking, that is, if wallet.data.stake is defined -->
+        <!-- only show this is the wallet supports staking, that is, if wallet.stake is defined -->
         <div v-if="isStakingWallet" class="col-12 md:col-6">
           <div class="card h-full my-0">
-            <div v-if="wallet.data.currentDelegation?.stakePool">
+            <div v-if="wallet.currentDelegation?.stakePool">
               <div>
                 <span class="block text-500 font-medium mb-3">{{ L('Delegation') }}</span>
               </div>
-              <StakePoolCard :stake-pool="wallet.data.currentDelegation.stakePool" class="my-0" />
+              <StakePoolCard :stake-pool="wallet.currentDelegation.stakePool" class="my-0" />
             </div>
 
             <div v-else class="flex flex-column justify-content-between mb-3">
@@ -52,14 +52,14 @@
               </div>
             </div>
             <hr />
-            <div v-if="wallet.data.currentDelegation?.epochActive">
+            <div v-if="wallet.currentDelegation?.epochActive">
               <span class="text-500">{{ L('Since Epoch') }}: </span>
-              <span class="font-medium">{{ wallet.data.currentDelegation?.epochActive }} </span>
+              <span class="font-medium">{{ wallet.currentDelegation?.epochActive }} </span>
             </div>
             <div>
               <span class="text-500">{{ L('Staking Address') }}: </span>
               <span class="font-medium">
-                <WalletAddress :address="wallet.data.stake.address" />
+                <WalletAddress :address="wallet.stake.address" />
               </span>
             </div>
           </div>
@@ -97,7 +97,7 @@ const props = defineProps({
 const { wallet, loading, error, fetchWallet } = useFetchWallet()
 onMounted(() => fetchWallet(props.address))
 watch([() => props.address, () => props.network], () => fetchWallet(props.address))
-const isStakingWallet = computed(() => !!wallet.value.data.stake)
+const isStakingWallet = computed(() => !!wallet.value.stake)
 </script>
 
 <style lang="scss" scoped>

@@ -56,7 +56,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import { formatLovelace } from '@/utils/utils'
-import { useStakePools } from '@/composables/useStakePools'
+import { useFetchStakePools } from '@/composables/useFetchStakePools'
 import CopyToClipboardLink from '@/components/common/CopyToClipboardLink'
 import router from '@/router'
 
@@ -64,7 +64,7 @@ const props = defineProps({
   address: String,
 })
 
-const { stakePools, count, loading, getStakePools } = useStakePools()
+const { stakePools, count, loading, getStakePools } = useFetchStakePools()
 
 const onClick = ({ data }) => {
   router.push({ name: 'StakePoolDetails', params: { ...router.currentRoute.value.params, poolId: data.stakePool.poolId } })
