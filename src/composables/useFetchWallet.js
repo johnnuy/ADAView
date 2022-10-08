@@ -29,7 +29,7 @@ export const useFetchWallet = () => {
       .then((response) => {
         wallet.value = response.data.data
         loading.value = false
-        addSearch({ address, name: wallet.value.avatar.name, network: response.data.network })
+        addSearch({ address, name: wallet.value.avatar.name, network: network })
       })
       .catch((err) => {
         axios.isAxiosError
@@ -37,10 +37,10 @@ export const useFetchWallet = () => {
           // Request cancelled
           error.value = null
           return
-        } else if (err.message === 'Network Error') {
-          error.value = { message: 'Network Error' }
+        } else if (err.response.data) {
+          error.value = { message: err.response.data.message + ' (' +  err.response.data.network + ')'}
         } else {
-          error.value = err.message
+          error.value = { message: err.message }
         }
         loading.value = false
       })
