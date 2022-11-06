@@ -43,8 +43,8 @@
 import { ref, onMounted, onBeforeUnmount, computed, watch } from 'vue'
 import { getSlotsPerEpoch, calculatePercentageToEpoch } from '@/utils/utils'
 import { useFetchTip } from '@/composables/useFetchTip'
-const { tip, incrementAllSlotNbr, fetchTip } = useFetchTip()
 import { useSettings } from '@/composables/useSettings'
+const { tip, incrementAllSlotNbr, fetchTip } = useFetchTip()
 const { isMainNetwork } = useSettings()
 
 const incrementSlotTimeMs = import.meta.env.VUE_APP_INCREMENT_SLOT_TIMER_MS || 1000
@@ -58,10 +58,10 @@ const props = defineProps({
 })
 
 const slotsInAnEpoch = computed(() => getSlotsPerEpoch())
-const percentageToEpoch = computed(() => calculatePercentageToEpoch(tip.value?.currentSlot.slotNumberInEpoch))
-const slotNumberInEpoch = computed(() => tip.value?.currentSlot.slotNumberInEpoch)
-const slotNumber = computed(() => tip.value?.currentSlot.slotNumber)
-const epochNumber = computed(() => tip.value?.currentSlot.epochNumber)
+const percentageToEpoch = computed(() => calculatePercentageToEpoch(tip.value?.data.slotNumberInEpoch))
+const slotNumberInEpoch = computed(() => tip.value?.data.slotNumberInEpoch)
+const slotNumber = computed(() => tip.value?.data.slotNumber)
+const epochNumber = computed(() => tip.value?.data.epochNumber)
 const fontColor = computed(() => (isMainNetwork() ? '#ffffff' : '#fcd34d'))
 
 onMounted(() => {
