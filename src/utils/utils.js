@@ -11,7 +11,12 @@ export const formatLovelace = (amount) => {
   else formatted = '0.' + absAmount.padStart(6, '0')
 
   // parseFloat will remove trailing 0s after the period
-  return Number.parseFloat(formatted).toLocaleString() + ' ADA'
+  return (
+    Number.parseFloat(formatted).toLocaleString('en', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 6,
+    }) + ' ADA'
+  )
 }
 
 export const formatTransaction = (transaction) => {
