@@ -99,5 +99,6 @@
   { "key": "Stake Pool Details", "value": "Détails du pool" },
   { "key": "Stake Delegations", "value": "Delegations de Stake" },
   { "key": "Era", "value": "Era" },
-  { "key": "Format", "value": "Format" }
+  { "key": "Format", "value": "Format" },
+  { "key": "SupportUs", "value": "Supportez nous" }
 ]
