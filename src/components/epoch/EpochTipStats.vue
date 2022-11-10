@@ -31,7 +31,7 @@
         <div class="col-12 md:col-6 lg:col-6">
           <Card class="h-full">
             <template #title> {{ L('Slot') }} </template>
-            <template #content> {{ slotNumberInEpoch }} / {{ slotsInAnEpoch }} </template>
+            <template #content> {{ slotNumberInEpoch }} / {{ getNetworkEpochLength() }} </template>
           </Card>
         </div>
       </div>
@@ -41,11 +41,11 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed, watch } from 'vue'
-import { getSlotsPerEpoch, calculatePercentageToEpoch } from '@/utils/utils'
+import { calculatePercentageToEpoch } from '@/utils/utils'
 import { useFetchTip } from '@/composables/useFetchTip'
 import { useSettings } from '@/composables/useSettings'
 const { tip, incrementAllSlotNbr, fetchTip } = useFetchTip()
-const { isMainNetwork } = useSettings()
+const { isMainNetwork, getNetwork, getNetworkPalette, getNetworkEpochLength } = useSettings()
 
 const incrementSlotTimeMs = import.meta.env.VUE_APP_INCREMENT_SLOT_TIMER_MS || 1000
 let incrementSlotTimer = null
@@ -57,12 +57,11 @@ const props = defineProps({
   },
 })
 
-const slotsInAnEpoch = computed(() => getSlotsPerEpoch())
-const percentageToEpoch = computed(() => calculatePercentageToEpoch(tip.value?.data.slotNumberInEpoch))
+const percentageToEpoch = computed(() => calculatePercentageToEpoch(tip.value?.data.slotNumberInEpoch, getNetworkEpochLength()))
 const slotNumberInEpoch = computed(() => tip.value?.data.slotNumberInEpoch)
 const slotNumber = computed(() => tip.value?.data.slotNumber)
 const epochNumber = computed(() => tip.value?.data.epochNumber)
-const fontColor = computed(() => (isMainNetwork() ? '#ffffff' : '#fcd34d'))
+const fontColor = computed(() => getNetworkPalette())
 
 onMounted(() => {
   fetchTip()
@@ -74,7 +73,7 @@ onBeforeUnmount(() => {
 })
 
 watch(
-  () => isMainNetwork(),
+  () => getNetwork(),
   () => syncSlot(),
 )
 
@@ -98,4 +97,5 @@ const toggle = (event) => {
 .ep-container {
   cursor: pointer;
 }
+
 </style>

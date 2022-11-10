@@ -1,14 +1,13 @@
 import { readonly, ref } from 'vue'
 import axios from 'axios'
 import { useSettings } from '@/composables/useSettings'
-import { getSlotsPerEpoch } from '@/utils/utils'
 
 export const useFetchTip = () => {
   const tip = ref(null)
   const loading = ref(false)
   const error = ref(null)
   let abortController = new AbortController()
-  const { getApiUrl } = useSettings()
+  const { getApiUrl, getNetworkEpochLength } = useSettings()
 
   const fetchTip = () => {
     // send an abort signal if there's already a request happening
@@ -52,7 +51,7 @@ export const useFetchTip = () => {
   }
 
   const incrementEpochSlotNbr = () => {
-    if (tip.value?.currentSlot?.slotNumberInEpoch >= getSlotsPerEpoch()) manualEpochRollover()
+    if (tip.value?.currentSlot?.slotNumberInEpoch >= getNetworkEpochLength()) manualEpochRollover()
     if (tip.value?.currentSlot?.slotNumberInEpoch) {
       tip.value.currentSlot.slotNumberInEpoch++
     }

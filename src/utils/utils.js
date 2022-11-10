@@ -1,5 +1,3 @@
-const slotsInAnEpoch = import.meta.env.VITE_NBR_SLOTS_IN_EPOCH
-
 import { TransactionTypes, TransactionTypesById, EventTypes } from '@/utils/constants'
 
 export const formatLovelace = (amount) => {
@@ -29,11 +27,7 @@ export const formatTransaction = (transaction) => {
   }
 }
 
-export const getSlotsPerEpoch = () => {
-  return slotsInAnEpoch
-}
-
-export const calculatePercentageToEpoch = (slotNumber) => {
+export const calculatePercentageToEpoch = (slotNumber, slotsInAnEpoch) => {
   if (slotNumber == null || slotNumber < 0) return 0
   return parseFloat(((slotNumber / slotsInAnEpoch) * 100).toFixed(2))
 }
