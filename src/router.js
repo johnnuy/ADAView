@@ -77,7 +77,11 @@ router.beforeEach((to, from, next) => {
   from.meta?.scrollPos && (from.meta.scrollPos.top = window.scrollY)
 
   // any route with a :network in it's path will set the global network property
-  to.params.network && setNetwork(to.params.network === networks.MAIN ? networks.MAIN : networks.TEST)
+  to.params.network && setNetwork(
+    to.params.network === networks.MAIN ? networks.MAIN : 
+    to.params.network === networks.TEST ? networks.TEST :
+    to.params.network === networks.PREV ? networks.PREV : 
+    networks.PREP)
 
   // proceed
   next()
