@@ -68,6 +68,16 @@
           </div>
         </div>
       </AccordionTab>
+      <AccordionTab v-if="transaction.messages && transaction.messages.length > 0" :header="L('Messages')">
+        <div class="container">
+          <template v-for="(message, index) in transaction.messages" :key="`message-${index}`">
+            <div class="text-500">{{ index }}:</div>
+            <div>
+              <span>{{ message }}</span>
+            </div>
+          </template>
+        </div>
+      </AccordionTab>
       <AccordionTab v-if="transaction.externalSources.length > 0 || transaction.externalDestinations.length > 0" :header="L('External Wallets')">
         <TransactionWallets :transaction="transaction" />
       </AccordionTab>
