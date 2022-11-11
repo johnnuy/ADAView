@@ -41,17 +41,12 @@ const setupLanguages = () => {
   return { lang, setLang, langs }
 }
 
-const { networks, network, setNetwork, setNetworkByName } = setupNetworks()
-const { lang, setLang, langs } = setupLanguages()
+const networksSetup = setupNetworks()
+const langsSetup = setupLanguages()
 
 export const useSettings = () => {
   return {
-    networks,
-    network,
-    setNetwork,
-    setNetworkByName,
-    lang,
-    setLang,
-    langs: Object.keys(langs).map((key) => langs[key]),
+    ...networksSetup,
+    ...langsSetup,
   }
 }
