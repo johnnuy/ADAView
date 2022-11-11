@@ -1,13 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Wallet from '@/components/pages/Wallet'
 import Roadmap from '@/components/pages/Roadmap'
+import Support from '@/components/pages/Support'
 import WalletDetails from '@/components/wallet/WalletDetails'
 import WalletTabs from '@/components/wallet/WalletTabs'
 import TransactionDetails from '@/components/wallet/transactions/TransactionDetails'
 import StakePoolDetails from '@/components/wallet/stakePools/StakePoolDetails'
-import { useSettings, networks } from '@/composables/useSettings'
+import { useSettings } from '@/composables/useSettings'
 
-const { setNetwork } = useSettings()
+const { setNetworkByName } = useSettings()
 
 // TODO lazy load these routes
 const routes = [
@@ -59,6 +60,12 @@ const routes = [
     component: Roadmap,
     props: true,
   },
+  {
+    path: '/support',
+    name: 'Support',
+    component: Support,
+    props: true,
+  },
 ]
 
 const router = createRouter({
@@ -77,7 +84,7 @@ router.beforeEach((to, from, next) => {
   from.meta?.scrollPos && (from.meta.scrollPos.top = window.scrollY)
 
   // any route with a :network in it's path will set the global network property
-  to.params.network && setNetwork(to.params.network === networks.MAIN ? networks.MAIN : networks.TEST)
+  to.params.network && setNetworkByName(to.params.network)
 
   // proceed
   next()

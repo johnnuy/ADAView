@@ -5,7 +5,7 @@ module.exports = {
     'vue/setup-compiler-macros': true,
   },
   extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'prettier'],
-  parserOptions: {},
+  parserOptions: { sourceType: 'module', ecmaVersion: 2022 },
   globals: {
     defineProps: 'readonly',
     defineEmits: 'readonly',

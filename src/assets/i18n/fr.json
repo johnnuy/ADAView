@@ -1,103 +1,414 @@
 [
-  { "key": "Wallet Address", "value": "Adresse du portefeuille" },
-  { "key": "Search", "value": "Rechercher" },
-  { "key": "Name your wallet...", "value": "Nommer votre portefeuille..." },
-  { "key": "Wallet name", "value": "Nom du portefeuille" },
-  { "key": "Saved Searches", "value": "Recherches sauvegardé" },
-  { "key": "Recent Searches", "value": "Recherches récentes" },
-  { "key": "Since Epoch", "value": "Depuis l'époque" },
-  { "key": "Staking Address", "value": "Adresse de financement" },
-  { "key": "Stake Address", "value": "Adresse de financement" },
-  { "key": "Delegation", "value": "Délégation" },
-  { "key": "Click to copy", "value": "Cliquez pour copier" },
-  { "key": "Address", "value": "Adresse" },
-  { "key": "{first} to {last} of {totalRecords}", "value": "{first} à {last} de {totalRecords}" },
-  { "key": "Epoch", "value": "Époque" },
-  { "key": "Amount", "value": "Montant" },
-  { "key": "Pool", "value": "Pool" },
-  { "key": "Date", "value": "Date" },
-  { "key": "Details", "value": "Détails" },
-  { "key": "Funds In", "value": "Fonds entrants" },
-  { "key": "Funds Out", "value": "Sortie de fonds" },
-  { "key": "Balance", "value": "Solde" },
-  { "key": "Assets", "value": "Atouts" },
-  { "key": "Transaction Detail", "value": "Détails de la transaction" },
-  { "key": "Type", "value": "Type" },
-  { "key": "Block", "value": "Block" },
-  { "key": "Hash", "value": "Hash" },
-  { "key": "Fee", "value": "Frais" },
-  { "key": "Deposit", "value": "Dépôt" },
-  { "key": "Refund", "value": "Rembourser" },
-  { "key": "Sources", "value": "Sources" },
-  { "key": "Destinations", "value": "Destinations" },
-  { "key": "Close", "value": "Fermer" },
-  { "key": "Receipt", "value": "Reçu" },
-  { "key": "Payment", "value": "Paiement" },
-  { "key": "Leader Rewards", "value": "Récompense des chefs" },
-  { "key": "Delegator Rewards", "value": "Récompense des délégués" },
-  { "key": "Other", "value": "Autre" },
-  { "key": "Transactions", "value": "Transactions" },
-  { "key": "Staking", "value": "Financement" },
-  { "key": "Addresses", "value": "Adresses" },
-  { "key": "Slot", "value": "Créneau" },
-  { "key": "Global Slot", "value": "Créneau Global" },
-  { "key": "Epoch Active", "value": "Époque active" },
-  { "key": "Epoch Slot", "value": "Créneau de l'époque" },
-  { "key": "Ticker", "value": "Ticker" },
-  { "key": "Powered by", "value": "Alimenté par" },
-  { "key": "Canada Stakes", "value": "Canada Stakes" },
-  { "key": "Canada Stakes API", "value": "Canada Stakes API" },
-  { "key": "Ok", "value": "Ok" },
-  { "key": "Delete", "value": "Effacer" },
-  { "key": "Stake Pools", "value": "Pools de financement" },
-  { "key": "Pledge", "value": "Engagement" },
-  { "key": "Fixed Cost", "value": "Coût fixe" },
-  { "key": "Margin Cost", "value": "Coût marginal" },
-  { "key": "Name", "value": "Nom" },
-  { "key": "Homepage", "value": "Page" },
-  { "key": "Description", "value": "Description" },
-  { "key": "No Active Delegations", "value": "Aucune délégation active" },
-  { "key": "Stake Pool Registration", "value": "Inscription au pool de mises" },
-  { "key": "Stake Pool Update", "value": "Mise à jour du pool de mises" },
-  { "key": "Stake Pool Retire", "value": "Retraite du pool de mise" },
-  { "key": "Stake Delegation", "value": "Délégation de jalonnement" },
-  { "key": "Stake Registration", "value": "Enregistrement de jalonnement" },
-  { "key": "Stake Deregistration", "value": "Annulation de l'inscription" },
-  { "key": "Stake Deregistration (Refund)", "value": "Annulation de jalonnement (remboursement)" },
-  { "key": "Something went wrong...", "value": "Quelque chose s'est mal passé..." },
-  { "key": "Asset Minting", "value": "Frappe d'actifs" },
-  { "key": "Asset Burning", "value": "Brûlure d'actifs" },
-  { "key": "Voting Registration", "value": "Enregistrement de vote" },
-  { "key": "Voting Rewards", "value": "Récompense de vote" },
-  { "key": "Back", "value": "Retour" },
-  { "key": "Transaction Details", "value": "Détails de la transaction" },
-  { "key": "Refresh", "value": "Rafraîchir" },
-  { "key": "Voting Key", "value": "Clé de vote" },
-  { "key": "Rewards Address", "value": "Addresse de récompense" },
-  { "key": "External Wallets", "value": "Portes-feuilles externe" },
-  { "key": "Wallets", "value": "Portes-feuilles externe" },
-  { "key": "Destination Wallets", "value": "Portes-feuilles destinataires" },
-  { "key": "Source Wallets", "value": "Portes-feuilles source" },
-  { "key": "Id", "value": "Id" },
-  { "key": "Metadata URL", "value": "URL des métadonnées" },
-  { "key": "Pool Id", "value": "Id du pool" },
-  { "key": "Previous Pool Id", "value": "Id du pool précédent" },
-  { "key": "Previous Pool Ticker", "value": "Ticker du pool précédent" },
-  { "key": "Refunded ADA", "value": "ADA remboursé" },
-  { "key": "Retiring Epoch", "value": "Époque de la retraite" },
-  { "key": "Current Details", "value": "Détails courants" },
-  { "key": "Previous Details", "value": "Détails précédents" },
-  { "key": "Quantity", "value": "Quantité" },
-  { "key": "Fingerprint", "value": "Empreinte" },
-  { "key": "Policy", "value": "Politique" },
-  { "key": "Supply", "value": "Quantité" },
-  { "key": "Metadata", "value": "Métadonnées" },
-  { "key": "Reward Source", "value": "Source de récompense" },
-  { "key": "Navigation", "value": "Navigation" },
-  { "key": "Home", "value": "Acceuil" },
-  { "key": "Roadmap", "value": "Feuille de route" },
-  { "key": "Stake Pool Details", "value": "Détails du pool" },
-  { "key": "Stake Delegations", "value": "Delegations de Stake" },
-  { "key": "Era", "value": "Era" },
-  { "key": "Format", "value": "Format" }
+  {
+    "key": "Wallet Address",
+    "value": "Adresse du portefeuille"
+  },
+  {
+    "key": "Search",
+    "value": "Rechercher"
+  },
+  {
+    "key": "Name your wallet...",
+    "value": "Nommer votre portefeuille..."
+  },
+  {
+    "key": "Wallet name",
+    "value": "Nom du portefeuille"
+  },
+  {
+    "key": "Saved Searches",
+    "value": "Recherches sauvegardé"
+  },
+  {
+    "key": "Recent Searches",
+    "value": "Recherches récentes"
+  },
+  {
+    "key": "Since Epoch",
+    "value": "Depuis l'époque"
+  },
+  {
+    "key": "Staking Address",
+    "value": "Adresse de financement"
+  },
+  {
+    "key": "Stake Address",
+    "value": "Adresse de financement"
+  },
+  {
+    "key": "Delegation",
+    "value": "Délégation"
+  },
+  {
+    "key": "Click to copy",
+    "value": "Cliquez pour copier"
+  },
+  {
+    "key": "Address",
+    "value": "Adresse"
+  },
+  {
+    "key": "{first} to {last} of {totalRecords}",
+    "value": "{first} à {last} de {totalRecords}"
+  },
+  {
+    "key": "Epoch",
+    "value": "Époque"
+  },
+  {
+    "key": "Amount",
+    "value": "Montant"
+  },
+  {
+    "key": "Pool",
+    "value": "Pool"
+  },
+  {
+    "key": "Date",
+    "value": "Date"
+  },
+  {
+    "key": "Details",
+    "value": "Détails"
+  },
+  {
+    "key": "Funds In",
+    "value": "Fonds entrants"
+  },
+  {
+    "key": "Funds Out",
+    "value": "Sortie de fonds"
+  },
+  {
+    "key": "Balance",
+    "value": "Solde"
+  },
+  {
+    "key": "Assets",
+    "value": "Atouts"
+  },
+  {
+    "key": "Transaction Detail",
+    "value": "Détails de la transaction"
+  },
+  {
+    "key": "Type",
+    "value": "Type"
+  },
+  {
+    "key": "Block",
+    "value": "Block"
+  },
+  {
+    "key": "Hash",
+    "value": "Hash"
+  },
+  {
+    "key": "Fee",
+    "value": "Frais"
+  },
+  {
+    "key": "Deposit",
+    "value": "Dépôt"
+  },
+  {
+    "key": "Refund",
+    "value": "Rembourser"
+  },
+  {
+    "key": "Sources",
+    "value": "Sources"
+  },
+  {
+    "key": "Destinations",
+    "value": "Destinations"
+  },
+  {
+    "key": "Close",
+    "value": "Fermer"
+  },
+  {
+    "key": "Receipt",
+    "value": "Reçu"
+  },
+  {
+    "key": "Payment",
+    "value": "Paiement"
+  },
+  {
+    "key": "Leader Rewards",
+    "value": "Récompense des chefs"
+  },
+  {
+    "key": "Delegator Rewards",
+    "value": "Récompense des délégués"
+  },
+  {
+    "key": "Other",
+    "value": "Autre"
+  },
+  {
+    "key": "Transactions",
+    "value": "Transactions"
+  },
+  {
+    "key": "Staking",
+    "value": "Financement"
+  },
+  {
+    "key": "Addresses",
+    "value": "Adresses"
+  },
+  {
+    "key": "Slot",
+    "value": "Créneau"
+  },
+  {
+    "key": "Global Slot",
+    "value": "Créneau Global"
+  },
+  {
+    "key": "Epoch Active",
+    "value": "Époque active"
+  },
+  {
+    "key": "Epoch Slot",
+    "value": "Créneau de l'époque"
+  },
+  {
+    "key": "Ticker",
+    "value": "Ticker"
+  },
+  {
+    "key": "Powered by",
+    "value": "Alimenté par"
+  },
+  {
+    "key": "Canada Stakes",
+    "value": "Canada Stakes"
+  },
+  {
+    "key": "Canada Stakes API",
+    "value": "Canada Stakes API"
+  },
+  {
+    "key": "Ok",
+    "value": "Ok"
+  },
+  {
+    "key": "Delete",
+    "value": "Effacer"
+  },
+  {
+    "key": "Stake Pools",
+    "value": "Pools de financement"
+  },
+  {
+    "key": "Pledge",
+    "value": "Engagement"
+  },
+  {
+    "key": "Fixed Cost",
+    "value": "Coût fixe"
+  },
+  {
+    "key": "Margin Cost",
+    "value": "Coût marginal"
+  },
+  {
+    "key": "Name",
+    "value": "Nom"
+  },
+  {
+    "key": "Homepage",
+    "value": "Page"
+  },
+  {
+    "key": "Description",
+    "value": "Description"
+  },
+  {
+    "key": "No Active Delegations",
+    "value": "Aucune délégation active"
+  },
+  {
+    "key": "Stake Pool Registration",
+    "value": "Inscription au pool de mises"
+  },
+  {
+    "key": "Stake Pool Update",
+    "value": "Mise à jour du pool de mises"
+  },
+  {
+    "key": "Stake Pool Retire",
+    "value": "Retraite du pool de mise"
+  },
+  {
+    "key": "Stake Delegation",
+    "value": "Délégation de jalonnement"
+  },
+  {
+    "key": "Stake Registration",
+    "value": "Enregistrement de jalonnement"
+  },
+  {
+    "key": "Stake Deregistration",
+    "value": "Annulation de l'inscription"
+  },
+  {
+    "key": "Stake Deregistration (Refund)",
+    "value": "Annulation de jalonnement (remboursement)"
+  },
+  {
+    "key": "Something went wrong...",
+    "value": "Quelque chose s'est mal passé..."
+  },
+  {
+    "key": "Asset Minting",
+    "value": "Frappe d'actifs"
+  },
+  {
+    "key": "Asset Burning",
+    "value": "Brûlure d'actifs"
+  },
+  {
+    "key": "Voting Registration",
+    "value": "Enregistrement de vote"
+  },
+  {
+    "key": "Voting Rewards",
+    "value": "Récompense de vote"
+  },
+  {
+    "key": "Back",
+    "value": "Retour"
+  },
+  {
+    "key": "Transaction Details",
+    "value": "Détails de la transaction"
+  },
+  {
+    "key": "Refresh",
+    "value": "Rafraîchir"
+  },
+  {
+    "key": "Voting Key",
+    "value": "Clé de vote"
+  },
+  {
+    "key": "Rewards Address",
+    "value": "Addresse de récompense"
+  },
+  {
+    "key": "External Wallets",
+    "value": "Portes-feuilles externe"
+  },
+  {
+    "key": "Wallets",
+    "value": "Portes-feuilles externe"
+  },
+  {
+    "key": "Destination Wallets",
+    "value": "Portes-feuilles destinataires"
+  },
+  {
+    "key": "Source Wallets",
+    "value": "Portes-feuilles source"
+  },
+  {
+    "key": "Id",
+    "value": "Id"
+  },
+  {
+    "key": "Metadata URL",
+    "value": "URL des métadonnées"
+  },
+  {
+    "key": "Pool Id",
+    "value": "Id du pool"
+  },
+  {
+    "key": "Previous Pool Id",
+    "value": "Id du pool précédent"
+  },
+  {
+    "key": "Previous Pool Ticker",
+    "value": "Ticker du pool précédent"
+  },
+  {
+    "key": "Refunded ADA",
+    "value": "ADA remboursé"
+  },
+  {
+    "key": "Retiring Epoch",
+    "value": "Époque de la retraite"
+  },
+  {
+    "key": "Current Details",
+    "value": "Détails courants"
+  },
+  {
+    "key": "Previous Details",
+    "value": "Détails précédents"
+  },
+  {
+    "key": "Quantity",
+    "value": "Quantité"
+  },
+  {
+    "key": "Fingerprint",
+    "value": "Empreinte"
+  },
+  {
+    "key": "Policy",
+    "value": "Politique"
+  },
+  {
+    "key": "Supply",
+    "value": "Quantité"
+  },
+  {
+    "key": "Metadata",
+    "value": "Métadonnées"
+  },
+  {
+    "key": "Reward Source",
+    "value": "Source de récompense"
+  },
+  {
+    "key": "Navigation",
+    "value": "Navigation"
+  },
+  {
+    "key": "Home",
+    "value": "Acceuil"
+  },
+  {
+    "key": "Roadmap",
+    "value": "Feuille de route"
+  },
+  {
+    "key": "Stake Pool Details",
+    "value": "Détails du pool"
+  },
+  {
+    "key": "Stake Delegations",
+    "value": "Delegations de Stake"
+  },
+  {
+    "key": "Era",
+    "value": "Era"
+  },
+  {
+    "key": "Format",
+    "value": "Format"
+  },
+  {
+    "key": "SupportUs",
+    "value": "Supportez nous"
+  },
+  {
+    "key": "You can support us text",
+    "value": "Vous pouvez nous soutenir ainsi que ce projet en déléguant au"
+  }
 ]
