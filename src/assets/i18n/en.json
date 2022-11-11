@@ -406,5 +406,9 @@
   {
     "key": "You can support us text",
     "value": "You can support us and this project by delegating to the"
+  },
+  {
+    "key": "Messages",
+    "value": "Messages"
   }
 ]
