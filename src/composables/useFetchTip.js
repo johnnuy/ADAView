@@ -7,7 +7,7 @@ export const useFetchTip = () => {
   const loading = ref(false)
   const error = ref(null)
   let abortController = new AbortController()
-  const { getApiUrl, getNetworkEpochLength } = useSettings()
+  const { network } = useSettings()
 
   const fetchTip = () => {
     // send an abort signal if there's already a request happening
@@ -21,7 +21,7 @@ export const useFetchTip = () => {
     error.value = null
 
     axios
-      .get(`${getApiUrl()}/tip`, { signal: abortController.signal })
+      .get(`${network.value.url}/tip`, { signal: abortController.signal })
       .then((res) => {
         tip.value = res.data
         loading.value = false
@@ -51,7 +51,7 @@ export const useFetchTip = () => {
   }
 
   const incrementEpochSlotNbr = () => {
-    if (tip.value?.currentSlot?.slotNumberInEpoch >= getNetworkEpochLength()) manualEpochRollover()
+    if (tip.value?.currentSlot?.slotNumberInEpoch >= network.value.epochLength) manualEpochRollover()
     if (tip.value?.currentSlot?.slotNumberInEpoch) {
       tip.value.currentSlot.slotNumberInEpoch++
     }

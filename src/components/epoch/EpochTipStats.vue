@@ -1,9 +1,9 @@
 <template>
   <div>
-    <ve-progress v-if="epochNumber > 0" :progress="percentageToEpoch" :size="props.size" :font-color="fontColor" @click="toggle">
+    <ve-progress v-if="tip && tip.data.epochNumber > 0" :progress="percentageToEpoch" :size="props.size" :font-color="network.palette" @click="toggle">
       <template #default>
         <span style="font-weight: bold; font-size: 0.8rem">
-          {{ epochNumber }}
+          {{ tip.data.epochNumber }}
         </span>
       </template>
     </ve-progress>
@@ -25,13 +25,13 @@
         <div class="col-12 md:col-6 lg:col-6">
           <Card class="h-full">
             <template #title> {{ L('Global Slot') }} </template>
-            <template #content> {{ slotNumber }} </template>
+            <template #content> {{ tip.data.slotNumber }} </template>
           </Card>
         </div>
         <div class="col-12 md:col-6 lg:col-6">
           <Card class="h-full">
             <template #title> {{ L('Slot') }} </template>
-            <template #content> {{ slotNumberInEpoch }} / {{ getNetworkEpochLength() }} </template>
+            <template #content> {{ tip.data.slotNumberInEpoch }} / {{ network.epochLength }} </template>
           </Card>
         </div>
       </div>
@@ -45,7 +45,7 @@ import { calculatePercentageToEpoch } from '@/utils/utils'
 import { useFetchTip } from '@/composables/useFetchTip'
 import { useSettings } from '@/composables/useSettings'
 const { tip, incrementAllSlotNbr, fetchTip } = useFetchTip()
-const { isMainNetwork, getNetwork, getNetworkPalette, getNetworkEpochLength } = useSettings()
+const { network } = useSettings()
 
 const incrementSlotTimeMs = import.meta.env.VUE_APP_INCREMENT_SLOT_TIMER_MS || 1000
 let incrementSlotTimer = null
@@ -57,11 +57,8 @@ const props = defineProps({
   },
 })
 
-const percentageToEpoch = computed(() => calculatePercentageToEpoch(tip.value?.data.slotNumberInEpoch, getNetworkEpochLength()))
-const slotNumberInEpoch = computed(() => tip.value?.data.slotNumberInEpoch)
-const slotNumber = computed(() => tip.value?.data.slotNumber)
-const epochNumber = computed(() => tip.value?.data.epochNumber)
-const fontColor = computed(() => getNetworkPalette())
+const percentageToEpoch = ref(0)
+watch(tip, () => (percentageToEpoch.value = calculatePercentageToEpoch(tip.value?.data.slotNumberInEpoch, network.value.epochLength)))
 
 onMounted(() => {
   fetchTip()
@@ -72,10 +69,7 @@ onBeforeUnmount(() => {
   cancelTimer(incrementSlotTimer)
 })
 
-watch(
-  () => getNetwork(),
-  () => syncSlot(),
-)
+watch(network, () => syncSlot())
 
 const cancelTimer = (timer) => {
   clearInterval(timer)
@@ -97,5 +91,4 @@ const toggle = (event) => {
 .ep-container {
   cursor: pointer;
 }
-
 </style>

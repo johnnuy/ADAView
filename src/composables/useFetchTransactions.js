@@ -4,7 +4,7 @@ import { formatTransaction } from '../utils/utils'
 import { useSettings } from '@/composables/useSettings'
 
 export const useFetchTransactions = () => {
-  const { getApiUrl } = useSettings()
+  const { network } = useSettings()
   const transactions = ref(null)
   const count = ref(0)
   const loading = ref(false)
@@ -15,7 +15,7 @@ export const useFetchTransactions = () => {
     error.value = null
 
     axios
-      .get(`${getApiUrl()}/wallets/${address}/transactions`, {
+      .get(`${network.value.url}/wallets/${address}/transactions`, {
         params: { pageNumber, pageSize },
       })
       .then((result) => {
@@ -45,7 +45,7 @@ export const useFetchTransactions = () => {
 }
 
 export const useFetchTransaction = () => {
-  const { getApiUrl } = useSettings()
+  const { network } = useSettings()
   const transaction = ref(null)
   const loading = ref(false)
   const error = ref(null)
@@ -56,7 +56,7 @@ export const useFetchTransaction = () => {
     transaction.value = null
 
     axios
-      .get(`${getApiUrl()}/wallets/${address}/transactions/${transactionId}`)
+      .get(`${network.value.url}/wallets/${address}/transactions/${transactionId}`)
       .then((result) => {
         transaction.value = formatTransaction(result.data.data)
       })
