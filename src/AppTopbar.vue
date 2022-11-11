@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'Home' }" class="layout-topbar-logo">
       <img alt="Logo" :src="topbarImage()" />
       <span>AdaView.live</span>
-      <span v-if="!isMainNetwork()" :style="{'color':getNetworkPalette()}">&nbsp;test</span>
+      <span v-if="!network.main" :style="{ color: network.palette }">&nbsp;test</span>
     </router-link>
     <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle">
       <i class="pi pi-bars"></i>
@@ -40,7 +40,7 @@ import { useSettings } from '@/composables/useSettings'
 
 const emit = defineEmits(['menu-toggle', 'topbar-menu-toggle'])
 
-const { isMainNetwork, getNetworkPalette } = useSettings()
+const { network } = useSettings()
 
 const onMenuToggle = (event) => {
   emit('menu-toggle', event)
