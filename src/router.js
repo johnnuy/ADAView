@@ -5,9 +5,9 @@ import WalletDetails from '@/components/wallet/WalletDetails'
 import WalletTabs from '@/components/wallet/WalletTabs'
 import TransactionDetails from '@/components/wallet/transactions/TransactionDetails'
 import StakePoolDetails from '@/components/wallet/stakePools/StakePoolDetails'
-import { useSettings, networks } from '@/composables/useSettings'
+import { useSettings } from '@/composables/useSettings'
 
-const { setNetwork } = useSettings()
+const { setNetworkByName } = useSettings()
 
 // TODO lazy load these routes
 const routes = [
@@ -77,11 +77,7 @@ router.beforeEach((to, from, next) => {
   from.meta?.scrollPos && (from.meta.scrollPos.top = window.scrollY)
 
   // any route with a :network in it's path will set the global network property
-  to.params.network && setNetwork(
-    to.params.network === networks.MAIN ? networks.MAIN : 
-    to.params.network === networks.TEST ? networks.TEST :
-    to.params.network === networks.PREV ? networks.PREV : 
-    networks.PREP)
+  to.params.network && setNetworkByName(to.params.network)
 
   // proceed
   next()
