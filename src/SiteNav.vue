@@ -20,6 +20,14 @@
               </router-link>
             </span>
           </li>
+          <li class="active-menuitem" role="none">
+            <span class="flex flex-row align-items-center">
+              <router-link v-ripple :to="{ name: 'Support' }" class="p-ripple w-full" exact role="menuitem">
+                <i class="pi pi-fw pi-question-circle"></i>
+                <span>{{ L('SupportUs') }}</span>
+              </router-link>
+            </span>
+          </li>
         </ul>
       </li>
     </ul>

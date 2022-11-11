@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Wallet from '@/components/pages/Wallet'
 import Roadmap from '@/components/pages/Roadmap'
+import Support from '@/components/pages/Support'
 import WalletDetails from '@/components/wallet/WalletDetails'
 import WalletTabs from '@/components/wallet/WalletTabs'
 import TransactionDetails from '@/components/wallet/transactions/TransactionDetails'
@@ -57,6 +58,12 @@ const routes = [
     path: '/roadmap',
     name: 'Roadmap',
     component: Roadmap,
+    props: true,
+  },
+  {
+    path: '/support',
+    name: 'Support',
+    component: Support,
     props: true,
   },
 ]
