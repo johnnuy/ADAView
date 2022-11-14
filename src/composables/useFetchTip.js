@@ -27,7 +27,6 @@ export const useFetchTip = () => {
         loading.value = false
       })
       .catch((err) => {
-        axios.isAxiosError
         if (axios.isCancel(err)) {
           // Request cancelled
           error.value = null
