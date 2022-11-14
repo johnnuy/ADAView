@@ -104,13 +104,12 @@ watch([() => props.address, () => props.network], () => fetchWallet(props.addres
 
 // bugfix for: https://github.com/johnnuy/ADAView/issues/9
 watch(wallet, () => {
-  const stakingAddress = wallet?.value?.stake?.address
-  // if the wallet doesn't have a staking address, nothing to do here
-  if (!stakingAddress) return
+  if (!wallet.value) return
 
-  // if the user searched for a wallet by something other than it's staking address
-  // update the route's parameters to use that staking address (provided there is one)
-  if (router.currentRoute.value.params.address !== stakingAddress) {
+  const stakingAddress = wallet?.value?.stake?.address
+  if (stakingAddress && router.currentRoute.value.params.address !== stakingAddress) {
+    // if the user searched for a wallet by something other than it's staking address
+    // update the route's parameters to use that staking address (provided there is one)
     router.replace({
       name: router.currentRoute.value.name,
       params: { address: stakingAddress, network: router.currentRoute.value.params.network },
@@ -118,7 +117,7 @@ watch(wallet, () => {
   }
 
   // finally, add the wallet using the appropriate address
-  addSearch({ address: stakingAddress || props.address, name: wallet.value.avatar.name, network: props.network })
+  addSearch({ address: stakingAddress || props.address, name: wallet.value.avatar?.name, network: props.network })
 })
 
 const isStakingWallet = computed(() => !!wallet.value.stake)

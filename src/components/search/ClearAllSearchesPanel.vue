@@ -17,6 +17,7 @@ defineProps({
   type: {
     validator: (prop) => ['saved', 'recent'].includes(prop),
     required: true,
+    default: 'recent', // provide a default to remove warnings
   },
 })
 
