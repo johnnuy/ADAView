@@ -81,11 +81,13 @@
 <script setup>
 import { onMounted, watch, computed } from 'vue'
 import { useFetchWallet } from '@/composables/useFetchWallet'
+import router from '@/router'
 import WalletAddress from '@/components/common/WalletAddress'
 import { formatLovelace } from '@/utils/utils'
 import ErrorComp from '@/components/common/Error'
 import { useLexicon } from '@/composables/useLexicon'
 import StakePoolCard from '@/components/wallet/stakePools/StakePoolCard'
+import { useSearchHistory } from '@/composables/useSearchHistory'
 
 const { L } = useLexicon()
 
@@ -95,8 +97,30 @@ const props = defineProps({
 })
 
 const { wallet, loading, error, fetchWallet } = useFetchWallet()
+const { addSearch } = useSearchHistory()
+
 onMounted(() => fetchWallet(props.address))
 watch([() => props.address, () => props.network], () => fetchWallet(props.address))
+
+// bugfix for: https://github.com/johnnuy/ADAView/issues/9
+watch(wallet, () => {
+  const stakingAddress = wallet?.value?.stake?.address
+  // if the wallet doesn't have a staking address, nothing to do here
+  if (!stakingAddress) return
+
+  // if the user searched for a wallet by something other than it's staking address
+  // update the route's parameters to use that staking address (provided there is one)
+  if (router.currentRoute.value.params.address !== stakingAddress) {
+    router.replace({
+      name: router.currentRoute.value.name,
+      params: { address: stakingAddress, network: router.currentRoute.value.params.network },
+    })
+  }
+
+  // finally, add the wallet using the appropriate address
+  addSearch({ address: stakingAddress || props.address, name: wallet.value.avatar.name, network: props.network })
+})
+
 const isStakingWallet = computed(() => !!wallet.value.stake)
 </script>
 
