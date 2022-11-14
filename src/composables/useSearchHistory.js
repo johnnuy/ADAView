@@ -38,6 +38,15 @@ const removeSearch = ({ address }) => {
   localStorage.setItem('searches', JSON.stringify(savedSearches.value))
 }
 
+const clearRecentSearches = () => {
+  searches.value = []
+}
+
+const clearSavedSearches = () => {
+  savedSearches.value = []
+  localStorage.removeItem('searches')
+}
+
 export const useSearchHistory = () => {
   return {
     searches,
@@ -45,5 +54,7 @@ export const useSearchHistory = () => {
     addSearch,
     saveSearch,
     removeSearch,
+    clearRecentSearches,
+    clearSavedSearches,
   }
 }

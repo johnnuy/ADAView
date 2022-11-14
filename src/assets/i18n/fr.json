@@ -17,7 +17,7 @@
   },
   {
     "key": "Saved Searches",
-    "value": "Recherches sauvegardé"
+    "value": "Recherches sauvegardés"
   },
   {
     "key": "Recent Searches",
@@ -414,5 +414,21 @@
   {
     "key": "Messages",
     "value": "Messages"
+  },
+  {
+    "key": "Clear all recent searches...",
+    "value": "Supprimer les recherches récentes?"
+  },
+  {
+    "key": "Clear all saved searches...",
+    "value": "Supprimer les recherches sauvegardés?"
+  },
+  {
+    "key": "Yes, remove all searches",
+    "value": "Oui, supprimer les recherches"
+  },
+  {
+    "key": "Cancel",
+    "value": "Annuler"
   }
 ]

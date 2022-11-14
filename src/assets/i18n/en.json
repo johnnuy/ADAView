@@ -410,5 +410,21 @@
   {
     "key": "Messages",
     "value": "Messages"
+  },
+  {
+    "key": "Clear all recent searches...",
+    "value": "Clear all recent searches?"
+  },
+  {
+    "key": "Clear all saved searches...",
+    "value": "Clear all saved searches?"
+  },
+  {
+    "key": "Yes, remove all searches",
+    "value": "Yes, remove all searches"
+  },
+  {
+    "key": "Cancel",
+    "value": "Cancel"
   }
 ]
