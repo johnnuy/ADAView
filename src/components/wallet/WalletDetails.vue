@@ -113,7 +113,7 @@ watch(wallet, () => {
   if (router.currentRoute.value.params.address !== stakingAddress) {
     router.replace({
       name: router.currentRoute.value.name,
-      params: { address: wallet.value.stake.address, network: router.currentRoute.value.params.network },
+      params: { address: stakingAddress, network: router.currentRoute.value.params.network },
     })
   }
 
