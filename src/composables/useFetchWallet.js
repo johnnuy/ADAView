@@ -1,8 +1,6 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useSettings } from '@/composables/useSettings'
-import { useSearchHistory } from '@/composables/useSearchHistory'
-const { addSearch } = useSearchHistory()
 
 const wallet = ref(null)
 const loading = ref(false)
@@ -29,10 +27,8 @@ export const useFetchWallet = () => {
       .then((response) => {
         wallet.value = response.data.data
         loading.value = false
-        addSearch({ address, name: wallet.value.avatar.name, network: network.value.name })
       })
       .catch((err) => {
-        axios.isAxiosError
         if (axios.isCancel(err)) {
           // Request cancelled
           error.value = null
