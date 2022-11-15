@@ -141,7 +141,11 @@
   },
   {
     "key": "Delegator Rewards",
-    "value": "Récompense des délégués"
+    "value": "Récompens des délégués"
+  },
+  {
+    "key": "Reward Value",
+    "value": "Valeur de la récompense"
   },
   {
     "key": "Other",
