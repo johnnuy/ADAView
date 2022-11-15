@@ -17,25 +17,31 @@
             {{ transaction.transactionDate }}
           </div>
 
-          <div class="text-500">{{ L('Block') }}:</div>
-          <div>
-            {{ transaction.block }}
-          </div>
+          <template v-if="transaction.type !== TransactionTypes.VOTING_REWARDS.id">
+            <div class="text-500">{{ L('Block') }}:</div>
+            <div>
+              {{ transaction.block }}
+            </div>
+          </template>
 
           <div class="text-500">{{ L('Epoch') }}:</div>
           <div>
             {{ transaction.epoch }}
           </div>
 
-          <div class="text-500">{{ L('Hash') }}:</div>
-          <div class="break">
-            <span><CopyToClipboardLink :text="transaction.hash" :copy-text="transaction.hash" break /></span>
-          </div>
+          <template v-if="transaction.type !== TransactionTypes.VOTING_REWARDS.id">
+            <div class="text-500">{{ L('Hash') }}:</div>
+            <div class="break">
+              <span><CopyToClipboardLink :text="transaction.hash" :copy-text="transaction.hash" break /></span>
+            </div>
+          </template>
 
-          <div class="text-500">{{ L('Fee') }}:</div>
-          <div>
-            {{ formatLovelace(transaction.fee) }}
-          </div>
+          <template v-if="transaction.type !== TransactionTypes.VOTING_REWARDS.id">
+            <div class="text-500">{{ L('Fee') }}:</div>
+            <div>
+              {{ formatLovelace(transaction.fee) }}
+            </div>
+          </template>
 
           <template v-if="transaction.deposit > 0">
             <div class="text-500">{{ L('Deposit') }}:</div>
@@ -55,7 +61,14 @@
           <div v-if="transaction.type === TransactionTypes.PAYMENT.id" class="text-500">{{ L('Funds Out') }}:</div>
           <div v-if="transaction.type === TransactionTypes.LEADER_REWARDS.id" class="text-500">{{ L('Leader Rewards') }}:</div>
           <div v-if="transaction.type === TransactionTypes.DELEGATOR_REWARDS.id" class="text-500">{{ L('Leader Rewards') }}:</div>
-          <div v-if="[TransactionTypes.DELEGATOR_REWARDS.id, TransactionTypes.LEADER_REWARDS.id, TransactionTypes.PAYMENT.id, TransactionTypes.RECEIPT.id].includes(transaction.type)">
+          <div v-if="transaction.type === TransactionTypes.VOTING_REWARDS.id" class="text-500">{{ L('Reward Value') }}:</div>
+          <div
+            v-if="
+              [TransactionTypes.VOTING_REWARDS.id, TransactionTypes.DELEGATOR_REWARDS.id, TransactionTypes.LEADER_REWARDS.id, TransactionTypes.PAYMENT.id, TransactionTypes.RECEIPT.id].includes(
+                transaction.type,
+              )
+            "
+          >
             {{ formatLovelace(transaction.adaValue) }}
           </div>
 
@@ -98,7 +111,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import { formatLovelace, getTransactionDetails } from '@/utils/utils'
 import { EventTypesById, TransactionTypes, EventTypes } from '@/utils/constants'
 import { useFetchTransaction } from '@/composables/useFetchTransactions'
@@ -127,6 +140,15 @@ const props = defineProps({
 const { transaction, loading, error, getTransaction } = useFetchTransaction()
 onMounted(() => getTransaction(props.address, props.transactionId))
 watch([() => props.address, () => props.transactionId], () => getTransaction(props.address, props.transactionId))
+
+const transactionFields = computed(() => {
+  if (transaction) {
+    return Object.entries(TransactionTypes)
+      .find((t) => t[1].id === transaction.value.type)[1]
+      .fields.map()
+  }
+  return []
+})
 
 const activeIndex = ref([0])
 const onClose = () => router.push({ name: 'WalletHome', params: { network: props.network, address: props.address } })
