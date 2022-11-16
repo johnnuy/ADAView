@@ -5,23 +5,11 @@ const { L } = useLexicon()
 class TransactionField {
   /**
    * @param {string} key - i18n key
-   * @param {function(Transaction): string} valueFor - callback to get the field's value
+   * @param {function(Transaction): string} getComponent - callback to get the field's value
    */
-  constructor(key, valueFor) {
+  constructor(key, getComponent) {
     this.key = key
-    this.valueFor = valueFor
-  }
-
-  /**
-   * Looks through the transaction types and determines whether or not
-   * the field should be displayed
-   * @param {Transaction} transaction
-   * @returns {boolean}
-   */
-  display(transaction) {
-    return Object.entries(TransactionTypes)
-      .find(([k, v]) => v.id === transaction.type)[1]
-      .contains(this)
+    this.getComponent = getComponent
   }
 }
 
@@ -45,21 +33,51 @@ class TransactionType {
 }
 
 const TransactionFields = {
-  TYPE: new TransactionField('Type', (t) => L(getTransactionDetails(t))), // type
-  DATE: new TransactionField('Date', (t) => t.transactionDate), // date
-  BLOCK: new TransactionField('Block', (t) => t.block), // block
-  EPOCH: new TransactionField('Epoch', (t) => t.epoch), //epoch
-  HASH: new TransactionField('Hash', (t) => t.hash), // hash
-  FEE: new TransactionField('Fee', (t) => formatLovelace(t.fee)), // fee
-  DEPOSIT: new TransactionField('Deposit', (t) => formatLovelace(t.adaValue)), // adaValue
-  REFUND: new TransactionField('Refund', (t) => formatLovelace(t.adaValue)), // adaValue
-  FUNDS_IN: new TransactionField('Funds In', (t) => formatLovelace(t.adaValue)), // adaValue
-  FUNDS_OUT: new TransactionField('Funds Out', (t) => formatLovelace(t.adaValue)), // adaValue
-  LEADER_REWARDS: new TransactionField('Leader Rewards', (t) => formatLovelace(t.adaValue)), // adaValue
-  DELEGATOR_REWARDS: new TransactionField('Delegator Rewards', (t) => formatLovelace(t.adaValue)), // adaValue
-  VOTING_REWARDS: new TransactionField('Reward Value', (t) => formatLovelace(t.adaValue)), // adaValue
-  REWARD_SOURCE: new TransactionField('Reward Source', (t) => t.rewardSource), //rewardSource
-  BALANCE: new TransactionField('Balance', (t) => formatLovelace(t.adaValue)), //adaBalance
+  TYPE: new TransactionField('Type', (t) => ({
+    template: `<span>${L(getTransactionDetails(t))}</span>`,
+  })),
+  DATE: new TransactionField('Date', (t) => ({
+    template: `<span>${t.transactionDate}</span>`,
+  })),
+  BLOCK: new TransactionField('Block', (t) => ({
+    template: `<span>${t.block}</span>`,
+  })),
+  EPOCH: new TransactionField('Epoch', (t) => ({
+    template: `<span>${t.epoch}</span>`,
+  })),
+  HASH: new TransactionField('Hash', (t) => ({
+    template: `<span><CopyToClipboardLink text="${t.hash}" copy-text="${t.hash}" break /></span>`,
+  })),
+  FEE: new TransactionField('Fee', (t) => ({
+    template: `<span>${formatLovelace(t.fee)}</span>`,
+  })),
+  DEPOSIT: new TransactionField('Deposit', (t) => ({
+    template: `<span>${formatLovelace(t.adaValue)}</span>`,
+  })),
+  REFUND: new TransactionField('Refund', (t) => ({
+    template: `<span>${formatLovelace(t.adaValue)}</span>`,
+  })),
+  FUNDS_IN: new TransactionField('Funds In', (t) => ({
+    template: `<span>${formatLovelace(t.adaValue)}</span>`,
+  })),
+  FUNDS_OUT: new TransactionField('Funds Out', (t) => ({
+    template: `<span>${formatLovelace(t.adaValue)}</span>`,
+  })),
+  LEADER_REWARDS: new TransactionField('Leader Rewards', (t) => ({
+    template: `<span>${formatLovelace(t.adaValue)}</span>`,
+  })),
+  DELEGATOR_REWARDS: new TransactionField('Delegator Rewards', (t) => ({
+    template: `<span>${formatLovelace(t.adaValue)}</span>`,
+  })),
+  VOTING_REWARDS: new TransactionField('Reward Value', (t) => ({
+    template: `<span>${formatLovelace(t.adaValue)}</span>`,
+  })),
+  REWARD_SOURCE: new TransactionField('Reward Source', (t) => ({
+    template: `<span>${t.rewardSource}</span>`,
+  })),
+  BALANCE: new TransactionField('Balance', (t) => ({
+    template: `<span>${formatLovelace(t.adaValue)}</span>`,
+  })),
 }
 
 const TransactionTypes = {
