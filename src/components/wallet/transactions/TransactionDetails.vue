@@ -7,78 +7,108 @@
     <Accordion :active-index="activeIndex" :multiple="true">
       <AccordionTab :header="L('Transaction Details')">
         <div class="container">
-          <div class="text-500">{{ L('Type') }}:</div>
-          <div>
-            <span>{{ L(getTransactionDetails(transaction)) }}</span>
-          </div>
-
-          <div class="text-500">{{ L('Date') }}:</div>
-          <div>
-            {{ transaction.transactionDate }}
-          </div>
-
-          <template v-if="transaction.type !== TransactionTypes.VOTING_REWARDS.id">
-            <div class="text-500">{{ L('Block') }}:</div>
+          <template v-if="TransactionFields.TYPE.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.TYPE.key) }}:</div>
             <div>
-              {{ transaction.block }}
+              <span>{{ TransactionFields.TYPE.valueFor(transaction) }}</span>
             </div>
           </template>
 
-          <div class="text-500">{{ L('Epoch') }}:</div>
-          <div>
-            {{ transaction.epoch }}
-          </div>
+          <template v-if="TransactionFields.DATE.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.DATE.key) }}:</div>
+            <div>
+              {{ TransactionFields.DATE.valueFor(transaction) }}
+            </div>
+          </template>
 
-          <template v-if="transaction.type !== TransactionTypes.VOTING_REWARDS.id">
-            <div class="text-500">{{ L('Hash') }}:</div>
+          <template v-if="TransactionFields.BLOCK.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.BLOCK.key) }}:</div>
+            <div>
+              {{ TransactionFields.BLOCK.valueFor(transaction) }}
+            </div>
+          </template>
+
+          <template v-if="TransactionFields.EPOCH.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.EPOCH.key) }}:</div>
+            <div>
+              {{ TransactionFields.EPOCH.valueFor(transaction) }}
+            </div>
+          </template>
+
+          <template v-if="TransactionFields.HASH.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.HASH.key) }}:</div>
             <div class="break">
-              <span><CopyToClipboardLink :text="transaction.hash" :copy-text="transaction.hash" break /></span>
+              <span><CopyToClipboardLink :text="`${TransactionFields.HASH.valueFor(transaction)}`" :copy-text="`${TransactionFields.HASH.valueFor(transaction)}`" break /></span>
             </div>
           </template>
 
-          <template v-if="transaction.type !== TransactionTypes.VOTING_REWARDS.id">
-            <div class="text-500">{{ L('Fee') }}:</div>
+          <template v-if="TransactionFields.FEE.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.FEE.key) }}:</div>
             <div>
-              {{ formatLovelace(transaction.fee) }}
+              {{ TransactionFields.FEE.valueFor(transaction) }}
             </div>
           </template>
 
-          <template v-if="transaction.deposit > 0">
-            <div class="text-500">{{ L('Deposit') }}:</div>
+          <template v-if="TransactionFields.DEPOSIT.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.DEPOSIT.key) }}:</div>
             <div>
-              {{ formatLovelace(transaction.deposit) }}
+              {{ TransactionFields.DEPOSIT.valueFor(transaction) }}
             </div>
           </template>
 
-          <template v-if="transaction.deposit < 0">
-            <div class="text-500">{{ L('Refund') }}:</div>
+          <template v-if="TransactionFields.REFUND.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.REFUND.key) }}:</div>
             <div>
-              {{ formatLovelace(transaction.deposit) }}
+              {{ TransactionFields.REFUND.valueFor(transaction) }}
             </div>
           </template>
 
-          <div v-if="transaction.type === TransactionTypes.RECEIPT.id" class="text-500">{{ L('Funds In') }}:</div>
-          <div v-if="transaction.type === TransactionTypes.PAYMENT.id" class="text-500">{{ L('Funds Out') }}:</div>
-          <div v-if="transaction.type === TransactionTypes.LEADER_REWARDS.id" class="text-500">{{ L('Leader Rewards') }}:</div>
-          <div v-if="transaction.type === TransactionTypes.DELEGATOR_REWARDS.id" class="text-500">{{ L('Leader Rewards') }}:</div>
-          <div v-if="transaction.type === TransactionTypes.VOTING_REWARDS.id" class="text-500">{{ L('Reward Value') }}:</div>
-          <div
-            v-if="
-              [TransactionTypes.VOTING_REWARDS.id, TransactionTypes.DELEGATOR_REWARDS.id, TransactionTypes.LEADER_REWARDS.id, TransactionTypes.PAYMENT.id, TransactionTypes.RECEIPT.id].includes(
-                transaction.type,
-              )
-            "
-          >
-            {{ formatLovelace(transaction.adaValue) }}
-          </div>
+          <template v-if="TransactionFields.FUNDS_IN.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.FUNDS_IN.key) }}:</div>
+            <div>
+              {{ TransactionFields.FUNDS_IN.valueFor(transaction) }}
+            </div>
+          </template>
 
-          <div v-if="transaction.rewardSource" class="text-500">{{ L('Reward Source') }}:</div>
-          <div v-if="transaction.rewardSource">{{ transaction.rewardSource }}</div>
+          <template v-if="TransactionFields.FUNDS_OUT.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.FUNDS_OUT.key) }}:</div>
+            <div>
+              {{ TransactionFields.FUNDS_OUT.valueFor(transaction) }}
+            </div>
+          </template>
 
-          <div class="text-500">{{ L('Balance') }}:</div>
-          <div>
-            {{ formatLovelace(transaction.adaBalance) }}
-          </div>
+          <template v-if="TransactionFields.LEADER_REWARDS.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.LEADER_REWARDS.key) }}:</div>
+            <div>
+              {{ TransactionFields.LEADER_REWARDS.valueFor(transaction) }}
+            </div>
+          </template>
+
+          <template v-if="TransactionFields.DELEGATOR_REWARDS.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.DELEGATOR_REWARDS.key) }}:</div>
+            <div>
+              {{ formatLovelace(transaction.adaValue) }}
+            </div>
+          </template>
+
+          <template v-if="TransactionFields.VOTING_REWARDS.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.VOTING_REWARDS.key) }}:</div>
+            <div>
+              {{ TransactionFields.VOTING_REWARDS.valueFor(transaction) }}
+            </div>
+          </template>
+
+          <template v-if="TransactionFields.REWARD_SOURCE.display(transaction)">
+            <div v-if="transaction.rewardSource" class="text-500">{{ L(TransactionFields.REWARD_SOURCE.key) }}:</div>
+            <div v-if="transaction.rewardSource">{{ TransactionFields.REWARD_SOURCE.ValueFor(transaction) }}</div>
+          </template>
+
+          <template v-if="TransactionFields.BALANCE.display(transaction)">
+            <div class="text-500">{{ L(TransactionFields.BALANCE.key) }}:</div>
+            <div>
+              {{ TransactionFields.BALANCE.valueFor(transaction) }}
+            </div>
+          </template>
         </div>
       </AccordionTab>
       <AccordionTab v-if="transaction.messages && transaction.messages.length > 0" :header="L('Messages')">
@@ -111,9 +141,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { formatLovelace, getTransactionDetails } from '@/utils/utils'
-import { EventTypesById, TransactionTypes, EventTypes } from '@/utils/constants'
+import { EventTypesById, TransactionFields, TransactionTypes, EventTypes } from '@/utils/constants'
 import { useFetchTransaction } from '@/composables/useFetchTransactions'
 import CopyToClipboardLink from '@/components/common/CopyToClipboardLink'
 import Error from '@/components/common/Error'
@@ -141,14 +171,12 @@ const { transaction, loading, error, getTransaction } = useFetchTransaction()
 onMounted(() => getTransaction(props.address, props.transactionId))
 watch([() => props.address, () => props.transactionId], () => getTransaction(props.address, props.transactionId))
 
-const transactionFields = computed(() => {
-  if (transaction) {
-    return Object.entries(TransactionTypes)
-      .find((t) => t[1].id === transaction.value.type)[1]
-      .fields.map()
-  }
-  return []
-})
+// returns whether or not a specific field should be displayed  for the given tx type
+const containsFieldForTransactionType = (type, field) => {
+  return Object.entries(TransactionTypes)
+    .find(([k, v]) => v.id === type)[1]
+    .contains(field)
+}
 
 const activeIndex = ref([0])
 const onClose = () => router.push({ name: 'WalletHome', params: { network: props.network, address: props.address } })
