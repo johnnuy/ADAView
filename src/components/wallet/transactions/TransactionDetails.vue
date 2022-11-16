@@ -142,7 +142,7 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { formatLovelace, getTransactionDetails } from '@/utils/utils'
+import { formatLovelace } from '@/utils/utils'
 import { EventTypesById, TransactionFields, TransactionTypes, EventTypes } from '@/utils/constants'
 import { useFetchTransaction } from '@/composables/useFetchTransactions'
 import CopyToClipboardLink from '@/components/common/CopyToClipboardLink'
@@ -170,13 +170,6 @@ const props = defineProps({
 const { transaction, loading, error, getTransaction } = useFetchTransaction()
 onMounted(() => getTransaction(props.address, props.transactionId))
 watch([() => props.address, () => props.transactionId], () => getTransaction(props.address, props.transactionId))
-
-// returns whether or not a specific field should be displayed  for the given tx type
-const containsFieldForTransactionType = (type, field) => {
-  return Object.entries(TransactionTypes)
-    .find(([k, v]) => v.id === type)[1]
-    .contains(field)
-}
 
 const activeIndex = ref([0])
 const onClose = () => router.push({ name: 'WalletHome', params: { network: props.network, address: props.address } })
