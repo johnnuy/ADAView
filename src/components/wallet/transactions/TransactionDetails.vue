@@ -87,7 +87,7 @@
           <template v-if="TransactionFields.DELEGATOR_REWARDS.display(transaction)">
             <div class="text-500">{{ L(TransactionFields.DELEGATOR_REWARDS.key) }}:</div>
             <div>
-              {{ formatLovelace(transaction.adaValue) }}
+              {{ TransactionFields.DELEGATOR_REWARDS.valueFor(transaction) }}
             </div>
           </template>
 
@@ -100,7 +100,9 @@
 
           <template v-if="TransactionFields.REWARD_SOURCE.display(transaction)">
             <div v-if="transaction.rewardSource" class="text-500">{{ L(TransactionFields.REWARD_SOURCE.key) }}:</div>
-            <div v-if="transaction.rewardSource">{{ TransactionFields.REWARD_SOURCE.ValueFor(transaction) }}</div>
+            <div v-if="transaction.rewardSource">
+              {{ TransactionFields.REWARD_SOURCE.ValueFor(transaction) }}
+            </div>
           </template>
 
           <template v-if="TransactionFields.BALANCE.display(transaction)">
