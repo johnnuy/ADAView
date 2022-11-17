@@ -94,6 +94,7 @@ import Tree from 'primevue/Tree'
 import veProgress from 'vue-ellipse-progress'
 
 import { useLexicon } from '@/composables/useLexicon'
+import CopyToClipboardLink from '@/components/common/CopyToClipboardLink'
 
 router.beforeEach(function (to, from, next) {
   window.scrollTo(0, 0)
@@ -107,6 +108,8 @@ const { L } = useLexicon()
 app.config.globalProperties.L = L
 
 app.config.globalProperties.$appState = reactive({ theme: 'lara-dark-blue', darkTheme: true })
+
+app.component('CopyToClipboardLink', CopyToClipboardLink)
 
 app.use(PrimeVue, { ripple: true, inputStyle: 'outlined' })
 // app.use(ConfirmationService)
