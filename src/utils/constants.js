@@ -76,7 +76,7 @@ const TransactionFields = {
     template: `<span>${t.rewardSource}</span>`,
   })),
   BALANCE: new TransactionField('Balance', (t) => ({
-    template: `<span>${formatLovelace(t.adaValue)}</span>`,
+    template: `<span>${formatLovelace(t.adaBalance)}</span>`,
   })),
 }
 
