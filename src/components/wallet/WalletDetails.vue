@@ -28,8 +28,11 @@
           <div class="card h-full">
             <div class="flex flex-column justify-content-between h-full">
               <div class="mb-3">
-                <span class="block text-500 font-medium mb-3">{{ L('Balance') }}</span>
-                <div class="text-900 font-medium text-xl">{{ formatLovelace(wallet.balance) }}</div>
+                <span class="block text-500 font-medium mb-2">{{ L('Balance') }}</span>
+                <div class="text-900 font-medium text-xl">{{ formatLovelace(wallet.balance) }}</div>                
+
+                <span class="block text-500 font-medium mt-3 mb-2">{{ L('Reward Balance') }}</span>
+                <div class="text-900 font-medium text-xl">{{ formatLovelace(wallet.rewardBalance) }}</div>                
               </div>
             </div>
           </div>

@@ -43,6 +43,12 @@
       </template>
     </Column>
 
+    <column :header="L('Reward Balance')">
+      <template #body="{ data }">
+        <span>{{ formatLovelace(data.rewardBalance) }}</span>
+      </template>
+    </column>
+
     <Column :header="L('Assets')">
       <template #body="{ data }">
         <!-- payment -->

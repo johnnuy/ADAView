@@ -84,6 +84,10 @@
     "value": "Balance"
   },
   {
+    "key": "Reward Balance",
+    "value": "Reward Balance"
+  },
+  {
     "key": "Assets",
     "value": "Assets"
   },
