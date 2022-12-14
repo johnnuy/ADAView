@@ -1,8 +1,8 @@
 <template>
   <div class="layout-topbar">
     <router-link :to="{ name: 'Home' }" class="layout-topbar-logo">
-      <img alt="Logo" :src="topbarImage()" />
-      <span>ADAView.live</span>
+      <img class="lettermark" alt="Lettermark" :src="lettermarkImage()" />
+      <img class="wordmark" alt="Wordmark" :src="wordmarkImage()" />      
       <span v-if="!network.main" :style="{ color: network.palette }">&nbsp;{{ network.name }}</span>
     </router-link>
     <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle">
@@ -46,13 +46,24 @@ const onMenuToggle = (event) => {
   emit('menu-toggle', event)
 }
 
-const topbarImage = () => {
-  return 'images/adaview/adaview_lettermark_sm.png'
+const lettermarkImage = () => {
+  return 'images/adaview/adaview_lettermark_md.png'
+}
+
+const wordmarkImage = () => {
+  return 'images/adaview/adaview_wordmark_inv_sm.png'
 }
 </script>
 
 <style lang="scss" scoped>
-  .layout-topbar-logo img {
-    height: 4rem;
+  // .layout-topbar-logo img {
+  //   height:3rem;
+  // }
+  .lettermark {
+    height:4rem !important;
+  }
+  
+  .wordmark {
+    height: 2.0rem !important; 
   }
 </style>
