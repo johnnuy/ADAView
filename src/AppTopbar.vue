@@ -56,9 +56,6 @@ const wordmarkImage = () => {
 </script>
 
 <style lang="scss" scoped>
-  // .layout-topbar-logo img {
-  //   height:3rem;
-  // }
   .lettermark {
     height:4rem !important;
   }
