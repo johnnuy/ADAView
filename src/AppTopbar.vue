@@ -57,7 +57,7 @@ const wordmarkImage = () => {
 
 <style lang="scss" scoped>
   .lettermark {
-    height:4rem !important;
+    height:4.0rem !important;
   }
   
   .wordmark {
