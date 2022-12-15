@@ -85,7 +85,7 @@
   },
   {
     "key": "Assets",
-    "value": "Atouts"
+    "value": "Actifs"
   },
   {
     "key": "Transaction Detail",
@@ -358,6 +358,14 @@
   {
     "key": "Quantity",
     "value": "Quantité"
+  },
+  {
+    "key": "Supply",
+    "value": "Approvisionnement Totale"
+  },
+  {
+    "key": "Asset Holdings",
+    "value": "Détention d'actifs"
   },
   {
     "key": "Fingerprint",

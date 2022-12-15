@@ -356,6 +356,14 @@
     "value": "Quantity"
   },
   {
+    "key": "Supply",
+    "value": "Total Supply"
+  },
+  {
+    "key": "Asset Holdings",
+    "value": "Asset Holdings"
+  },
+  {
     "key": "Fingerprint",
     "value": "Fingerprint"
   },
