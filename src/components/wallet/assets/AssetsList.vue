@@ -16,15 +16,19 @@
     <Column field="asset.name" :header="L('Name')"></Column>
     <Column field="quantity" :header="L('Quantity')"></Column>
     <Column field="asset.supply" :header="L('Supply')"></Column>      
-    <Column field="asset.policy" :header="L('Policy')"></Column>      
-    
+    <Column field="asset.policy" :header="L('Policy')"></Column>
+    <Column :header="L('Fingerprint')">
+      <template #body="{ data }">
+        <CopyToClipboardLink :text="data.asset.fingerprint" :copy-text="data.asset.fingerprint" break />
+      </template>
+    </Column>
   </DataTable>
 </template>
 
 <script setup>
+import CopyToClipboardLink from '@/components/common/CopyToClipboardLink.vue'
 import { onMounted } from 'vue'
 import { useFetchAssets } from '@/composables/useFetchAssets'
-import WalletAddress from '@/components/common/WalletAddress'
 
 const props = defineProps({
   address: String,
