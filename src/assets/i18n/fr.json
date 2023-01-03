@@ -85,7 +85,7 @@
   },
   {
     "key": "Assets",
-    "value": "Atouts"
+    "value": "Actifs"
   },
   {
     "key": "Transaction Detail",
@@ -358,6 +358,38 @@
   {
     "key": "Quantity",
     "value": "Quantité"
+  },
+  {
+    "key": "Quantity Minted",
+    "value": "Quantité frappée"
+  },
+  {
+    "key": "Quantity Burned",
+    "value": "Quantité brûlée"
+  },
+  {
+    "key": "Total Supply",
+    "value": "Quantité Totale"
+  },
+  {
+    "key": "Remaining Supply",
+    "value": "Quantité Restant"
+  },
+  {
+    "key": "Asset Received",
+    "value": "Actifs reçu"
+  },
+  {
+    "key": "Asset Sent",
+    "value": "Asset Envoyés"
+  },
+  {
+    "key": "Asset Name",
+    "value": "Nom d'actifs"
+  },
+  {
+    "key": "Asset Holdings",
+    "value": "Détention d'actifs"
   },
   {
     "key": "Fingerprint",

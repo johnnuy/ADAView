@@ -356,6 +356,38 @@
     "value": "Quantity"
   },
   {
+    "key": "Quantity Minted",
+    "value": "Quantity Minted"
+  },
+  {
+    "key": "Quantity Burned",
+    "value": "Quantity Burned"
+  },
+  {
+    "key": "Total Supply",
+    "value": "Total Supply"
+  },
+  {
+    "key": "Remaining Supply",
+    "value": "Remaining Supply"
+  },
+  {
+    "key": "Asset Received",
+    "value": "Asset Received"
+  },
+  {
+    "key": "Asset Sent",
+    "value": "Asset Sent"
+  },
+  {
+    "key": "Asset Holdings",
+    "value": "Asset Holdings"
+  },
+  {
+    "key": "Asset Name",
+    "value": "Asset Name"
+  },
+  {
     "key": "Fingerprint",
     "value": "Fingerprint"
   },
