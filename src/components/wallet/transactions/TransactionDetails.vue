@@ -15,6 +15,55 @@
           </template>
         </div>
       </AccordionTab>
+
+      <AccordionTab v-for="assetReceived in transaction.assetsReceived" :key="assetReceived.id" :header="L('Asset Received')">
+        <div class="container">
+          <div class="text-500">{{ L('Asset Name') }}:</div>
+          <div>
+            {{ assetReceived.asset.name }}
+          </div>
+
+          <div class="text-500">{{ L('Policy') }}:</div>
+          <div>
+            {{ assetReceived.asset.policy }}
+          </div>
+
+          <div class="text-500">{{ L('Fingerprint') }}:</div>
+          <div>
+            <CopyToClipboardLink :text="assetReceived.asset.fingerprint" :copy-text="assetReceived.asset.fingerprint" break />
+          </div>
+
+          <div class="text-500">{{ L('Quantity') }}:</div>
+          <div>
+            {{ assetReceived.quantity }}
+          </div>
+        </div>
+      </AccordionTab>
+      
+      <AccordionTab v-for="assetsSent in transaction.assetsSent" :key="assetsSent.id" :header="L('Asset Sent')">
+        <div class="container">
+          <div class="text-500">{{ L('Asset Name') }}:</div>
+          <div>
+            {{ assetsSent.asset.name }}
+          </div>
+
+          <div class="text-500">{{ L('Policy') }}:</div>
+          <div>
+            {{ assetsSent.asset.policy }}
+          </div>
+
+          <div class="text-500">{{ L('Fingerprint') }}:</div>
+          <div>
+            <CopyToClipboardLink :text="assetsSent.asset.fingerprint" :copy-text="assetsSent.asset.fingerprint" break />
+          </div>
+
+          <div class="text-500">{{ L('Quantity') }}:</div>
+          <div>
+            {{ assetsSent.quantity }}
+          </div>
+        </div>
+      </AccordionTab>
+
       <AccordionTab v-if="transaction.messages && transaction.messages.length > 0" :header="L('Messages')">
         <div class="container">
           <template v-for="(message, index) in transaction.messages" :key="`message-${index}`">
@@ -25,9 +74,11 @@
           </template>
         </div>
       </AccordionTab>
+      
       <AccordionTab v-if="transaction.externalSources.length > 0 || transaction.externalDestinations.length > 0" :header="L('External Wallets')">
         <TransactionWallets :transaction="transaction" />
       </AccordionTab>
+
       <AccordionTab v-for="event in transaction.events" :key="event.eventType" :header="EventTypesById[event.eventType]">
         <VotingRegistrationEvent v-if="event.eventType === EventTypes.VOTING_REGISTRATION.id" :event="event" />
         <StakeRegistrationEvent v-if="event.eventType === EventTypes.STAKE_REGISTRATION.id" :event="event" />

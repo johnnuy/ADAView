@@ -17,6 +17,10 @@ export const formatLovelace = (amount) => {
   )
 }
 
+export const negate = (value) => {
+  return (value * -1);  
+}
+
 export const formatTransaction = (transaction) => {
   var utc = new Date(transaction.timeUTC)
   const transactionDate = utc.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) + ' ' + utc.toLocaleTimeString('en-US')
