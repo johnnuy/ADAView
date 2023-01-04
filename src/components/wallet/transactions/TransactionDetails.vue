@@ -39,7 +39,7 @@
           </div>
         </div>
       </AccordionTab>
-      
+
       <AccordionTab v-for="assetsSent in transaction.assetsSent" :key="assetsSent.id" :header="L('Asset Sent')">
         <div class="container">
           <div class="text-500">{{ L('Asset Name') }}:</div>
@@ -74,8 +74,8 @@
           </template>
         </div>
       </AccordionTab>
-      
-      <AccordionTab v-if="transaction.externalSources.length > 0 || transaction.externalDestinations.length > 0" :header="L('External Wallets')">
+
+      <AccordionTab v-if="transaction.externalSources?.length > 0 || transaction.externalDestinations?.length > 0" :header="L('External Wallets')">
         <TransactionWallets :transaction="transaction" />
       </AccordionTab>
 
@@ -118,11 +118,22 @@ const props = defineProps({
   network: String,
   address: String,
   transactionId: String,
+  transaction: String,
 })
 
 const { transaction, loading, error, getTransaction } = useFetchTransaction()
-onMounted(() => getTransaction(props.address, props.transactionId))
-watch([() => props.address, () => props.transactionId], () => getTransaction(props.address, props.transactionId))
+
+const loadTransaction = () => {
+  // try to load from the transaction prop first, if it isn't set then we fetch the transaction from the api
+  if (props.transaction) {
+    transaction.value = JSON.parse(props.transaction)
+  } else {
+    getTransaction(props.address, props.transactionId)
+  }
+}
+
+onMounted(() => loadTransaction())
+watch([() => props.address, () => props.transactionId, () => props.transaction], () => loadTransaction())
 
 const activeIndex = ref([0])
 const onClose = () => router.push({ name: 'WalletHome', params: { network: props.network, address: props.address } })
