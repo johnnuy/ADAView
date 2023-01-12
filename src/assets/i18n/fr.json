@@ -466,5 +466,13 @@
   {
     "key": "Cancel",
     "value": "Annuler"
+  },
+  {
+    "key": "Issues",
+    "value": "Problèmes"
+  },
+  {
+    "key": "Bug Report Text",
+    "value": "Veuillez signaler tout bogue via notre répertoire dans"
   }
 ]

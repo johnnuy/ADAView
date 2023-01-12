@@ -462,5 +462,13 @@
   {
     "key": "Cancel",
     "value": "Cancel"
+  },
+  {
+    "key": "Issues",
+    "value": "Issues"
+  },
+  {
+    "key": "Bug Report Text",
+    "value": "Please report any bugs through our reporitory in"
   }
 ]
