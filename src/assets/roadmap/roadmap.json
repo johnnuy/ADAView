@@ -53,15 +53,15 @@
     {
       "title": {
         "en": "Backend Rewrite",
-        "fr": "Mises à jour bêta"
+        "fr": "Réécriture du backend"
       },
       "timeline": {
-        "en": "April 2022 - December 2022",
+        "en": "April 2022 - October 2022",
         "fr": "Avril 2022 - Octobre 2022"
       },
       "description": {
         "en": "Developing updated API's using CRQS/ES API management to improve performance of larger wallets and eliminate the need for realtime queries.",
-        "fr": "Développer des API mises à jour à l'aide de la gestion des API CRQS/ES pour améliorer les performances des portefeuilles plus volumineux et éliminer le besoin de requêtes en temps réel."
+        "fr": "Mises à jour des APIS avec l'aide de CRQS/ES pour améliorer le performance des portefeuilles volumineux et éliminer le besoin de requêtes en temps réel."
       }
     },
     {
@@ -71,11 +71,11 @@
       },
       "timeline": {
         "en": "October 2022 - December 2022",
-        "fr": "Octobre 2022 - Decembre 2022"
+        "fr": "Octobre 2022 - Décembre 2022"
       },
       "description": {
-        "en": "Developing updated API's using CRQS/ES API management to improve performance of larger wallets and eliminate the need for realtime queries.",
-        "fr": "Développer des API mises à jour à l'aide de la gestion des API CRQS/ES pour améliorer les performances des portefeuilles plus volumineux et éliminer le besoin de requêtes en temps réel."
+        "en": "Added support for new preprod and preview networks.",
+        "fr": "Ajout des nouveaux réseaux de préprod / preview."
       }
     },    
     {
@@ -89,7 +89,7 @@
       },
       "description": {
         "en": "Initial public release.",
-        "fr": "Première diffusion publique."
+        "fr": "Première version publique."
       }
     },
     {
