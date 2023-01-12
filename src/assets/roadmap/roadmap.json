@@ -46,64 +46,64 @@
         "fr": "Mars 2022 - Avril 2022"
       },
       "description": {
-        "en": "Integration of stakepool metadata, and enhanced metadata and other offchain sources. Integration of asset metadata, and separation of fungible and non fungible assets. Integration of additional wallet types, legacy byron, icarus and non-staking shelley.",
-        "fr": "Intégration des métadonnées du pool de participations et autres sources hors chaîne. Intégration des métadonnées des atouts et séparation des atouts fongibles et non fongibles. Intégration de types de portefeuilles supplémentaires, legacy byron, icarus et non-staking shelley."
+        "en": "Integration of stakepool metadata, and enhanced metadata and other offchain sources.",
+        "fr": "Intégration des métadonnées du pool de participations et autres sources hors chaîne."
       }
     },
     {
       "title": {
-        "en": "Beta Updates",
-        "fr": "Mises à jour bêta"
+        "en": "Backend Rewrite",
+        "fr": "Réécriture du backend"
       },
       "timeline": {
-        "en": "April 2022 - May 2022",
-        "fr": "Avril 2022 - Mai 2022"
+        "en": "April 2022 - October 2022",
+        "fr": "Avril 2022 - Octobre 2022"
       },
       "description": {
-        "en": "Integration of an Asset Gallery for displaying NFT and other assets associated with a wallet. Ability to display stakepool overviews and search for stakepool data and operators.",
-        "fr": "Intégration d'une galerie d'atouts pour afficher des NFT et autres associés à un portefeuille. Afficher des aperçus de pools et de recherche des données et des opérateurs de pools."
+        "en": "Developing updated API's using CRQS/ES API management to improve performance of larger wallets and eliminate the need for realtime queries.",
+        "fr": "Mises à jour des APIS avec l'aide de CRQS/ES pour améliorer le performance des portefeuilles volumineux et éliminer le besoin de requêtes en temps réel."
       }
     },
     {
       "title": {
-        "en": "Live Release 1",
-        "fr": "Version 1"
+        "en": "Preview and Preprod",
+        "fr": "Preview et Preprod"
       },
       "timeline": {
-        "en": "Spring 2022",
-        "fr": "Printemps 2022"
+        "en": "October 2022 - December 2022",
+        "fr": "Octobre 2022 - Décembre 2022"
       },
       "description": {
-        "en": "Migration to live servers and www domain instead of the beta domain. Verification of language packs.",
-        "fr": "Migration vers des serveurs de production et un domaine www au lieu du domaine bêta. Vérification des traductions."
+        "en": "Added support for new preprod and preview networks.",
+        "fr": "Ajout des nouveaux réseaux de préprod / preview."
+      }
+    },    
+    {
+      "title": {
+        "en": "Release 1.0.0",
+        "fr": "Version 1.0.0"
+      },
+      "timeline": {
+        "en": "January 2023",
+        "fr": "Janvier 2023"
+      },
+      "description": {
+        "en": "Initial public release.",
+        "fr": "Première version publique."
       }
     },
     {
       "title": {
-        "en": "Live Release 2",
-        "fr": "Version 2"
+        "en": "Release 1.1.0",
+        "fr": "Version 1.1.0"
       },
       "timeline": {
-        "en": "Summer 2022",
-        "fr": "Été 2022"
+        "en": "Winter 2023",
+        "fr": "Hiver 2023"
       },
       "description": {
-        "en": "Introduction of NFT based avatars which will allow users to customize their wallets with images, names and possibly additional themes to match business themes or other color schemes. Additional Language packs and i18n features.",
-        "fr": "Introduction d'avatars basés sur NFT qui permettront aux utilisateurs de personnaliser leurs portefeuilles avec des images, des noms et éventuellement des thèmes supplémentaires pour correspondre à des thèmes commerciaux ou à d'autres schémas de couleurs. Modules linguistiques supplémentaires et fonctionnalités i18n."
-      }
-    },
-    {
-      "title": {
-        "en": "Live Release 3",
-        "fr": "Version 3"
-      },
-      "timeline": {
-        "en": "Fall 2022",
-        "fr": "Automne 2022"
-      },
-      "description": {
-        "en": "Introduce analytical components to allow for tracing transactions and building networks of intercommunicating wallets.",
-        "fr": "Introduire des composants analytiques pour permettre le traçage des transactions et la construction de réseaux de portefeuilles."
+        "en": "Focused on additional legacy address compatibility, and asset metadata integration.",
+        "fr": "Concentré sur la compatibilité des adresses héritées supplémentaires et l'intégration des métadonnées des actifs."
       }
     }
   ]
