@@ -444,6 +444,14 @@
     "value": "You can support us and this project by delegating to the"
   },
   {
+    "key": "FollowUs",
+    "value": "Follow Us"
+  },
+  {
+    "key": "You can follow us text",
+    "value": "You can follow us for updates on"
+  },
+  {
     "key": "Messages",
     "value": "Messages"
   },
