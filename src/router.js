@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Wallet from '@/components/pages/Wallet'
 import Roadmap from '@/components/pages/Roadmap'
 import Support from '@/components/pages/Support'
+import Issues from '@/components/pages/Issues'
 import WalletDetails from '@/components/wallet/WalletDetails'
 import WalletTabs from '@/components/wallet/WalletTabs'
 import TransactionDetails from '@/components/wallet/transactions/TransactionDetails'
@@ -64,6 +65,12 @@ const routes = [
     path: '/support',
     name: 'Support',
     component: Support,
+    props: true,
+  },
+  {
+    path: '/issues',
+    name: 'Issues',
+    component: Issues,
     props: true,
   },
 ]
