@@ -482,5 +482,9 @@
   {
     "key": "Bug Report Text",
     "value": "Veuillez signaler tout bogue via notre répertoire dans"
+  },
+  {
+    "key": "Disclaimer Text",
+    "value": "ADAView.live provides a contextualized representation of the cardano blockchain for convenience and entertainment purposes only.  ADAView.live does not provide any guarantees to the accuracy of the information provided."
   }
 ]
