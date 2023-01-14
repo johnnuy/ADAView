@@ -9,8 +9,11 @@
         <div class="container">
           <template v-for="field of transactionFields" :key="field.key">
             <div class="text-500">{{ L(field.key) }}:</div>
-            <div>
-              <component :is="field.getComponent(transaction)"></component>
+            <div v-if="field.type == 'Text'">
+              <span>{{ field.displayValue(transaction) }}</span>
+            </div>
+            <div v-if="field.type == 'CopyText'">
+              <CopyToClipboardLink :text="field.displayValue(transaction)" :copy-text="field.displayValue(transaction)" break />
             </div>
           </template>
         </div>
