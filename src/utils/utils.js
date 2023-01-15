@@ -17,6 +17,10 @@ export const formatLovelace = (amount) => {
   )
 }
 
+export const formatPercent = (value) => {
+  return value * 100.0;
+}
+
 export const negate = (value) => {
   return (value * -1);  
 }
