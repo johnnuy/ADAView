@@ -41,7 +41,7 @@ const TransactionFields = {
   EPOCH: new TransactionField('Epoch', 'Text', (t) => t.epoch),
   HASH: new TransactionField('Hash', 'CopyText', (t) => t.hash),    
   FEE: new TransactionField('Fee', 'Text', (t) => t.fee),
-  DEPOSIT: new TransactionField('Deposit', 'Text', (t) => t.adaValue),
+  DEPOSIT: new TransactionField('Deposit', 'Text', (t) => formatLovelace(t.adaValue)),
   REFUND: new TransactionField('Refund', 'Text', (t) => formatLovelace(t.adaValue)),
   FUNDS_IN: new TransactionField('Funds In', 'Text', (t) => formatLovelace(t.adaValue)),
   FUNDS_OUT: new TransactionField('Funds Out', 'Text', (t) => formatLovelace(t.adaValue)),
@@ -49,7 +49,7 @@ const TransactionFields = {
   DELEGATOR_REWARDS: new TransactionField('Delegator Rewards', 'Text', (t) => formatLovelace(t.adaValue)),
   VOTING_REWARDS: new TransactionField('Reward Value', 'Text', (t) => formatLovelace(t.adaValue)),
   REWARD_SOURCE: new TransactionField('Reward Source', 'Text', (t) => t.rewardSource),
-  BALANCE: new TransactionField('Balance', 'Text', (t) => t.adaBalance),
+  BALANCE: new TransactionField('Balance', 'Text', (t) => formatLovelace(t.adaBalance)),
 }
 
 const TransactionTypes = {
