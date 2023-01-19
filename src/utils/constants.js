@@ -4,14 +4,15 @@ const { L } = useLexicon()
 
 class TransactionField {
   /**
-   * @param {string} key - i18n key
-   * @param {string} type - component type
-   * @param {function(Transaction): string} displayValue - callback to get the field's value
+   * @param {Object} param - transaction field configuration
+   * @param {string} param.key - i18n key
+   * @param {string} param.helpText - helpText
+   * @param {function(Transaction): string} param.getComponent  - callback to get the field's value
    */
-  constructor(key, type, displayValue) {
+  constructor({ key, helpText, getComponent }) {
     this.key = key
-    this.type = type
-    this.displayValue = displayValue
+    this.helpText = helpText
+    this.getComponent = getComponent
   }
 }
 
@@ -35,21 +36,81 @@ class TransactionType {
 }
 
 const TransactionFields = {
-  TYPE: new TransactionField('Type', 'Text', (t) => L(getTransactionDetails(t))),
-  DATE: new TransactionField('Date', 'Text', (t) => t.transactionDate),
-  BLOCK: new TransactionField('Block', 'Text', (t) => t.block),
-  EPOCH: new TransactionField('Epoch', 'Text', (t) => t.epoch),
-  HASH: new TransactionField('Hash', 'CopyText', (t) => t.hash),    
-  FEE: new TransactionField('Fee', 'Text', (t) => t.fee),
-  DEPOSIT: new TransactionField('Deposit', 'Text', (t) => formatLovelace(t.adaValue)),
-  REFUND: new TransactionField('Refund', 'Text', (t) => formatLovelace(t.adaValue)),
-  FUNDS_IN: new TransactionField('Funds In', 'Text', (t) => formatLovelace(t.adaValue)),
-  FUNDS_OUT: new TransactionField('Funds Out', 'Text', (t) => formatLovelace(t.adaValue)),
-  LEADER_REWARDS: new TransactionField('Leader Rewards', 'Text', (t) => formatLovelace(t.adaValue)),
-  DELEGATOR_REWARDS: new TransactionField('Delegator Rewards', 'Text', (t) => formatLovelace(t.adaValue)),
-  VOTING_REWARDS: new TransactionField('Reward Value', 'Text', (t) => formatLovelace(t.adaValue)),
-  REWARD_SOURCE: new TransactionField('Reward Source', 'Text', (t) => t.rewardSource),
-  BALANCE: new TransactionField('Balance', 'Text', (t) => formatLovelace(t.adaBalance)),
+  TYPE: new TransactionField({
+    key: 'Type',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${L(getTransactionDetails(t))}</span>` }),
+  }),
+  DATE: new TransactionField({
+    key: 'Date',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${t.transactionDate}</span>` }),
+  }),
+  BLOCK: new TransactionField({
+    key: 'Block',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${t.block}</span>` }),
+  }),
+  EPOCH: new TransactionField({
+    key: 'Epoch',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${t.epoch}</span>` }),
+  }),
+  HASH: new TransactionField({
+    key: 'Hash',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span><CopyToClipboardLink text="${t.hash}" copy-text="${t.hash}" break /></span>` }),
+  }),
+  FEE: new TransactionField({
+    key: 'Fee',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${formatLovelace(t.fee)}</span>` }),
+  }),
+  DEPOSIT: new TransactionField({
+    key: 'Deposit',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${formatLovelace(t.adaValue)}</span>` }),
+  }),
+  REFUND: new TransactionField({
+    key: 'Refund',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${formatLovelace(t.adaValue)}</span>` }),
+  }),
+  FUNDS_IN: new TransactionField({
+    key: 'Funds In',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${formatLovelace(t.adaValue)}</span>` }),
+  }),
+  FUNDS_OUT: new TransactionField({
+    key: 'Funds Out',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${formatLovelace(t.adaValue)}</span>` }),
+  }),
+  LEADER_REWARDS: new TransactionField({
+    key: 'Leader Rewards',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${formatLovelace(t.adaValue)}</span>` }),
+  }),
+  DELEGATOR_REWARDS: new TransactionField({
+    key: 'Delegator Rewards',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${formatLovelace(t.adaValue)}</span>` }),
+  }),
+  VOTING_REWARDS: new TransactionField({
+    key: 'Reward Value',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${formatLovelace(t.adaValue)}</span>` }),
+  }),
+  REWARD_SOURCE: new TransactionField({
+    key: 'Reward Source',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${t.rewardSource}</span>` }),
+  }),
+  BALANCE: new TransactionField({
+    key: 'Balance',
+    helpText: 'Help Text Here',
+    getComponent: (t) => ({ template: `<span>${formatLovelace(t.adaBalance)}</span>` }),
+  }),
 }
 
 const TransactionTypes = {
