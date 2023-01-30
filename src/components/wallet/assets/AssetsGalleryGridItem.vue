@@ -103,6 +103,7 @@ const assetImg = computed(() => parseAssetUrl(props.asset))
 }
 
 .token-img {
-  max-width: 100%;
+  width: 100%; 
+  height: 25rem;
 }
 </style>
