@@ -1,11 +1,12 @@
 <template>
-  <div class="col-12 md:col-6 lg:col-4">
+  <div class="col-12 sm:col-12 md:col-6 lg:col-4 xl:col-3">
     <div class="asset-grid-item card">
       <div class="asset-grid-item-content">
-        <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" :alt="asset.asset.name" />
+        <img class="token-img" :src="assetImg" :alt="asset.asset.name" />
         <div class="asset-name">{{ asset.asset.name }}</div>
         <div class="asset-fingerprint">
-          <i class="pi pi-info-circle" v-tooltip="'Asset Fingerprint'"></i><CopyToClipboardLink :text="asset.asset.fingerprint" :copy-text="asset.fingerprint" break />
+          <i class="pi pi-info-circle" v-tooltip="'Asset Fingerprint'"></i>
+          <CopyToClipboardLink :text="asset.asset.fingerprint" :copy-text="asset.fingerprint" break />
         </div>
       </div>
       <div style="text-align: right">
@@ -13,24 +14,38 @@
       </div>
     </div>
   </div>
-  <OverlayPanel ref="assetOverlayPanel" appendTo="body" :showCloseIcon="true" id="overlay_panel" style="width: 450px" :breakpoints="{ '960px': '75vw' }">
+  <OverlayPanel ref="assetOverlayPanel" appendTo="body" :showCloseIcon="true" id="overlay_panel">
     <div>
-      <span class="text-500">Fingerprint: </span>
+      <span class="text-500">{{ L('Fingerprint') }}}: </span>
       <span class="font-medium">
         <CopyToClipboardLink :text="asset.asset.fingerprint" :copy-text="asset.fingerprint" break />
       </span>
     </div>
     <div>
-      <span class="text-500">Policy: </span>
+      <span class="text-500">{{ L('Policy') }}: </span>
       <span class="font-medium">
         {{ asset.asset.policy }}
+      </span>
+    </div>
+    <div>
+      <span class="text-500">{{ L('Quantity') }}: </span>
+      <span class="font-medium">
+        {{ asset.quantity }}
+      </span>
+    </div>
+    <div>
+      <span class="text-500">{{ L('Supply') }}: </span>
+      <span class="font-medium">
+        {{ asset.asset.supply }}
       </span>
     </div>
   </OverlayPanel>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { parseAssetUrl } from '@/utils/assets'
+
 const props = defineProps({
   asset: Object,
 })
@@ -46,6 +61,8 @@ const formatCurrency = (value) => {
 const onProductSelect = (event) => {
   assetOverlayPanel.value.hide()
 }
+
+const assetImg = computed(() => parseAssetUrl(props.asset))
 </script>
 
 
@@ -83,5 +100,9 @@ const onProductSelect = (event) => {
   .asset-grid-item-content {
     text-align: center;
   }
+}
+
+.token-img {
+  max-width: 100%;
 }
 </style>

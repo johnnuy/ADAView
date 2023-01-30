@@ -1,31 +1,47 @@
 <template>
   <div class="col-12">
     <div class="asset-list-item">
-      <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" alt="111" />
+      <img :src="assetImg" alt="111" />
       <div class="asset-list-detail">
-        <div class="asset-name">{{ asset.asset.name }}</div>
+        <div class="asset-name">{{ asset.asset.name }}</div>       
         <div>
-          <span class="text-500">Fingerprint: </span>
+          <span class="text-500">{{ L('Fingerprint') }}}: </span>
           <span class="font-medium">
             <CopyToClipboardLink :text="asset.asset.fingerprint" :copy-text="asset.fingerprint" break />
           </span>
         </div>
         <div>
-          <span class="text-500">Policy: </span>
+          <span class="text-500">{{ L('Policy') }}: </span>
           <span class="font-medium">
             {{ asset.asset.policy }}
           </span>
-        </div>       
-      </div>      
+        </div>
+        <div>
+          <span class="text-500">{{ L('Quantity') }}: </span>
+          <span class="font-medium">
+            {{ asset.quantity }}
+          </span>
+        </div>
+        <div>
+          <span class="text-500">{{ L('Supply') }}: </span>
+          <span class="font-medium">
+            {{ asset.asset.supply }}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { parseAssetUrl } from '@/utils/assets'
+
 const props = defineProps({
   asset: Object,
 })
+
+const assetImg = computed(() => parseAssetUrl(props.asset))
 </script>
 
 <style lang="scss" scoped>
@@ -60,7 +76,7 @@ const props = defineProps({
 
     img {
       margin: 2rem 0;
-    }  
+    }
   }
 }
 </style>

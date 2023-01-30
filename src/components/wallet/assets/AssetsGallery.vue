@@ -4,11 +4,11 @@
       :value="assets"
       :layout="layout"
       :paginator="true"
-      :rows="9"
+      :rows="12"
       :totalRecords="count"
       :lazy="true"
       paginator-template="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-      :rows-per-page-options="[10, 20, 50]"
+      :rows-per-page-options="[12, 24, 36]"
       :current-page-report-template="L('{first} to {last} of {totalRecords}')"
       @page="onPage($event)"
     >
@@ -45,6 +45,6 @@ const props = defineProps({
 const { assets, count, loading, error, getAssets } = useFetchAssets()
 const layout = ref('grid')
 
-onMounted(() => getAssets(props.address, 1, 10))
+onMounted(() => getAssets(props.address, 1, 12))
 const onPage = (event) => getAssets(props.address, event.page + 1, event.rows)
 </script>
