@@ -3,29 +3,29 @@
     <div class="asset-list-item">
       <img :src="assetImg" alt="111" />
       <div class="asset-list-detail">
-        <div class="asset-name">{{ asset.asset.name }}</div>       
+        <div class="asset-name">{{ assetName }}</div>       
         <div>
           <span class="text-500">{{ L('Fingerprint') }}}: </span>
           <span class="font-medium">
-            <CopyToClipboardLink :text="asset.asset.fingerprint" :copy-text="asset.fingerprint" break />
+            <CopyToClipboardLink :text="assetFingerprint" :copy-text="assetFingerprint" break />
           </span>
         </div>
         <div>
           <span class="text-500">{{ L('Policy') }}: </span>
           <span class="font-medium">
-            {{ asset.asset.policy }}
+            {{ assetPolicy }}
           </span>
         </div>
         <div>
           <span class="text-500">{{ L('Quantity') }}: </span>
           <span class="font-medium">
-            {{ asset.quantity }}
+            {{ assetQuantity }}
           </span>
         </div>
         <div>
           <span class="text-500">{{ L('Supply') }}: </span>
           <span class="font-medium">
-            {{ asset.asset.supply }}
+            {{ assetSupply }}
           </span>
         </div>
       </div>
@@ -41,6 +41,13 @@ const props = defineProps({
   asset: Object,
 })
 
+const asset = computed(() => props.asset || null)
+const assetProperties = computed(() => props.asset?.asset || null)
+const assetName = computed(() => assetProperties.value?.name || null)
+const assetFingerprint = computed(() => assetProperties.value?.fingerprint || null)
+const assetPolicy = computed(() => assetProperties.value?.policy || null)
+const assetQuantity = computed(() => asset.value?.quantity || null)
+const assetSupply = computed(() => assetProperties.value?.supply || null)
 const assetImg = computed(() => parseAssetUrl(props.asset))
 </script>
 

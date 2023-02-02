@@ -2,11 +2,11 @@
   <div class="col-12 sm:col-12 md:col-6 lg:col-4 xl:col-3">
     <div class="asset-grid-item card">
       <div class="asset-grid-item-content">
-        <img class="token-img" :src="assetImg" :alt="asset.asset.name" />
-        <div class="asset-name">{{ asset.asset.name }}</div>
+        <img class="token-img" :src="assetImg" :alt="assetName" />
+        <div class="asset-name">{{ assetName }}</div>
         <div class="asset-fingerprint">
           <i class="pi pi-info-circle" v-tooltip="'Asset Fingerprint'"></i>
-          <CopyToClipboardLink :text="asset.asset.fingerprint" :copy-text="asset.fingerprint" break />
+          <CopyToClipboardLink :text="assetFingerprint" :copy-text="assetFingerprint" break />
         </div>
       </div>
       <div style="text-align: right">
@@ -18,25 +18,25 @@
     <div>
       <span class="text-500">{{ L('Fingerprint') }}}: </span>
       <span class="font-medium">
-        <CopyToClipboardLink :text="asset.asset.fingerprint" :copy-text="asset.fingerprint" break />
+        <CopyToClipboardLink :text="assetFingerprint" :copy-text="assetFingerprint" break />
       </span>
     </div>
     <div>
       <span class="text-500">{{ L('Policy') }}: </span>
       <span class="font-medium">
-        {{ asset.asset.policy }}
+        {{ assetPolicy }}
       </span>
     </div>
     <div>
       <span class="text-500">{{ L('Quantity') }}: </span>
       <span class="font-medium">
-        {{ asset.quantity }}
+        {{ assetQuantity }}
       </span>
     </div>
     <div>
       <span class="text-500">{{ L('Supply') }}: </span>
       <span class="font-medium">
-        {{ asset.asset.supply }}
+        {{ assetSupply }}
       </span>
     </div>
   </OverlayPanel>
@@ -62,6 +62,13 @@ const onProductSelect = (event) => {
   assetOverlayPanel.value.hide()
 }
 
+const asset = computed(() => props.asset || null)
+const assetProperties = computed(() => props.asset?.asset || null)
+const assetName = computed(() => assetProperties.value?.name || null)
+const assetFingerprint = computed(() => assetProperties.value?.fingerprint || null)
+const assetPolicy = computed(() => assetProperties.value?.policy || null)
+const assetQuantity = computed(() => asset.value?.quantity || null)
+const assetSupply = computed(() => assetProperties.value?.supply || null)
 const assetImg = computed(() => parseAssetUrl(props.asset))
 </script>
 
@@ -103,7 +110,7 @@ const assetImg = computed(() => parseAssetUrl(props.asset))
 }
 
 .token-img {
-  width: 100%; 
+  width: 100%;
   height: 25rem;
 }
 </style>

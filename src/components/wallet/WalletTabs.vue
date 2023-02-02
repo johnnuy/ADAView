@@ -6,8 +6,7 @@
     <TabPanel :header="L('Addresses')">
       <AddressesList :address="address" />
     </TabPanel>
-    <TabPanel v-if="wallet.assetHoldingsCount > 0" :header="L('Asset Holdings')">
-      <!-- <AssetsList :address="address" /> -->
+    <TabPanel v-if="wallet.assetHoldingsCount > 0" :header="L('Asset Holdings')">     
       <AssetsGallery :address="address" />
     </TabPanel>
     <TabPanel v-if="wallet.delegationsCount > 0" :header="L('Stake Delegations')">
