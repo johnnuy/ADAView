@@ -39,18 +39,26 @@
         {{ assetSupply }}
       </span>
     </div>
+    <div>
+      <span class="text-500">{{ L('Metadata') }}: </span>
+      <TreeTable :value="assetMetadataTree">
+        <Column field="name" header="Name" :expander="true"></Column>       
+        <Column field="value" header="Value"></Column>
+      </TreeTable>
+    </div>
   </OverlayPanel>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import { parseAssetUrl } from '@/utils/assets'
+import { parseAssetUrl, parseAssetMetadata } from '@/utils/assets'
 
 const props = defineProps({
   asset: Object,
 })
 
 const assetOverlayPanel = ref()
+const expandedKeys = ref({});
 
 const toggle = (event) => {
   assetOverlayPanel.value.toggle(event)
@@ -62,14 +70,18 @@ const onProductSelect = (event) => {
   assetOverlayPanel.value.hide()
 }
 
-const asset = computed(() => props.asset || null)
-const assetProperties = computed(() => props.asset?.asset || null)
-const assetName = computed(() => assetProperties.value?.name || null)
-const assetFingerprint = computed(() => assetProperties.value?.fingerprint || null)
-const assetPolicy = computed(() => assetProperties.value?.policy || null)
+const asset = computed(() => props.asset)
+const assetProperties = computed(() => asset.value?.asset)
+const assetName = computed(() => assetProperties.value?.name)
+const assetFingerprint = computed(() => assetProperties.value?.fingerprint)
+const assetPolicy = computed(() => assetProperties.value?.policy)
 const assetQuantity = computed(() => asset.value?.quantity || null)
-const assetSupply = computed(() => assetProperties.value?.supply || null)
-const assetImg = computed(() => parseAssetUrl(props.asset))
+const assetSupply = computed(() => assetProperties.value?.supply)
+const assetImg = computed(() => parseAssetUrl(asset.value))
+const assetMetadata = computed(() => assetProperties.value.metadata)
+const assetMetadataTree = computed(() => parseAssetMetadata(assetMetadata.value))
+
+
 </script>
 
 

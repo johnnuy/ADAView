@@ -89,7 +89,7 @@ import Tooltip from 'primevue/tooltip'
 // import ToggleButton from 'primevue/togglebutton'
 import Tree from 'primevue/Tree'
 // import TreeSelect from 'primevue/treeselect'
-// import TreeTable from 'primevue/treetable'
+import TreeTable from 'primevue/treetable'
 // import TriStateCheckbox from 'primevue/tristatecheckbox'
 import veProgress from 'vue-ellipse-progress'
 
@@ -199,7 +199,7 @@ app.component('Timeline', Timeline)
 // app.component('ToggleButton', ToggleButton)
 app.component('Tree', Tree)
 // app.component('TreeSelect', TreeSelect)
-// app.component('TreeTable', TreeTable)
+app.component('TreeTable', TreeTable)
 // app.component('TriStateCheckbox', TriStateCheckbox)
 
 app.mount('#app')

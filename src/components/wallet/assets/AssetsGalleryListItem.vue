@@ -41,14 +41,15 @@ const props = defineProps({
   asset: Object,
 })
 
-const asset = computed(() => props.asset || null)
-const assetProperties = computed(() => props.asset?.asset || null)
-const assetName = computed(() => assetProperties.value?.name || null)
-const assetFingerprint = computed(() => assetProperties.value?.fingerprint || null)
-const assetPolicy = computed(() => assetProperties.value?.policy || null)
+const asset = computed(() => props.asset)
+const assetProperties = computed(() => props.asset?.asset)
+const assetName = computed(() => assetProperties.value?.name)
+const assetFingerprint = computed(() => assetProperties.value?.fingerprint)
+const assetPolicy = computed(() => assetProperties.value?.policy)
 const assetQuantity = computed(() => asset.value?.quantity || null)
-const assetSupply = computed(() => assetProperties.value?.supply || null)
+const assetSupply = computed(() => assetProperties.value?.supply)
 const assetImg = computed(() => parseAssetUrl(props.asset))
+const assetMetadata = computed(() => assetProperties.value?.metadata)
 </script>
 
 <style lang="scss" scoped>
