@@ -14,7 +14,8 @@
       </div>
     </div>
   </div>
-  <OverlayPanel ref="assetOverlayPanel" appendTo="body" :showCloseIcon="true" id="overlay_panel">
+  <OverlayPanel ref="assetOverlayPanel" appendTo="body" :showCloseIcon="true" id="overlay_panel"
+    :breakpoints="{ '960px': '75vw', '640px': '100vw' }" :style="{ width: '1000px' }">
     <div>
       <span class="text-500">{{ L('Fingerprint') }}}: </span>
       <span class="font-medium">
@@ -41,8 +42,9 @@
     </div>
     <div>
       <span class="text-500">{{ L('Metadata') }}: </span>
-      <TreeTable :value="assetMetadataTree">
-        <Column field="name" header="Name" :expander="true"></Column>       
+      <TreeTable :value="assetMetadataTree" class="p-treetable-sm" style="margin-bottom: 2rem;" :scrollable="true"
+        scrollHeight="400px">
+        <Column field="name" header="Name" :expander="true"></Column>
         <Column field="value" header="Value"></Column>
       </TreeTable>
     </div>
