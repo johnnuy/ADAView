@@ -5,7 +5,7 @@ export const parseAssetUrl = (asset) => {
         img = img.replace('ipfs://ipfs/', '');
         img = img.replace('ipfs://', '');
         return `https://ipfs.io/ipfs/${img}`
-    } else if (isObject(isObj)) {
+    } else if (isObject(img)) {
         return `https://ipfs.io/ipfs/${img[1]}`
     }
     return 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'
