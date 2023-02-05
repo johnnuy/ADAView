@@ -13,10 +13,12 @@ export const parseAssetUrl = (asset) => {
 
 
 export const parseAssetMetadata = (asset) => {
-    return parseMetadataObj(asset)
+    const metadata = parseMetadataObj(asset)    
+    return metadata.length == 0 ? null : metadata
 }
 
 const parseMetadataObj = (obj, parentPrefix = '') => {
+    if(obj == null) return []
     let items = []
     const keys = Object.keys(obj).filter(x => !x.startsWith('__')) || []
     keys.forEach((key, index) => {

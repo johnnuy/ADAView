@@ -32,7 +32,7 @@ import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import DataView from 'primevue/dataview'
 import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions'
-// import Dialog from 'primevue/dialog'
+import Dialog from 'primevue/dialog'
 // import Divider from 'primevue/divider'
 import Dropdown from 'primevue/dropdown'
 // import Fieldset from 'primevue/fieldset'
@@ -146,7 +146,7 @@ app.component('Column', Column)
 app.component('DataTable', DataTable)
 app.component('DataView', DataView)
 app.component('DataViewLayoutOptions', DataViewLayoutOptions)
-// app.component('Dialog', Dialog)
+app.component('Dialog', Dialog)
 // app.component('Divider', Divider)
 app.component('Dropdown', Dropdown)
 // app.component('Fieldset', Fieldset)

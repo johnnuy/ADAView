@@ -10,83 +10,30 @@
         </div>
       </div>
       <div style="text-align: right">
-        <Button icon="pi pi-eye" @click="toggle" aria-haspopup="true" aria-controls="overlay_panel"></Button>
+        <Button icon="pi pi-eye" @click="viewAsset"></Button>
       </div>
     </div>
   </div>
-  <OverlayPanel ref="assetOverlayPanel" appendTo="body" :showCloseIcon="true" id="overlay_panel"
-    :breakpoints="{ '960px': '75vw', '640px': '100vw' }" :style="{ width: '1000px' }">
-    <div>
-      <span class="text-500">{{ L('Fingerprint') }}}: </span>
-      <span class="font-medium">
-        <CopyToClipboardLink :text="assetFingerprint" :copy-text="assetFingerprint" break />
-      </span>
-    </div>
-    <div>
-      <span class="text-500">{{ L('Policy') }}: </span>
-      <span class="font-medium">
-        {{ assetPolicy }}
-      </span>
-    </div>
-    <div>
-      <span class="text-500">{{ L('Quantity') }}: </span>
-      <span class="font-medium">
-        {{ assetQuantity }}
-      </span>
-    </div>
-    <div>
-      <span class="text-500">{{ L('Supply') }}: </span>
-      <span class="font-medium">
-        {{ assetSupply }}
-      </span>
-    </div>
-    <div>
-      <span class="text-500">{{ L('Metadata') }}: </span>
-      <TreeTable :value="assetMetadataTree" class="p-treetable-sm" style="margin-bottom: 2rem;" :scrollable="true"
-        scrollHeight="400px">
-        <Column field="name" header="Name" :expander="true"></Column>
-        <Column field="value" header="Value"></Column>
-      </TreeTable>
-    </div>
-  </OverlayPanel>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { parseAssetUrl, parseAssetMetadata } from '@/utils/assets'
+import { computed } from 'vue'
+import { parseAssetUrl } from '@/utils/assets'
+import router from '@/router'
 
 const props = defineProps({
   asset: Object,
 })
 
-const assetOverlayPanel = ref()
-const expandedKeys = ref({});
-
-const toggle = (event) => {
-  assetOverlayPanel.value.toggle(event)
-}
-const formatCurrency = (value) => {
-  return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
-}
-const onProductSelect = (event) => {
-  assetOverlayPanel.value.hide()
-}
-
-const asset = computed(() => props.asset)
-const assetProperties = computed(() => asset.value?.asset)
+const assetProperties = computed(() => props.asset?.asset)
 const assetName = computed(() => assetProperties.value?.name)
+const assetImg = computed(() => parseAssetUrl(props.asset))
 const assetFingerprint = computed(() => assetProperties.value?.fingerprint)
-const assetPolicy = computed(() => assetProperties.value?.policy)
-const assetQuantity = computed(() => asset.value?.quantity || null)
-const assetSupply = computed(() => assetProperties.value?.supply)
-const assetImg = computed(() => parseAssetUrl(asset.value))
-const assetMetadata = computed(() => assetProperties.value.metadata)
-const assetMetadataTree = computed(() => parseAssetMetadata(assetMetadata.value))
 
-
+const viewAsset = () => {
+  router.push({ name: 'AssetDetails', params: { ...router.currentRoute.value.params, assetId: assetFingerprint.value, asset: JSON.stringify(props.asset) } })
+};
 </script>
-
-
 
 <style lang="scss" scoped>
 .asset-name {

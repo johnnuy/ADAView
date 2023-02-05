@@ -36,3 +36,41 @@ export const useFetchAssets = () => {
     getAssets,
   }
 }
+
+export const useFetchAsset = () => {
+  const { network } = useSettings()
+  const asset = ref(null)
+  const loading = ref(false)
+  const error = ref(null)
+
+  const getAsset = (address, assetId) => {
+    loading.value = true
+    error.value = null
+    asset.value = null
+
+    axios
+      .get(`${network.value.url}/wallets/${address}/assets/${assetId}`)
+      .then((result) => {
+        console.log(result)
+        asset.value = result.data.data
+      })
+      .catch((err) => {
+        if (err.message === 'Network Error') {
+          error.value = { message: 'Network Error' }
+        } else {
+          error.value = err.message
+        }
+        loading.value = false
+      })
+      .finally(() => {
+        loading.value = false
+      })
+  }
+
+  return {
+    asset,
+    loading,
+    error,
+    getAsset,
+  }
+}

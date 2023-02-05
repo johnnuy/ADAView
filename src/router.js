@@ -7,6 +7,7 @@ import WalletDetails from '@/components/wallet/WalletDetails'
 import WalletTabs from '@/components/wallet/WalletTabs'
 import TransactionDetails from '@/components/wallet/transactions/TransactionDetails'
 import StakePoolDetails from '@/components/wallet/stakePools/StakePoolDetails'
+import AssetDetails from '@/components/wallet/assets/AssetDetails'
 import { useSettings } from '@/composables/useSettings'
 
 const { setNetworkByName } = useSettings()
@@ -49,6 +50,12 @@ const routes = [
             name: 'StakePoolDetails',
             path: 'stakepools/:poolId',
             component: StakePoolDetails,
+            props: true,
+          },
+          {
+            name: 'AssetDetails',
+            path: 'asset/:assetId',
+            component: AssetDetails,
             props: true,
           },
         ],
