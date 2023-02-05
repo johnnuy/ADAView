@@ -3,9 +3,9 @@
     <div class="asset-list-item">
       <img :src="assetImg" alt="111" />
       <div class="asset-list-detail">
-        <div class="asset-name">{{ assetName }}</div>       
+        <div class="asset-name underline" @click="viewAsset">{{ assetName }}</div>       
         <div>
-          <span class="text-500">{{ L('Fingerprint') }}}: </span>
+          <span class="text-500">{{ L('Fingerprint') }}: </span>
           <span class="font-medium">
             <CopyToClipboardLink :text="assetFingerprint" :copy-text="assetFingerprint" break />
           </span>
@@ -36,6 +36,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { parseAssetUrl } from '@/utils/assets'
+import router from '@/router'
 
 const props = defineProps({
   asset: Object,
@@ -50,10 +51,17 @@ const assetQuantity = computed(() => asset.value?.quantity || null)
 const assetSupply = computed(() => assetProperties.value?.supply)
 const assetImg = computed(() => parseAssetUrl(props.asset))
 const assetMetadata = computed(() => assetProperties.value?.metadata)
+
+const viewAsset = () => {
+  router.push({ name: 'AssetDetails', params: { ...router.currentRoute.value.params, assetId: assetFingerprint.value, asset: JSON.stringify(props.asset) } })
+};
 </script>
 
 <style lang="scss" scoped>
 .asset-name {
+  cursor: pointer;
+  color: var(--primary-color);
+  padding-bottom: 5px;
   word-break: break-all;
   font-size: 1.5rem;
   font-weight: 700;
