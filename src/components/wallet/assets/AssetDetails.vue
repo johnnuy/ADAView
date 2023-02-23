@@ -30,7 +30,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-12 sm-col:12 md:col-12 lg:col-6">
+                    <div class="token-container col-12 sm-col:12 md:col-12 lg:col-6">
                         <Image imageClass="token-img" :src="assetImg" :alt="assetName" />
                     </div>
                 </div>
@@ -92,7 +92,7 @@ const onClose = () => router.push({ name: 'WalletHome', params: { network: props
 </script>
 
 <style scoped>
-.token-img {
+.token-container /deep/ .token-img {
     width: 100%;
     max-width: 30rem;
     height: auto;
