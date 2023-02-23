@@ -2,7 +2,7 @@
   <div class="col-12 sm:col-12 md:col-6 lg:col-4 xl:col-3">
     <div class="asset-grid-item card">
       <div class="asset-grid-item-content">
-        <img class="token-img" :src="assetImg" :alt="assetName" />
+        <Image imageClass="token-img" :src="assetImg" :alt="assetName" />
         <div class="asset-name">{{ assetName }}</div>
         <div class="asset-fingerprint">
           <i class="pi pi-info-circle" v-tooltip="'Asset Fingerprint'"></i>
@@ -68,10 +68,10 @@ const viewAsset = () => {
   .asset-grid-item-content {
     text-align: center;
   }
-}
 
-.token-img {
-  width: 100%;
-  height: 25rem;
+  .token-img {
+    width: 100%;
+    height: 25rem;
+  }
 }
 </style>

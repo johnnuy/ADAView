@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="col-12 sm-col:12 md:col-12 lg:col-6">
-                        <img class="token-img" :src="assetImg" :alt="assetName" />
+                        <Image imageClass="token-img" :src="assetImg" :alt="assetName" />
                     </div>
                 </div>
             </AccordionTab>

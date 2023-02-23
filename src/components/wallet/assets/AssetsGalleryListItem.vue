@@ -1,7 +1,7 @@
 <template>
   <div class="col-12">
-    <div class="asset-list-item">
-      <img :src="assetImg" alt="111" />
+    <div class="asset-list-item">      
+      <Image  :src="assetImg" :alt="assetName" />
       <div class="asset-list-detail">
         <div class="asset-name underline" @click="viewAsset">{{ assetName }}</div>       
         <div>
