@@ -27,7 +27,7 @@ const props = defineProps({
 
 const assetProperties = computed(() => props.asset?.asset)
 const assetName = computed(() => assetProperties.value?.name)
-const assetImg = computed(() => parseAssetUrl(props.asset))
+const assetImg = computed(() => parseAssetUrl(assetProperties.value))
 const assetFingerprint = computed(() => assetProperties.value?.fingerprint)
 
 const viewAsset = () => {

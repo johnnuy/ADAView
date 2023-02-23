@@ -61,7 +61,7 @@ const assetFingerprint = computed(() => assetProperties.value?.fingerprint)
 const assetPolicy = computed(() => assetProperties.value?.policy)
 const assetQuantity = computed(() => asset.value?.quantity || null)
 const assetSupply = computed(() => assetProperties.value?.supply)
-const assetImg = computed(() => parseAssetUrl(asset.value))
+const assetImg = computed(() => parseAssetUrl(assetProperties.value))
 const assetMetadata = computed(() => assetProperties.value.metadata)
 const assetMetadataTree = computed(() => parseAssetMetadata(assetMetadata.value))
 

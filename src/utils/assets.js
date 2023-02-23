@@ -1,24 +1,17 @@
-export const parseAssetUrl = (asset) => {
-    let img = asset?.asset?.metadata?.image
-    //TODO: Handle parsing of img better. Need to determine possible format metadata can be in
-    if (isString(img)) {
-        img = img.replace('ipfs://ipfs/', '');
-        img = img.replace('ipfs://', '');
-        return `https://ipfs.io/ipfs/${img}`
-    } else if (isObject(img)) {
-        return `https://ipfs.io/ipfs/${img[1]}`
-    }
-    return 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'
+export const parseAssetUrl = (assetProperties) => {
+    const { contentUrl, contentData } = assetProperties
+    if (contentData != null) return contentData
+    else return contentUrl   
 }
 
 
 export const parseAssetMetadata = (asset) => {
-    const metadata = parseMetadataObj(asset)    
+    const metadata = parseMetadataObj(asset)
     return metadata.length == 0 ? null : metadata
 }
 
 const parseMetadataObj = (obj, parentPrefix = '') => {
-    if(obj == null) return []
+    if (obj == null) return []
     let items = []
     const keys = Object.keys(obj).filter(x => !x.startsWith('__')) || []
     keys.forEach((key, index) => {
