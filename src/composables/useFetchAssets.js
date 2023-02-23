@@ -50,8 +50,7 @@ export const useFetchAsset = () => {
 
     axios
       .get(`${network.value.url}/wallets/${address}/assets/${assetId}`)
-      .then((result) => {
-        console.log(result)
+      .then((result) => {       
         asset.value = result.data.data
       })
       .catch((err) => {

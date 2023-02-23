@@ -5,27 +5,34 @@
     <div v-if="asset">
         <Accordion :active-index="activeIndex" :multiple="true">
             <AccordionTab :header="L('Asset Details')">
-                <div class="container">
-                    <span class="text-500">{{ L('Name') }}: </span>
-                    <span class="font-medium">
-                        {{ assetName }}
-                    </span>
-                    <span class="text-500">{{ L('Fingerprint') }}: </span>
-                    <span class="font-medium">
-                        <CopyToClipboardLink :text="assetFingerprint" :copy-text="assetFingerprint" break />
-                    </span>
-                    <span class="text-500">{{ L('Policy') }}: </span>
-                    <span class="font-medium">
-                        {{ assetPolicy }}
-                    </span>
-                    <span class="text-500">{{ L('Quantity') }}: </span>
-                    <span class="font-medium">
-                        {{ assetQuantity }}
-                    </span>
-                    <span class="text-500">{{ L('Supply') }}: </span>
-                    <span class="font-medium">
-                        {{ assetSupply }}
-                    </span>
+                <div class="grid">
+                    <div class="col-12 sm-col:12 md:col-12 lg:col-6">
+                        <div class="container">
+                            <span class="text-500">{{ L('Name') }}: </span>
+                            <span class="font-medium break">
+                                {{ assetName }}
+                            </span>
+                            <span class="text-500">{{ L('Fingerprint') }}: </span>
+                            <span class="font-medium break">
+                                <CopyToClipboardLink :text="assetFingerprint" :copy-text="assetFingerprint" break />
+                            </span>
+                            <span class="text-500">{{ L('Policy') }}: </span>
+                            <span class="font-medium break">
+                                {{ assetPolicy }}
+                            </span>
+                            <span class="text-500">{{ L('Quantity') }}: </span>
+                            <span class="font-medium break">
+                                {{ assetQuantity }}
+                            </span>
+                            <span class="text-500">{{ L('Supply') }}: </span>
+                            <span class="font-medium break">
+                                {{ assetSupply }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-12 sm-col:12 md:col-12 lg:col-6">
+                        <img class="token-img" :src="assetImg" :alt="assetName" />
+                    </div>
                 </div>
             </AccordionTab>
             <AccordionTab :header="L('Metadata')">
@@ -83,3 +90,11 @@ const onClose = () => router.push({ name: 'WalletHome', params: { network: props
 
 
 </script>
+
+<style scoped>
+.token-img {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+}
+</style>
