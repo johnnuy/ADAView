@@ -2,16 +2,9 @@
   <div class="col-12 sm:col-12 md:col-6 lg:col-4 xl:col-3">
     <div class="asset-grid-item card">
       <div class="asset-grid-item-content">
-        <Image imageClass="token-img" :src="assetImg" :alt="assetName" />
-        <div class="asset-name">{{ assetName }}</div>
-        <div class="asset-fingerprint">
-          <i class="pi pi-info-circle" v-tooltip="'Asset Fingerprint'"></i>
-          <CopyToClipboardLink :text="assetFingerprint" :copy-text="assetFingerprint" break />
-        </div>
-      </div>
-      <div style="text-align: right">
-        <Button icon="pi pi-eye" @click="viewAsset"></Button>
-      </div>
+        <Image imageClass="token-img" :src="assetImg" :alt="assetName" />            
+        <div class="asset-name underline" @click="viewAsset">{{ assetName }}</div>  
+      </div>     
     </div>
   </div>
 </template>
@@ -36,7 +29,10 @@ const viewAsset = () => {
 </script>
 
 <style lang="scss" scoped>
+
 .asset-name {
+  cursor: pointer;
+  color: var(--primary-color);
   word-break: break-all;
   font-size: 1.5rem;
   font-weight: 700;
