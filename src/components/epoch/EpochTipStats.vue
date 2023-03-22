@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ve-progress v-if="tip && tip.data.epochNumber > 0" :progress="percentageToEpoch" :size="props.size" :font-color="network.palette" @click="toggle">
+    <ve-progress v-if="tip && tip.data.epochNumber > 0" :progress="percentageToEpoch" :size="props.size"
+      :font-color="network.palette" @click="toggle">
       <template #default>
         <span style="font-weight: bold; font-size: 0.8rem">
           {{ tip.data.epochNumber }}
@@ -8,15 +9,13 @@
       </template>
     </ve-progress>
 
-    <OverlayPanel id="overlay_panel" ref="op" append-to="body" :breakpoints="{ '960px': '75vw', '240px': '100vw' }" :style="{ width: '450px' }">
+    <OverlayPanel id="overlay_panel" ref="op" append-to="body" :breakpoints="{ '960px': '75vw', '240px': '100vw' }"
+      :style="{ width: '450px' }">
       <div class="grid">
         <div class="col-12 md:col-12 lg:col-12">
           <Card>
-            <template #title> {{ L('Epoch') }} </template>
+            <template #title> {{ L('Epoch') }} {{ tip.data.epochNumber }}</template>
             <template #content>
-              {{ epochNumber }}
-            </template>
-            <template #footer>
               <ProgressBar :value="percentageToEpoch" />
             </template>
           </Card>
