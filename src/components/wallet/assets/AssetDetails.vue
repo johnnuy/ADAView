@@ -38,7 +38,7 @@
                     <Column field="value" header="Value"></Column>
                 </TreeTable>
             </AccordionTab>
-        </Accordion>
+        </Accordion>        
     </div>
 </template>
 
@@ -46,6 +46,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { parseAssetUrl, parseAssetMetadata } from '@/utils/assets'
 import { useFetchAsset } from '@/composables/useFetchAssets'
+import { formatWithPrecision } from '@/utils/utils'
 import Error from '@/components/common/Error'
 import router from '@/router'
 
@@ -62,8 +63,9 @@ const assetProperties = computed(() => asset.value?.asset)
 const assetName = computed(() => assetProperties.value?.name)
 const assetFingerprint = computed(() => assetProperties.value?.fingerprint)
 const assetPolicy = computed(() => assetProperties.value?.policy)
-const assetQuantity = computed(() => asset.value?.quantity || null)
-const assetSupply = computed(() => assetProperties.value?.supply)
+const precision = computed(() => assetProperties.value?.registration?.precision)
+const assetQuantity = computed(() => formatWithPrecision(asset.value?.quantity, precision.value))
+const assetSupply = computed(() => formatWithPrecision(assetProperties.value?.supply, precision.value))
 const assetImg = computed(() => parseAssetUrl(assetProperties.value))
 const assetMetadata = computed(() => assetProperties.value.metadata)
 const assetMetadataTree = computed(() => parseAssetMetadata(assetMetadata.value))

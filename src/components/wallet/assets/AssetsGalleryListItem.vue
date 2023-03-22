@@ -36,6 +36,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { parseAssetUrl } from '@/utils/assets'
+import { formatWithPrecision } from '@/utils/utils'
 import router from '@/router'
 
 const props = defineProps({
@@ -47,8 +48,9 @@ const assetProperties = computed(() => props.asset?.asset)
 const assetName = computed(() => assetProperties.value?.name)
 const assetFingerprint = computed(() => assetProperties.value?.fingerprint)
 const assetPolicy = computed(() => assetProperties.value?.policy)
-const assetQuantity = computed(() => asset.value?.quantity || null)
-const assetSupply = computed(() => assetProperties.value?.supply)
+const precision = computed(() => assetProperties.value?.registration?.precision)
+const assetQuantity = computed(() => formatWithPrecision(asset.value?.quantity, precision.value))
+const assetSupply = computed(() => formatWithPrecision(assetProperties.value?.supply, precision.value))
 const assetImg = computed(() => parseAssetUrl(assetProperties.value))
 const assetMetadata = computed(() => assetProperties.value?.metadata)
 

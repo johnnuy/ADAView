@@ -1,20 +1,28 @@
 import { TransactionTypes, TransactionTypesById, EventTypes } from '@/utils/constants'
 
-export const formatLovelace = (amount) => {
-  if (amount === 0) return 0 + ' ADA'
+export const formatWithPrecision = (amount, precision = 6) => {
+  if (amount === 0) return 0
   const absAmount = Math.abs(amount) + ''
 
+  //Validate precision is valid (Is Number and > 0)
+  const precisionNbr = Number(precision);
+  if (!Number.isInteger(precisionNbr) || precisionNbr < 0) precision = 6
+
   let formatted = ''
-  if (absAmount >= 1000000) formatted = Math.abs(absAmount.slice(0, absAmount.length - 6)) + '.' + absAmount.slice(absAmount.length - 6)
-  else formatted = '0.' + absAmount.padStart(6, '0')
+  if (absAmount >= 1000000) formatted = Math.abs(absAmount.slice(0, absAmount.length - precision)) + '.' + absAmount.slice(absAmount.length - precision)
+  else formatted = '0.' + absAmount.padStart(precision, '0')
 
   // parseFloat will remove trailing 0s after the period
   return (
     Number.parseFloat(formatted).toLocaleString('en', {
       minimumFractionDigits: 0,
-      maximumFractionDigits: 6,
-    }) + ' ADA'
+      maximumFractionDigits: precision,
+    })
   )
+}
+
+export const formatLovelace = (amount) => {
+  return formatWithPrecision(amount, 6) + 'ADA'  
 }
 
 export const formatPercent = (value) => {
@@ -22,7 +30,7 @@ export const formatPercent = (value) => {
 }
 
 export const negate = (value) => {
-  return (value * -1);  
+  return (value * -1);
 }
 
 export const formatTransaction = (transaction) => {
