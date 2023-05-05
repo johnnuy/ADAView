@@ -9,7 +9,7 @@
         <div class="container">
           <template v-for="field of transactionFields" :key="field.key">
             <div class="text-500">
-              <i v-if="field.helpText" v-tooltip.bottom="field.helpText" class="pi pi-fw pi-question-circle ml-auto text-700"></i>
+              <i v-if="field.helpText" v-tooltip.bottom="L(field.helpText)" class="pi pi-fw pi-question-circle ml-auto text-700"></i>
               {{ L(field.key) }}
               :
             </div>
