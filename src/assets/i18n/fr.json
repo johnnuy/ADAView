@@ -486,5 +486,65 @@
   {
     "key": "Disclaimer Text",
     "value": "ADAView.live fournit une représentation contextualisée de la blockchain cardano à des fins de commodité et de divertissement. ADAView.live ne fournit aucune garantie quant à l'exactitude des informations fournies."
+  },
+  {
+    "key": "Type Help Text",
+    "value": "Le type de transaction."
+  },
+  {
+    "key": "Date Help Text",
+    "value": "La date/heure à laquelle la transaction s'est produite."
+  },
+  {
+    "key": "Block Help Text",
+    "value": "Le numéro de bloc dans lequel la transaction a été enregistrée sur la blockchain."
+  },
+  {
+    "key": "Epoch Help Text",
+    "value": "Le numéro d'époque dans lequel la transaction a été enregistrée sur la blockchain."
+  },
+  {
+    "key": "Hash Help Text",
+    "value": "Le hachage de la transaction sur la blockchain."
+  },
+  {
+    "key": "Fee Help Text",
+    "value": "Les frais en ADA qui ont été payés dans le cadre de cette transaction."
+  },
+  {
+    "key": "Deposit Help Text",
+    "value": "Les fonds en ADA déposés dans le portefeuille."
+  },
+  {
+    "key": "Refund Help Text",
+    "value": "Les fonds en ADA remboursés au portefeuille."
+  },
+  {
+    "key": "Funds In Help Text",
+    "value": "Les fonds en ADA qui ont été ajoutés au portefeuille."
+  },
+  {
+    "key": "Funds Out Help Text",
+    "value": "Les fonds en ADA qui ont été soustraits du portefeuille."
+  },
+  {
+    "key": "Leader Rewards Help Text",
+    "value": "Les fonds en ADA qui ont été récompensés à un opérateur de pool de mise en jeu."
+  },
+  {
+    "key": "Delegator Rewards Help Text",
+    "value": "Les fonds en ADA qui ont été récompensés à un délégué de pool de mise en jeu."
+  },
+  {
+    "key": "Reward Help Text",
+    "value": "Les fonds en ADA qui ont été récompensés au portefeuille."
+  },
+  {
+    "key": "Reward Source Help Text",
+    "value": "La source des récompenses reçues."
+  },
+  {
+    "key": "Balance Help Text",
+    "value": "Le solde actuel en ADA après le traitement de cette transaction."
   }
 ]

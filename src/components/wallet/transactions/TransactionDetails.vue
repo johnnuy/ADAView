@@ -8,12 +8,13 @@
       <AccordionTab :header="L('Transaction Details')">
         <div class="container">
           <template v-for="field of transactionFields" :key="field.key">
-            <div class="text-500">{{ L(field.key) }}:</div>
-            <div v-if="field.type == 'Text'">
-              <span>{{ field.displayValue(transaction) }}</span>
+            <div class="text-500">
+              <i v-if="field.helpText" v-tooltip.bottom="L(field.helpText)" class="pi pi-fw pi-question-circle ml-auto text-700"></i>
+              {{ L(field.key) }}
+              :
             </div>
-            <div v-if="field.type == 'CopyText'">
-              <CopyToClipboardLink :text="field.displayValue(transaction)" :copy-text="field.displayValue(transaction)" break />
+            <div>
+              <component :is="field.getComponent(transaction)"></component>
             </div>
           </template>
         </div>

@@ -482,5 +482,65 @@
   {
     "key": "Disclaimer Text",
     "value": "ADAView.live provides a contextualized representation of the cardano blockchain for convenience and entertainment purposes only.  ADAView.live does not provide any guarantees to the accuracy of the information provided."
+  },
+  {
+    "key": "Type Help Text",
+    "value": "The type of transaction."
+  },
+  {
+    "key": "Date Help Text",
+    "value": "The Date/Time the transaction occurred."
+  },
+  {
+    "key": "Block Help Text",
+    "value": "The Block # the transaction was recorded in, on the blockchain."
+  },
+  {
+    "key": "Epoch Help Text",
+    "value": "The Epoch # the transaction was recorded in, on the blockchain."
+  },
+  {
+    "key": "Hash Help Text",
+    "value": "The Hash of the transaction on the blockchain."
+  },
+  {
+    "key": "Fee Help Text",
+    "value": "The Fee in ADA that was paid as part of this transaction."
+  },
+  {
+    "key": "Deposit Help Text",
+    "value": "The funds in ADA deposited to the wallet."
+  },
+  {
+    "key": "Refund Help Text",
+    "value": "The funds in ADA refunded to the wallet."
+  },
+  {
+    "key": "Funds In Help Text",
+    "value": "The funds in ADA that have been added to the wallet."
+  },
+  {
+    "key": "Funds Out Help Text",
+    "value": "The funds in ADA that have been subtracted from the wallet."
+  },
+  {
+    "key": "Leader Rewards Help Text",
+    "value": "The funds in ADA that have been rewarded to a stake pool operator."
+  },
+  {
+    "key": "Delegator Rewards Help Text",
+    "value": "The funds in ADA that have been rewarded to a stake pool delegator."
+  },
+  {
+    "key": "Reward Help Text",
+    "value": "The funds in ADA that have been rewarded to a the wallet."
+  },
+  {
+    "key": "Reward Source Help Text",
+    "value": "The source of the rewards received."
+  },
+  {
+    "key": "Balance Help Text",
+    "value": "The current balance in ADA after this transaction has been processed."
   }
 ]

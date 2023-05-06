@@ -5,7 +5,7 @@
       <CopyToClipboardLink :text="event.stakeAddress" :copy-text="event.stakeAddress" break />
     </div>
 
-    <div v-if="event.previousStakePool">
+    <template v-if="event.previousStakePool">
       <div class="text-500">{{ L('Previous Pool Id') }}:</div>
       <div>
         <CopyToClipboardLink :text="event.previousStakePool.poolId" :copy-text="event.previousStakePool.poolId" break />
@@ -15,7 +15,7 @@
       <div>
         {{ event.previousStakePool.details.ticker }}
       </div>
-    </div>
+    </template>
 
     <div class="text-500">{{ L('Pool Id') }}:</div>
     <div>
