@@ -23,9 +23,9 @@ export const useFetchWallet = () => {
     wallet.value = null
 
     try {
-      const urlSafeResponse = await axios.post(`${network.value.url}/wallets/${address}`, { address })
-      const urlSafeAddress = urlSafeResponse.data.address
-      const response = await axios.get(`${network.value.url}/wallets/${urlSafeAddress}`, { signal: abortController.signal })
+      const urlSafeResponse = await axios.post(`${network.value.url}/wallets`, { address })
+      const walletIdentifier = urlSafeResponse.data.walletIdentifier
+      const response = await axios.get(`${network.value.url}/wallets/${walletIdentifier}`, { signal: abortController.signal })
       wallet.value = response.data.data
       loading.value = false
     } catch (err) {
