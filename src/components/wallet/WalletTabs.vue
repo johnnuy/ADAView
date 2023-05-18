@@ -1,20 +1,20 @@
 <template>
   <TabView>
     <TabPanel :header="L('Transactions')">
-      <TransactionsList :address="address" />
-    </TabPanel>    
+      <TransactionsList :address="wallet.__identifier__" />
+    </TabPanel>
     <TabPanel :header="L('Addresses')">
-      <AddressesList :address="address" />
+      <AddressesList :address="wallet.__identifier__" />
     </TabPanel>
     <TabPanel v-if="wallet.assetHoldingsCount > 0" :header="L('Asset Holdings')">
-      <AssetsList :address="address" />
+      <AssetsList :address="wallet.__identifier__" />
     </TabPanel>
     <TabPanel v-if="wallet.delegationsCount > 0" :header="L('Stake Delegations')">
-      <StakingList :address="address" />
+      <StakingList :address="wallet.__identifier__" />
     </TabPanel>
     <TabPanel v-if="wallet.ownedStakepoolsCount > 0" :header="L('Stake Pools')">
-      <StakePoolsList :address="address" />
-    </TabPanel>    
+      <StakePoolsList :address="wallet.__identifier__" />
+    </TabPanel>
   </TabView>
 </template>
 
@@ -25,14 +25,8 @@ import AssetsList from '@/components/wallet/assets/AssetsList'
 import AddressesList from '@/components/wallet/AddressesList'
 import StakePoolsList from '@/components/wallet/stakePools/StakePoolsList'
 import { useFetchWallet } from '@/composables/useFetchWallet'
-const { wallet } = useFetchWallet()
 
-defineProps({
-  address: {
-    type: String,
-    default: '',
-  },
-})
+const { wallet } = useFetchWallet()
 </script>
 
 <style></style>
