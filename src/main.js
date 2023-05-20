@@ -3,7 +3,9 @@ import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
 import './assets/styles/layout.scss'
 
-import { createApp, reactive } from 'vue'
+import { createApp } from 'vue/dist/vue.esm-bundler'
+import { reactive } from 'vue'
+
 import router from './router'
 import App from './App.vue'
 import PrimeVue from 'primevue/config'

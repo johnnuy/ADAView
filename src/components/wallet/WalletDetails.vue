@@ -100,24 +100,30 @@ const { wallet, loading, error, fetchWallet } = useFetchWallet()
 const { addSearch } = useSearchHistory()
 
 onMounted(() => fetchWallet(props.address))
-watch([() => props.address, () => props.network], () => fetchWallet(props.address))
+watch([() => props.address, () => props.network], () => {
+  const walletIdentifier = wallet?.value?.__identifier__
+  //only bother refreshing if the wallet identifier is different than the :address path parameter
+  if (props.address !== walletIdentifier) {
+    fetchWallet(props.address)
+  }
+})
 
 // bugfix for: https://github.com/johnnuy/ADAView/issues/9
 watch(wallet, () => {
-  if (!wallet.value) return
+  if (!wallet.value || wallet.value.__identifier__ === props.address || loading.value) return
 
-  const stakingAddress = wallet?.value?.stake?.address
-  if (stakingAddress && router.currentRoute.value.params.address !== stakingAddress) {
-    // if the user searched for a wallet by something other than it's staking address
-    // update the route's parameters to use that staking address (provided there is one)
+  const walletIdentifier = wallet?.value?.__identifier__
+  if (router.currentRoute.value.params.address !== walletIdentifier) {
+    // if the user searched for a wallet by something other than it's wallet identifier
+    // update the route's parameters to use that wallet identifier (provided there is one)
     router.replace({
       name: router.currentRoute.value.name,
-      params: { address: stakingAddress, network: router.currentRoute.value.params.network },
+      params: { address: walletIdentifier, network: router.currentRoute.value.params.network },
     })
   }
 
-  // finally, add the wallet using the appropriate address
-  addSearch({ address: stakingAddress || props.address, name: wallet.value.avatar?.name, network: props.network })
+  // finally, add the wallet using the wallet identifier
+  addSearch({ address: walletIdentifier, name: wallet.value.avatar?.name, network: props.network })
 })
 
 const isStakingWallet = computed(() => !!wallet.value.stake)
