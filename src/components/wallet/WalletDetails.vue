@@ -110,20 +110,21 @@ watch([() => props.address, () => props.network], () => {
 
 // bugfix for: https://github.com/johnnuy/ADAView/issues/9
 watch(wallet, () => {
-  if (!wallet.value || wallet.value.__identifier__ === props.address || loading.value) return
-
   const walletIdentifier = wallet?.value?.__identifier__
-  if (router.currentRoute.value.params.address !== walletIdentifier) {
-    // if the user searched for a wallet by something other than it's wallet identifier
-    // update the route's parameters to use that wallet identifier (provided there is one)
-    router.replace({
-      name: router.currentRoute.value.name,
-      params: { address: walletIdentifier, network: router.currentRoute.value.params.network },
-    })
-  }
+  if (!wallet.value || wallet.value.__identifier__ === props.address || loading.value) {
+    walletIdentifier && addSearch({ address: walletIdentifier, name: wallet.value.avatar?.name, network: props.network })
+  } else {
+    if (router.currentRoute.value.params.address !== walletIdentifier) {
+      // if the user searched for a wallet by something other than it's wallet identifier
+      // update the route's parameters to use that wallet identifier (provided there is one)
+      router.replace({
+        name: router.currentRoute.value.name,
+        params: { address: walletIdentifier, network: router.currentRoute.value.params.network },
+      })
+    }
 
-  // finally, add the wallet using the wallet identifier
-  addSearch({ address: walletIdentifier, name: wallet.value.avatar?.name, network: props.network })
+    walletIdentifier && addSearch({ address: walletIdentifier, name: wallet.value.avatar?.name, network: props.network })
+  }
 })
 
 const isStakingWallet = computed(() => !!wallet.value.stake)
