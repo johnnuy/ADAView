@@ -68,7 +68,7 @@ const props = defineProps({
 const { transactions, count, loading, getTransactions } = useFetchTransactions()
 
 const onClick = ({ data }) => {
-  router.push({ name: 'TransactionDetails', params: { ...router.currentRoute.value.params, transactionId: data.id } })
+  router.push({ name: 'TransactionDetails', params: { ...router.currentRoute.value.params, transactionId: data.id, transaction: JSON.stringify(data) } })
 }
 
 onMounted(() => {

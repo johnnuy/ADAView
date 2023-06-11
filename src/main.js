@@ -3,7 +3,9 @@ import 'primeflex/primeflex.css'
 import 'primeicons/primeicons.css'
 import './assets/styles/layout.scss'
 
-import { createApp, reactive } from 'vue'
+import { createApp } from 'vue/dist/vue.esm-bundler'
+import { reactive } from 'vue'
+
 import router from './router'
 import App from './App.vue'
 import PrimeVue from 'primevue/config'
@@ -94,6 +96,7 @@ import Tree from 'primevue/Tree'
 import veProgress from 'vue-ellipse-progress'
 
 import { useLexicon } from '@/composables/useLexicon'
+import CopyToClipboardLink from '@/components/common/CopyToClipboardLink'
 
 router.beforeEach(function (to, from, next) {
   window.scrollTo(0, 0)
@@ -107,6 +110,8 @@ const { L } = useLexicon()
 app.config.globalProperties.L = L
 
 app.config.globalProperties.$appState = reactive({ theme: 'lara-dark-blue', darkTheme: true })
+
+app.component('CopyToClipboardLink', CopyToClipboardLink)
 
 app.use(PrimeVue, { ripple: true, inputStyle: 'outlined' })
 // app.use(ConfirmationService)

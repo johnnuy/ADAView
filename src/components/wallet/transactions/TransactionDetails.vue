@@ -7,70 +7,82 @@
     <Accordion :active-index="activeIndex" :multiple="true">
       <AccordionTab :header="L('Transaction Details')">
         <div class="container">
-          <div class="text-500">{{ L('Type') }}:</div>
-          <div>
-            <span>{{ L(getTransactionDetails(transaction)) }}</span>
-          </div>
-
-          <div class="text-500">{{ L('Date') }}:</div>
-          <div>
-            {{ transaction.transactionDate }}
-          </div>
-
-          <div class="text-500">{{ L('Block') }}:</div>
-          <div>
-            {{ transaction.block }}
-          </div>
-
-          <div class="text-500">{{ L('Epoch') }}:</div>
-          <div>
-            {{ transaction.epoch }}
-          </div>
-
-          <div class="text-500">{{ L('Hash') }}:</div>
-          <div class="break">
-            <span><CopyToClipboardLink :text="transaction.hash" :copy-text="transaction.hash" break /></span>
-          </div>
-
-          <div class="text-500">{{ L('Fee') }}:</div>
-          <div>
-            {{ formatLovelace(transaction.fee) }}
-          </div>
-
-          <template v-if="transaction.deposit > 0">
-            <div class="text-500">{{ L('Deposit') }}:</div>
+          <template v-for="field of transactionFields" :key="field.key">
+            <div class="text-500">
+              <i v-if="field.helpText" v-tooltip.bottom="L(field.helpText)" class="pi pi-fw pi-question-circle ml-auto text-700"></i>
+              {{ L(field.key) }}
+              :
+            </div>
             <div>
-              {{ formatLovelace(transaction.deposit) }}
+              <component :is="field.getComponent(transaction)"></component>
             </div>
           </template>
+        </div>
+      </AccordionTab>
 
-          <template v-if="transaction.deposit < 0">
-            <div class="text-500">{{ L('Refund') }}:</div>
-            <div>
-              {{ formatLovelace(transaction.deposit) }}
-            </div>
-          </template>
-
-          <div v-if="transaction.type === TransactionTypes.RECEIPT.id" class="text-500">{{ L('Funds In') }}:</div>
-          <div v-if="transaction.type === TransactionTypes.PAYMENT.id" class="text-500">{{ L('Funds Out') }}:</div>
-          <div v-if="transaction.type === TransactionTypes.LEADER_REWARDS.id" class="text-500">{{ L('Leader Rewards') }}:</div>
-          <div v-if="transaction.type === TransactionTypes.DELEGATOR_REWARDS.id" class="text-500">{{ L('Leader Rewards') }}:</div>
-          <div v-if="[TransactionTypes.DELEGATOR_REWARDS.id, TransactionTypes.LEADER_REWARDS.id, TransactionTypes.PAYMENT.id, TransactionTypes.RECEIPT.id].includes(transaction.type)">
-            {{ formatLovelace(transaction.adaValue) }}
+      <AccordionTab v-for="assetReceived in transaction.assetsReceived" :key="assetReceived.id" :header="L('Asset Received')">
+        <div class="container">
+          <div class="text-500">{{ L('Asset Name') }}:</div>
+          <div>
+            {{ assetReceived.asset.name }}
           </div>
 
-          <div v-if="transaction.rewardSource" class="text-500">{{ L('Reward Source') }}:</div>
-          <div v-if="transaction.rewardSource">{{ transaction.rewardSource }}</div>
-
-          <div class="text-500">{{ L('Balance') }}:</div>
+          <div class="text-500">{{ L('Policy') }}:</div>
           <div>
-            {{ formatLovelace(transaction.adaBalance) }}
+            {{ assetReceived.asset.policy }}
+          </div>
+
+          <div class="text-500">{{ L('Fingerprint') }}:</div>
+          <div>
+            <CopyToClipboardLink :text="assetReceived.asset.fingerprint" :copy-text="assetReceived.asset.fingerprint" break />
+          </div>
+
+          <div class="text-500">{{ L('Quantity') }}:</div>
+          <div>
+            {{ assetReceived.quantity }}
           </div>
         </div>
       </AccordionTab>
-      <AccordionTab v-if="transaction.externalSources.length > 0 || transaction.externalDestinations.length > 0" :header="L('External Wallets')">
+
+      <AccordionTab v-for="assetsSent in transaction.assetsSent" :key="assetsSent.id" :header="L('Asset Sent')">
+        <div class="container">
+          <div class="text-500">{{ L('Asset Name') }}:</div>
+          <div>
+            {{ assetsSent.asset.name }}
+          </div>
+
+          <div class="text-500">{{ L('Policy') }}:</div>
+          <div>
+            {{ assetsSent.asset.policy }}
+          </div>
+
+          <div class="text-500">{{ L('Fingerprint') }}:</div>
+          <div>
+            <CopyToClipboardLink :text="assetsSent.asset.fingerprint" :copy-text="assetsSent.asset.fingerprint" break />
+          </div>
+
+          <div class="text-500">{{ L('Quantity') }}:</div>
+          <div>
+            {{ assetsSent.quantity }}
+          </div>
+        </div>
+      </AccordionTab>
+
+      <AccordionTab v-if="transaction.messages && transaction.messages.length > 0" :header="L('Messages')">
+        <div class="container">
+          <template v-for="(message, index) in transaction.messages" :key="`message-${index}`">
+            <div class="text-500">{{ index }}:</div>
+            <div>
+              <span>{{ message }}</span>
+            </div>
+          </template>
+        </div>
+      </AccordionTab>
+
+      <AccordionTab v-if="transaction.externalSources?.length > 0 || transaction.externalDestinations?.length > 0" :header="L('External Wallets')">
         <TransactionWallets :transaction="transaction" />
       </AccordionTab>
+
       <AccordionTab v-for="event in transaction.events" :key="event.eventType" :header="EventTypesById[event.eventType]">
         <VotingRegistrationEvent v-if="event.eventType === EventTypes.VOTING_REGISTRATION.id" :event="event" />
         <StakeRegistrationEvent v-if="event.eventType === EventTypes.STAKE_REGISTRATION.id" :event="event" />
@@ -88,11 +100,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import { formatLovelace, getTransactionDetails } from '@/utils/utils'
+import { ref, onMounted, watch, computed } from 'vue'
 import { EventTypesById, TransactionTypes, EventTypes } from '@/utils/constants'
 import { useFetchTransaction } from '@/composables/useFetchTransactions'
-import CopyToClipboardLink from '@/components/common/CopyToClipboardLink'
 import Error from '@/components/common/Error'
 import TransactionWallets from '@/components/wallet/transactions/TransactionWallets'
 import VotingRegistrationEvent from '@/components/wallet/transactions/events/VotingRegistrationEvent'
@@ -112,14 +122,30 @@ const props = defineProps({
   network: String,
   address: String,
   transactionId: String,
+  transaction: String,
 })
 
 const { transaction, loading, error, getTransaction } = useFetchTransaction()
-onMounted(() => getTransaction(props.address, props.transactionId))
-watch([() => props.address, () => props.transactionId], () => getTransaction(props.address, props.transactionId))
+
+const loadTransaction = () => {
+  // try to load from the transaction prop first, if it isn't set then we fetch the transaction from the api
+  if (props.transaction) {
+    transaction.value = JSON.parse(props.transaction)
+  } else {
+    getTransaction(props.address, props.transactionId)
+  }
+}
+
+onMounted(() => loadTransaction())
+watch([() => props.address, () => props.transactionId, () => props.transaction], () => loadTransaction())
 
 const activeIndex = ref([0])
 const onClose = () => router.push({ name: 'WalletHome', params: { network: props.network, address: props.address } })
+
+const transactionFields = computed(() => {
+  if (!transaction.value) return []
+  return Object.entries(TransactionTypes).find(([k, v]) => v.id === transaction.value.type)[1].fields
+})
 </script>
 
 <style>

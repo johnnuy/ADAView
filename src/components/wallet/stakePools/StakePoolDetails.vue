@@ -3,6 +3,7 @@
 
   <ProgressBar v-if="loading" mode="indeterminate" style="height: 0.5em" />
   <Error v-if="error" :error="error" />
+
   <StakePoolCard v-if="stakePool" :stake-pool="stakePool.stakePool" class="mb-5" />
 </template>
 

@@ -1,22 +1,21 @@
 <template>
   <div>
-    <ve-progress v-if="epochNumber > 0" :progress="percentageToEpoch" :size="props.size" :font-color="fontColor" @click="toggle">
+    <ve-progress v-if="tip && tip.data.epochNumber > 0" :progress="percentageToEpoch" :size="props.size"
+      :font-color="network.palette" @click="toggle">
       <template #default>
         <span style="font-weight: bold; font-size: 0.8rem">
-          {{ epochNumber }}
+          {{ tip.data.epochNumber }}
         </span>
       </template>
     </ve-progress>
 
-    <OverlayPanel id="overlay_panel" ref="op" append-to="body" :breakpoints="{ '960px': '75vw', '240px': '100vw' }" :style="{ width: '450px' }">
+    <OverlayPanel id="overlay_panel" ref="op" append-to="body" :breakpoints="{ '960px': '75vw', '240px': '100vw' }"
+      :style="{ width: '450px' }">
       <div class="grid">
         <div class="col-12 md:col-12 lg:col-12">
           <Card>
-            <template #title> {{ L('Epoch') }} </template>
+            <template #title> {{ L('Epoch') }} {{ tip.data.epochNumber }}</template>
             <template #content>
-              {{ epochNumber }}
-            </template>
-            <template #footer>
               <ProgressBar :value="percentageToEpoch" />
             </template>
           </Card>
@@ -25,13 +24,13 @@
         <div class="col-12 md:col-6 lg:col-6">
           <Card class="h-full">
             <template #title> {{ L('Global Slot') }} </template>
-            <template #content> {{ slotNumber }} </template>
+            <template #content> {{ tip.data.slotNumber }} </template>
           </Card>
         </div>
         <div class="col-12 md:col-6 lg:col-6">
           <Card class="h-full">
             <template #title> {{ L('Slot') }} </template>
-            <template #content> {{ slotNumberInEpoch }} / {{ slotsInAnEpoch }} </template>
+            <template #content> {{ tip.data.slotNumberInEpoch }} / {{ network.epochLength }} </template>
           </Card>
         </div>
       </div>
@@ -41,11 +40,11 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed, watch } from 'vue'
-import { getSlotsPerEpoch, calculatePercentageToEpoch } from '@/utils/utils'
+import { calculatePercentageToEpoch } from '@/utils/utils'
 import { useFetchTip } from '@/composables/useFetchTip'
-const { tip, incrementAllSlotNbr, fetchTip } = useFetchTip()
 import { useSettings } from '@/composables/useSettings'
-const { isMainNetwork } = useSettings()
+const { tip, incrementAllSlotNbr, fetchTip } = useFetchTip()
+const { network } = useSettings()
 
 const incrementSlotTimeMs = import.meta.env.VUE_APP_INCREMENT_SLOT_TIMER_MS || 1000
 let incrementSlotTimer = null
@@ -57,12 +56,8 @@ const props = defineProps({
   },
 })
 
-const slotsInAnEpoch = computed(() => getSlotsPerEpoch())
-const percentageToEpoch = computed(() => calculatePercentageToEpoch(tip.value?.currentSlot.slotNumberInEpoch))
-const slotNumberInEpoch = computed(() => tip.value?.currentSlot.slotNumberInEpoch)
-const slotNumber = computed(() => tip.value?.currentSlot.slotNumber)
-const epochNumber = computed(() => tip.value?.currentSlot.epochNumber)
-const fontColor = computed(() => (isMainNetwork() ? '#ffffff' : '#fcd34d'))
+const percentageToEpoch = ref(0)
+watch(tip, () => (percentageToEpoch.value = calculatePercentageToEpoch(tip.value?.data.slotNumberInEpoch, network.value.epochLength)))
 
 onMounted(() => {
   fetchTip()
@@ -73,10 +68,7 @@ onBeforeUnmount(() => {
   cancelTimer(incrementSlotTimer)
 })
 
-watch(
-  () => isMainNetwork(),
-  () => syncSlot(),
-)
+watch(network, () => syncSlot())
 
 const cancelTimer = (timer) => {
   clearInterval(timer)

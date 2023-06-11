@@ -1,23 +1,20 @@
 <template>
-  <Dropdown v-model="selectedNetwork" :options="networksList" option-label="name" option-value="code" placeholder="Select a network" class="w-full" @change="onNetworkChange" />
+  <Dropdown v-model="selectedNetwork" :options="networks" option-label="name" option-value="name" placeholder="Select a network" class="w-full" @change="onNetworkChange" />
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
-import { useSettings, networks } from '@/composables/useSettings'
+import { useSettings } from '@/composables/useSettings'
 
-const { network, setNetwork } = useSettings()
+const { networks, network, setNetworkByName } = useSettings()
 
-const onNetworkChange = (e) => setNetwork(e.value)
-const selectedNetwork = ref(network)
+const onNetworkChange = (e) => setNetworkByName(e.value)
+const selectedNetwork = ref(network.value.name)
 
-const networksList = ref(
-  Object.entries(networks).map((kv) => ({
-    name: kv[1],
-    code: kv[1],
-  })),
-)
+watch(network, () => {
+  selectedNetwork.value = network.value.name
+})
 </script>
 
 <style>

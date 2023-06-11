@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "prebuild": "copyfiles -f ../niobium-documentation/roadmap/roadmap.json ./src/assets/roadmap",
     "build": "vite build",
+    "preview": "vite preview",
     "serve": "vite preview",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "format": "prettier ./src  --write"
@@ -28,10 +28,12 @@
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-vue": "^8.5.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "prettier": "2.5.1",
     "sass": "^1.49.9",
-    "vite": "^2.5.4"
+    "vite": "^2.5.4",
+    "qs": "6.5.3",
+    "minimatch": "3.0.5"
   },
   "browserslist": [
     "> 1%",

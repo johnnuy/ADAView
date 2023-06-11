@@ -81,11 +81,13 @@
 <script setup>
 import { onMounted, watch, computed } from 'vue'
 import { useFetchWallet } from '@/composables/useFetchWallet'
+import router from '@/router'
 import WalletAddress from '@/components/common/WalletAddress'
 import { formatLovelace } from '@/utils/utils'
 import ErrorComp from '@/components/common/Error'
 import { useLexicon } from '@/composables/useLexicon'
 import StakePoolCard from '@/components/wallet/stakePools/StakePoolCard'
+import { useSearchHistory } from '@/composables/useSearchHistory'
 
 const { L } = useLexicon()
 
@@ -95,8 +97,36 @@ const props = defineProps({
 })
 
 const { wallet, loading, error, fetchWallet } = useFetchWallet()
+const { addSearch } = useSearchHistory()
+
 onMounted(() => fetchWallet(props.address))
-watch([() => props.address, () => props.network], () => fetchWallet(props.address))
+watch([() => props.address, () => props.network], () => {
+  const walletIdentifier = wallet?.value?.__identifier__
+  //only bother refreshing if the wallet identifier is different than the :address path parameter
+  if (props.address !== walletIdentifier) {
+    fetchWallet(props.address)
+  }
+})
+
+// bugfix for: https://github.com/johnnuy/ADAView/issues/9
+watch(wallet, () => {
+  const walletIdentifier = wallet?.value?.__identifier__
+  if (!wallet.value || wallet.value.__identifier__ === props.address || loading.value) {
+    walletIdentifier && addSearch({ address: walletIdentifier, name: wallet.value.avatar?.name, network: props.network })
+  } else {
+    if (router.currentRoute.value.params.address !== walletIdentifier) {
+      // if the user searched for a wallet by something other than it's wallet identifier
+      // update the route's parameters to use that wallet identifier (provided there is one)
+      router.replace({
+        name: router.currentRoute.value.name,
+        params: { address: walletIdentifier, network: router.currentRoute.value.params.network },
+      })
+    }
+
+    walletIdentifier && addSearch({ address: walletIdentifier, name: wallet.value.avatar?.name, network: props.network })
+  }
+})
+
 const isStakingWallet = computed(() => !!wallet.value.stake)
 </script>
 

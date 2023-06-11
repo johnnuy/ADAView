@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import { useSettings } from '@/composables/useSettings'
 
-const { getApiUrl } = useSettings()
+const { network } = useSettings()
 
 export const useFetchDelegations = () => {
   const delegations = ref(null)
@@ -15,7 +15,7 @@ export const useFetchDelegations = () => {
     error.value = null
 
     axios
-      .get(`${getApiUrl()}/wallets/${address}/delegations`, {
+      .get(`${network.value.url}/wallets/${address}/delegations`, {
         params: { pageNumber, pageSize },
       })
       .then((result) => {

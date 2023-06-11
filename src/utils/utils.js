@@ -1,5 +1,3 @@
-const slotsInAnEpoch = import.meta.env.VITE_NBR_SLOTS_IN_EPOCH
-
 import { TransactionTypes, TransactionTypesById, EventTypes } from '@/utils/constants'
 
 export const formatLovelace = (amount) => {
@@ -11,7 +9,20 @@ export const formatLovelace = (amount) => {
   else formatted = '0.' + absAmount.padStart(6, '0')
 
   // parseFloat will remove trailing 0s after the period
-  return Number.parseFloat(formatted).toLocaleString() + ' ADA'
+  return (
+    Number.parseFloat(formatted).toLocaleString('en', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 6,
+    }) + ' ADA'
+  )
+}
+
+export const formatPercent = (value) => {
+  return value * 100.0;
+}
+
+export const negate = (value) => {
+  return (value * -1);  
 }
 
 export const formatTransaction = (transaction) => {
@@ -24,11 +35,7 @@ export const formatTransaction = (transaction) => {
   }
 }
 
-export const getSlotsPerEpoch = () => {
-  return slotsInAnEpoch
-}
-
-export const calculatePercentageToEpoch = (slotNumber) => {
+export const calculatePercentageToEpoch = (slotNumber, slotsInAnEpoch) => {
   if (slotNumber == null || slotNumber < 0) return 0
   return parseFloat(((slotNumber / slotsInAnEpoch) * 100).toFixed(2))
 }

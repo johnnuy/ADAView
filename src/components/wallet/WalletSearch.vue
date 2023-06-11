@@ -29,7 +29,7 @@ watch(
 const addr = ref(props.address)
 const onFetchWallet = () => {
   addr.value = addr.value.trim()
-  router.push({ name: 'WalletHome', params: { address: addr.value, network: network.value } })
+  router.push({ name: 'WalletHome', params: { address: addr.value, network: network.value.name } })
 }
 </script>
 
