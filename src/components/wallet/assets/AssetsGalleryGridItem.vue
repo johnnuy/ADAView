@@ -2,7 +2,7 @@
   <div class="col-12 sm:col-12 md:col-6 lg:col-4 xl:col-3 xll:col-2">
     <div class="asset-grid-item card">
       <div class="asset-grid-item-content">
-        <Image imageClass="token-img" :src="assetImg" :alt="assetName" />
+        <div class="token-img" v-bind:style="{ 'background-image': 'url(' + assetImg + ')' }"></div>
         <div class="asset-name underline" @click="viewAsset">{{ assetName }}</div>
       </div>
     </div>
@@ -72,6 +72,10 @@ const viewAsset = () => {
   }
 
   .token-img {
+    background-image: url('https://ipfs.canadastakes.ca/ipfs/QmceCQ1c1GASt6Asbn36dkEivCauWDpj42pkDYme1U65hJ');
+    background-size: contain;
+    background-repeat: no-repeat;  
+    background-position: center;
     width: 100%;
     height: 25rem;
   }
