@@ -7,7 +7,7 @@
       <AddressesList :address="wallet.__identifier__" />
     </TabPanel>
     <TabPanel v-if="wallet.assetHoldingsCount > 0" :header="L('Asset Holdings')">
-      <AssetsGallery :address="wallet.__identifier__" />
+      <AssetsList :address="wallet.__identifier__" />
     </TabPanel>
     <TabPanel v-if="wallet.delegationsCount > 0" :header="L('Stake Delegations')">
       <StakingList :address="wallet.__identifier__" />

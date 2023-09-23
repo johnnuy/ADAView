@@ -2,8 +2,7 @@ import { ref } from 'vue'
 
 const setupNetworks = () => {
   const networks = [
-    { name: 'Mainnet', url: import.meta.env.VITE_MAINNET_API_URL, palette: '#ffffff', epochLength: 432000, main: true },
-    { name: 'Testnet', url: import.meta.env.VITE_TESTNET_API_URL, palette: '#fcd34d', epochLength: 432000 },
+    { name: 'Mainnet', url: import.meta.env.VITE_MAINNET_API_URL, palette: '#ffffff', epochLength: 432000, main: true },    
     { name: 'Preview', url: import.meta.env.VITE_PREVIEW_API_URL, palette: '#e699ff', epochLength: 86400 },
     { name: 'Preprod', url: import.meta.env.VITE_PREPROD_API_URL, palette: '#80b3ff', epochLength: 432000 },
   ]
@@ -12,7 +11,14 @@ const setupNetworks = () => {
   const network = ref(networks.find((n) => n.main))
 
   const setNetwork = (newNetwork) => (network.value = newNetwork)
-  const setNetworkByName = (name) => setNetwork(networks.find((n) => n.name === name))
+  const setNetworkByName = (name) => {
+    var network = networks.find((n) => n.name === name);
+    /* if a network was asked for that no longer exists, just default to main */
+    if (network == null) {
+      network = networks.find((n) => n.main);
+    }
+    setNetwork(network);
+  }
 
   return { networks, network, setNetwork, setNetworkByName }
 }
