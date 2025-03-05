@@ -1,4 +1,4 @@
-import { formatLovelace, getTransactionDetails } from '@/utils/utils'
+import { formatLovelace, formatDate, getTransactionDetails } from '@/utils/utils'
 import { useLexicon } from '@/composables/useLexicon'
 const { L } = useLexicon()
 
@@ -44,12 +44,7 @@ const TransactionFields = {
   DATE: new TransactionField({
     key: 'Date',
     helpText: 'Date Help Text',
-    getComponent: (t) => ({ template: `<span>${t.transactionDate}</span>` }),
-  }),
-  BLOCK: new TransactionField({
-    key: 'Block',
-    helpText: 'Block Help Text',
-    getComponent: (t) => ({ template: `<span>${t.block}</span>` }),
+    getComponent: (t) => ({ template: `<span>${ formatDate(t.timeUTC)}</span>` }),
   }),
   EPOCH: new TransactionField({
     key: 'Epoch',
@@ -117,12 +112,12 @@ const TransactionTypes = {
   RECEIPT: new TransactionType({
     id: 1,
     label: 'Receipt',
-    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.BLOCK, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.FUNDS_IN, TransactionFields.BALANCE],
+    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.FUNDS_IN, TransactionFields.BALANCE],
   }),
   PAYMENT: new TransactionType({
     id: 2,
     label: 'Payment',
-    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.BLOCK, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.FUNDS_OUT, TransactionFields.BALANCE],
+    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.FUNDS_OUT, TransactionFields.BALANCE],
   }),
   LEADER_REWARDS: new TransactionType({
     id: 3,
@@ -142,12 +137,12 @@ const TransactionTypes = {
   REFUND: new TransactionType({
     id: 6,
     label: 'Refund',
-    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.BLOCK, TransactionFields.EPOCH, TransactionFields.REFUND, TransactionFields.BALANCE],
+    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.EPOCH, TransactionFields.REFUND, TransactionFields.BALANCE],
   }),
   OTHER: new TransactionType({
     id: 7,
     label: 'Other',
-    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.BLOCK, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.BALANCE],
+    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.BALANCE],
   }),
 }
 

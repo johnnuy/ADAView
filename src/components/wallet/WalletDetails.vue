@@ -13,21 +13,13 @@
         <Button class="p-button-text" :label="L('Refresh')" icon="pi pi-refresh" @click="() => fetchWallet(props.address)" />
       </div>
       <div class="grid">
-        <div class="col-12" :class="isStakingWallet ? 'md:col-3' : 'md:col-6'">
+        <div class="col-12" :class="isStakingWallet ? 'md:col-4' : 'md:col-12'">
           <div class="card h-full">
             <div class="flex flex-column justify-content-center h-full">
               <div class="flex flex-column align-items-center">
                 <img :src="wallet.avatar.image" class="avatar" />
                 <span class="block text-500 font-medium">{{ wallet.avatar.name }} </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12" :class="isStakingWallet ? 'md:col-3' : 'md:col-6'">
-          <div class="card h-full">
-            <div class="flex flex-column justify-content-between h-full">
-              <div class="mb-3">
+                <hr/>
                 <span class="block text-500 font-medium mb-3">{{ L('Balance') }}</span>
                 <div class="text-900 font-medium text-xl">{{ formatLovelace(wallet.balance) }}</div>
               </div>
@@ -36,13 +28,13 @@
         </div>
 
         <!-- only show this is the wallet supports staking, that is, if wallet.stake is defined -->
-        <div v-if="isStakingWallet" class="col-12 md:col-6">
+        <div v-if="isStakingWallet" class="col-12 md:col-4">
           <div class="card h-full my-0">
-            <div v-if="wallet.currentDelegation?.stakePool">
+            <div v-if="wallet.currentStakeDelegation?.stakePool">
               <div>
-                <span class="block text-500 font-medium mb-3">{{ L('Delegation') }}</span>
+                <span class="block text-500 font-medium mb-3">{{ L('Stake Delegation') }}</span>
               </div>
-              <StakePoolCard :stake-pool="wallet.currentDelegation.stakePool" class="my-0" />
+              <StakePoolCard :stake-pool="wallet.currentStakeDelegation.stakePool" class="my-0" />
             </div>
 
             <div v-else class="flex flex-column justify-content-between mb-3">
@@ -52,10 +44,35 @@
               </div>
             </div>
             <hr />
-            <div v-if="wallet.currentDelegation?.epochActive">
+            <div v-if="wallet.currentStakeDelegation?.epochActive">
               <span class="text-500">{{ L('Since Epoch') }}: </span>
-              <span class="font-medium">{{ wallet.currentDelegation?.epochActive }} </span>
+              <span class="font-medium">{{ wallet.currentStakeDelegation?.epochActive }} </span>
             </div>
+            <div>
+              <span class="text-500">{{ L('Staking Address') }}: </span>
+              <span class="font-medium">
+                <WalletAddress :address="wallet.stake.address" />
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- only show this is the wallet supports staking, that is, if wallet.stake is defined -->
+        <div v-if="isStakingWallet" class="col-12 md:col-4">
+          <div class="card h-full my-0">
+            <div v-if="wallet.currentVoteDelegation?.drep">
+              <div>
+                <span class="block text-500 font-medium mb-3">{{ L('Vote Delegation') }}</span>
+              </div>
+              <DRepCard :drep="wallet.currentVoteDelegation.drep" class="my-0"/>
+            </div>
+
+            <div v-else class="flex flex-column justify-content-between mb-3">
+              <div class="mb-3">
+                <span class="block text-500 font-medium mb-3">{{ L('Vote Delegation') }}</span>
+                <div class="text-900 font-medium text-xl">{{ L('No Active Delegations') }}</div>
+              </div>
+            </div>
+            <hr />
             <div>
               <span class="text-500">{{ L('Staking Address') }}: </span>
               <span class="font-medium">
@@ -87,6 +104,7 @@ import { formatLovelace } from '@/utils/utils'
 import ErrorComp from '@/components/common/Error'
 import { useLexicon } from '@/composables/useLexicon'
 import StakePoolCard from '@/components/wallet/stakePools/StakePoolCard'
+import DRepCard from './dreps/DRepCard.vue'
 import { useSearchHistory } from '@/composables/useSearchHistory'
 
 const { L } = useLexicon()

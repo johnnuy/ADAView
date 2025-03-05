@@ -252,6 +252,22 @@
     "value": "Stake Delegation"
   },
   {
+    "key": "Vote Delegation",
+    "value": "Vote Delegation"
+  },
+  {
+    "key": "Vote Delegations",
+    "value": "Vote Delegations"
+  },
+  {
+    "key": "Active Slot",
+    "value": "Active Slot"
+  },
+  {
+    "key": "DRep Id",
+    "value": "DRep Id"
+  },
+  {
     "key": "Stake Registration",
     "value": "Stake Registration"
   },

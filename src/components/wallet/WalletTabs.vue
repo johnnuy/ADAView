@@ -9,8 +9,11 @@
     <TabPanel v-if="wallet.assetHoldingsCount > 0" :header="L('Asset Holdings')">
       <AssetsList :address="wallet.__identifier__" />
     </TabPanel>
-    <TabPanel v-if="wallet.delegationsCount > 0" :header="L('Stake Delegations')">
+    <TabPanel v-if="wallet.stakeDelegationsCount > 0" :header="L('Stake Delegations')">
       <StakingList :address="wallet.__identifier__" />
+    </TabPanel>
+    <TabPanel v-if="wallet.voteDelegationsCount > 0" :header="L('Vote Delegations')">
+      <VotingList :address="wallet.__identifier__" />
     </TabPanel>
     <TabPanel v-if="wallet.ownedStakepoolsCount > 0" :header="L('Stake Pools')">
       <StakePoolsList :address="wallet.__identifier__" />
@@ -24,6 +27,7 @@ import StakingList from '@/components/wallet/StakingList'
 import AssetsList from '@/components/wallet/assets/AssetsList'
 import AddressesList from '@/components/wallet/AddressesList'
 import StakePoolsList from '@/components/wallet/stakePools/StakePoolsList'
+import VotingList from './VotingList.vue'
 import { useFetchWallet } from '@/composables/useFetchWallet'
 
 const { wallet } = useFetchWallet()

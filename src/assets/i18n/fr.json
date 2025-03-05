@@ -432,6 +432,22 @@
     "value": "Delegations de Stake"
   },
   {
+    "key": "Vote Delegation",
+    "value": "Delegation de Vote"
+  },
+  {
+    "key": "Vote Delegations",
+    "value": "Delegations de Vote"
+  },
+  {
+    "key": "DRep Id",
+    "value": "Id du DRep"
+  },
+  {
+    "key": "Active Slot",
+    "value": "Emplacement actif"
+  },
+  {
     "key": "Era",
     "value": "Era"
   },

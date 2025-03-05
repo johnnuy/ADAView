@@ -25,6 +25,19 @@ export const negate = (value) => {
   return (value * -1);  
 }
 
+export const formatDate = (utcSeconds) => {
+  const date = new Date(utcSeconds * 1000); // Convert to milliseconds
+    return date.toLocaleString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: true,
+    });
+}
+
 export const formatTransaction = (transaction) => {
   var utc = new Date(transaction.timeUTC)
   const transactionDate = utc.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) + ' ' + utc.toLocaleTimeString('en-US')
