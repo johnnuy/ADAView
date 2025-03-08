@@ -312,6 +312,10 @@
     "value": "Refresh"
   },
   {
+    "key": "Wallet Overview",
+    "value": "Wallet Overview"
+  },
+  {
     "key": "Voting Key",
     "value": "Voting Key"
   },
@@ -330,6 +334,30 @@
   {
     "key": "Source Wallets",
     "value": "Source Wallets"
+  },
+  {
+    "key": "Votes",
+    "value": "Votes Submitted"
+  },  
+  {
+    "key": "Payment Address",
+    "value": "Payment Address"
+  },
+  {
+    "key": "Delegators",
+    "value": "Delegators"
+  },
+  {
+    "key": "Objectives",
+    "value": "Objectives"
+  },
+  {
+    "key": "Motivations",
+    "value": "Motivations"
+  },
+  {
+    "key": "Qualifications",
+    "value": "Qualifications"
   },
   {
     "key": "Id",

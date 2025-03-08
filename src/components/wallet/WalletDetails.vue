@@ -15,6 +15,11 @@
       <div class="grid">
         <div class="col-12" :class="isStakingWallet ? 'md:col-4' : 'md:col-12'">
           <div class="card h-full">
+            <div>
+              <div>
+                <span class="block text-500 font-medium mb-3">{{ L('Wallet Overview') }}</span>
+              </div>
+            </div>
             <div class="flex flex-column justify-content-center h-full">
               <div class="flex flex-column align-items-center">
                 <img :src="wallet.avatar.image" class="avatar" />
@@ -23,8 +28,15 @@
                 <span class="block text-500 font-medium mb-3">{{ L('Balance') }}</span>
                 <div class="text-900 font-medium text-xl">{{ formatLovelace(wallet.balance) }}</div>
               </div>
-            </div>
-          </div>
+              <hr v-if="wallet.stake.address"/>
+              <div v-if="wallet.stake.address">
+                <span class="text-500">{{ L('Staking Address') }}: </span>
+                <span class="font-medium">
+                  <WalletAddress :address="wallet.stake.address" />
+                </span>
+              </div>
+            </div>            
+          </div>         
         </div>
 
         <!-- only show this is the wallet supports staking, that is, if wallet.stake is defined -->
@@ -39,27 +51,28 @@
 
             <div v-else class="flex flex-column justify-content-between mb-3">
               <div class="mb-3">
-                <span class="block text-500 font-medium mb-3">{{ L('Delegation') }}</span>
+                <span class="block text-500 font-medium mb-3">{{ L('Stake Delegation') }}</span>
                 <div class="text-900 font-medium text-xl">{{ L('No Active Delegations') }}</div>
               </div>
             </div>
             <hr />
-            <div v-if="wallet.currentStakeDelegation?.epochActive">
+            <div v-if="wallet.currentStakeDelegation?.stakePool?.poolId">
+              <span class="text-500">{{ L('Pool Id') }}: </span>
+              <span class="font-medium">
+                <WalletAddress :address="wallet.currentStakeDelegation.stakePool.poolId" />
+              </span>
+            </div>
+            <div v-if="wallet.currentStakeDelegation?.stakePool?.poolId">
               <span class="text-500">{{ L('Since Epoch') }}: </span>
               <span class="font-medium">{{ wallet.currentStakeDelegation?.epochActive }} </span>
             </div>
-            <div>
-              <span class="text-500">{{ L('Staking Address') }}: </span>
-              <span class="font-medium">
-                <WalletAddress :address="wallet.stake.address" />
-              </span>
-            </div>
           </div>
         </div>
+        
         <!-- only show this is the wallet supports staking, that is, if wallet.stake is defined -->
         <div v-if="isStakingWallet" class="col-12 md:col-4">
           <div class="card h-full my-0">
-            <div v-if="wallet.currentVoteDelegation?.drep">
+            <div v-if="wallet.currentVoteDelegation?.drep?.drepId">
               <div>
                 <span class="block text-500 font-medium mb-3">{{ L('Vote Delegation') }}</span>
               </div>
@@ -73,10 +86,10 @@
               </div>
             </div>
             <hr />
-            <div>
-              <span class="text-500">{{ L('Staking Address') }}: </span>
+            <div v-if="wallet.currentVoteDelegation?.drep?.drepId">
+              <span class="text-500">{{ L('Payment Address') }}: </span>
               <span class="font-medium">
-                <WalletAddress :address="wallet.stake.address" />
+                <WalletAddress :address="wallet.currentVoteDelegation.drep.details.paymentAddress" />
               </span>
             </div>
           </div>
@@ -145,7 +158,7 @@ watch(wallet, () => {
   }
 })
 
-const isStakingWallet = computed(() => !!wallet.value.stake)
+const isStakingWallet = computed(() => !!wallet.value.stake.address)
 </script>
 
 <style lang="scss" scoped>

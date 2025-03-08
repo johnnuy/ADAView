@@ -1,13 +1,49 @@
 <template>
   <div class="card-container mx-auto">
+    <div class="Logo">
+      <div class="flex flex-column align-items-center justify-content-center mx-2 h-full">
+        <img src="https://ipfs.canadastakes.ca/ipfs/QmS5gynkFMNFTnqPGgADxbvjutYmQK4Qh4iWwkSq4BhcmJ" alt="DRep Logo" class="drep-logo mb-2" />        
+        <h4 class="text-center my-0">{{ drep.details.givenName }}</h4>
+      </div>
+    </div>
+    <div class="Stats flex align-items-center justify-content-center flex-wrap">
+      <div class="flex flex-column align-items-center justify-content-center mx-2">
+        <div class="text-500">{{ L('Delegators') }}</div>
+        <span v-if="drep.delegatorsCount">{{ drep.delegatorsCount }}</span>
+        <span v-else>N/A</span>
+      </div>
+
+      <div class="flex flex-column align-items-center justify-content-center mx-2">
+        <div class="text-500">{{ L('Votes') }}</div>
+        <span v-if="drep.votedCount">{{ drep.votedCount }}</span>
+        <span v-else>N/A</span>
+      </div>
+    </div>
+    <div class="Description align-items-center justify-content-center text-center">
+      <div v-if="drep.details.objectives">
+        <div class="text-500">{{ L('Objectives') }}</div>
+        <span >{{ drep.details.objectives }}</span>
+      </div>
+      <div v-if="drep.details.motivations">
+        <div class="text-500">{{ L('Motivations') }}</div>
+        <span>{{ drep.details.motivations }}</span>
+      </div>
+      <div v-if="drep.details.qualifications">
+        <div class="text-500">{{ L('Qualifications') }}</div>
+        <span>{{ drep.details.qualifications }}</span>
+      </div>
+    </div>        
+    <!--
     <div class="Description align-items-center justify-content-center text-center">
       <DRepAddress :address="drep.drepId"/>
     </div>
+    -->
   </div>
 </template>
 
 <script setup>
 import DRepAddress from './DRepAddress.vue'
+import WalletAddress from '../../common/WalletAddress.vue'
 
 defineProps({
   drep: {
@@ -18,6 +54,11 @@ defineProps({
 </script>
 
 <style lang="scss" scoped>
+.drep-logo {
+  max-width: 100px;
+  border: 2px solid var(--surface-500);
+  border-radius: 15px;
+}
 
 .card-container {
   display: grid;
@@ -25,8 +66,39 @@ defineProps({
   grid-template-rows: auto auto auto;
   gap: 0px 0px;
   grid-template-areas:
-    'Description';
+    'Logo Stats Stats Stats'
+    'Logo Description Description Description'
+    'Logo Social Social Social';
   max-width: 600px;
+}
+
+ .Logo {
+  grid-area: Logo;
+  justify-self: stretch;
+}
+
+.Stats {
+  grid-area: Stats;
+}
+.Description {
+  grid-area: Description;
+}
+.Social {
+  grid-area: Social;
+}
+
+@media screen and (max-width: 1200px) {
+  .card-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 15px 0px;
+    grid-template-areas:
+      'Logo'
+      'Stats'
+      'Description'
+      'Social';
+  }
 }
 
 </style>

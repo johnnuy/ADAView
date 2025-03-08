@@ -424,6 +424,10 @@
     "value": "Feuille de route"
   },
   {
+    "key": "Wallet Overview",
+    "value": "Présentation du portefeuille"
+  },
+  {
     "key": "Stake Pool Details",
     "value": "Détails du pool"
   },
@@ -442,6 +446,30 @@
   {
     "key": "DRep Id",
     "value": "Id du DRep"
+  },
+  {
+    "key": "Votes",
+    "value": "Votes Soumis"
+  },
+  {
+    "key": "Delegators",
+    "value": "Déléguées"
+  },
+  {
+    "key": "Payment Address",
+    "value": "Adresse de paiement"
+  },  
+  {
+    "key": "Objectives",
+    "value": "Objectifs"
+  },
+  {
+    "key": "Motivations",
+    "value": "Motivations"
+  },
+  {
+    "key": "Qualifications",
+    "value": "Qualifications"
   },
   {
     "key": "Active Slot",
