@@ -30,32 +30,32 @@
       <span v-if="stakePool.details.description">{{ stakePool.details.description }}</span>
     </div>
     <div v-if="stakePool.details.socialMedia" class="Social flex align-items-center justify-content-center">
-      <a v-if="stakePool.details.socialMedia.facebookHandles && stakePool.details.socialMedia.facebookHandles[0]" :href="`https://facebook.com/${stakePool.details.socialMedia.facebookHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.facebookHandles && stakePool.details.socialMedia.facebookHandles[0]" :href="formatSocialMediaHandle(`https://facebook.com/`, stakePool.details.socialMedia.facebookHandles[0])" class="social-href">
         <i class="pi pi-facebook mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.redditHandles && stakePool.details.socialMedia.redditHandles[0]" :href="`https://www.reddit.com/user/${stakePool.details.socialMedia.redditHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.redditHandles && stakePool.details.socialMedia.redditHandles[0]" :href="formatSocialMediaHandle(`https://www.reddit.com/user/`, stakePool.details.socialMedia.redditHandles[0])" class="social-href">
         <i class="pi pi-reddit mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.twitterHandles && stakePool.details.socialMedia.twitterHandles[0]" :href="`https://twitter.com/${stakePool.details.socialMedia.twitterHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.twitterHandles && stakePool.details.socialMedia.twitterHandles[0]" :href="formatSocialMediaHandle(`https://twitter.com/`, stakePool.details.socialMedia.twitterHandles[0])" class="social-href">
         <i class="pi pi-twitter mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.discordHandles && stakePool.details.socialMedia.discordHandles[0]" :href="`https://discordapp.com/users/${stakePool.details.socialMedia.discordHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.discordHandles && stakePool.details.socialMedia.discordHandles[0]" :href="formatSocialMediaHandle(`https://discordapp.com/users/`, stakePool.details.socialMedia.discordHandles[0])" class="social-href">
         <i class="pi pi-discord mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.githubHandles && stakePool.details.socialMedia.githubHandles[0]" :href="`https://github.com/${stakePool.details.socialMedia.githubHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.githubHandles && stakePool.details.socialMedia.githubHandles[0]" :href="formatSocialMediaHandle(`https://github.com/`, stakePool.details.socialMedia.githubHandles[0])" class="social-href">
         <i class="pi pi-github mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.youtubeHandles && stakePool.details.socialMedia.youtubeHandles[0]" :href="`https://youtube.com/c/${stakePool.details.socialMedia.youtubeHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.youtubeHandles && stakePool.details.socialMedia.youtubeHandles[0]" :href="formatSocialMediaHandle(`https://youtube.com/c/`, stakePool.details.socialMedia.youtubeHandles[0])" class="social-href">
         <i class="pi pi-youtube mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
       <!-- no primevue icon for twitch -- leave out for now -->
-      <!-- <a v-if="stakePool.details.socialMedia.twitchHandles && stakePool.details.socialMedia.twitchHandles[0]" :href="`https://twitch.tv/${stakePool.details.socialMedia.twitchHandles[0]}`" class="social-href">
+      <!-- <a v-if="stakePool.details.socialMedia.twitchHandles && stakePool.details.socialMedia.twitchHandles[0]" :href="formatSocialMediaHandle(`https://twitch.tv/$`, stakePool.details.socialMedia.twitchHandles[0])" class="social-href">
         <i class="pi pi-twitch mx-1 social-icon" style="font-size: 1.5rem">Twitch</i>
       </a> -->
-      <a v-if="stakePool.details.socialMedia.instagramHandles && stakePool.details.socialMedia.instagramHandles[0]" :href="`https://instagram.com/${stakePool.details.socialMedia.instagramHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.instagramHandles && stakePool.details.socialMedia.instagramHandles[0]" :href="formatSocialMediaHandle(`https://instagram.com/`, stakePool.details.socialMedia.instagramHandles[0])" class="social-href">
         <i class="pi pi-instagram mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
-      <a v-if="stakePool.details.socialMedia.telegramHandles && stakePool.details.socialMedia.telegramHandles[0]" :href="`https://t.me/${stakePool.details.socialMedia.telegramHandles[0]}`" class="social-href">
+      <a v-if="stakePool.details.socialMedia.telegramHandles && stakePool.details.socialMedia.telegramHandles[0]" :href="formatSocialMediaHandle(`https://t.me/`, stakePool.details.socialMedia.telegramHandles[0])" class="social-href">
         <i class="pi pi-telegram mx-1 social-icon" style="font-size: 1.5rem"></i>
       </a>
     </div>
@@ -64,6 +64,7 @@
 
 <script setup>
 import { formatLovelace, formatPercent } from '@/utils/utils'
+import { formatSocialMediaHandle } from '../../../utils/utils.js'
 
 defineProps({
   stakePool: {
@@ -120,7 +121,7 @@ defineProps({
   grid-area: Social;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1600px) {
   .card-container {
     display: grid;
     grid-template-columns: 1fr;

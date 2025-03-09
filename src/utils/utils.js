@@ -48,6 +48,13 @@ export const formatTransaction = (transaction) => {
   }
 }
 
+export const formatSocialMediaHandle = (domain, handle) => {
+  console.log('handle: ' + handle);
+  console.log('domain: ' + domain);
+  console.log('startsWith: ' + handle.startsWith(domain));
+  return handle.startsWith(domain) ? handle : domain + handle;
+}
+
 export const calculatePercentageToEpoch = (slotNumber, slotsInAnEpoch) => {
   if (slotNumber == null || slotNumber < 0) return 0
   return parseFloat(((slotNumber / slotsInAnEpoch) * 100).toFixed(2))
