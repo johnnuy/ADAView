@@ -85,7 +85,7 @@
 
       <AccordionTab v-for="event in transaction.events" :key="event.eventType" :header="L(EventTypesById[event.eventType])">
         <VotingRegistrationEvent v-if="event.eventType === EventTypes.VOTING_REGISTRATION.id" :event="event" />
-        <VoteDelegationEvent v-if="event.eventType === EventTypes.VOTING_REGISTRATION.id" :event="event" />
+        <VoteDelegationEvent v-if="event.eventType === EventTypes.VOTE_DELEGATION.id" :event="event" />
         <StakeRegistrationEvent v-if="event.eventType === EventTypes.STAKE_REGISTRATION.id" :event="event" />
         <StakeDelegationEvent v-if="event.eventType === EventTypes.STAKE_DELEGATION.id" :event="event" />
         <StakeDeregistrationEvent v-if="event.eventType === EventTypes.STAKE_DEREGISTRATION.id" :event="event" />
@@ -100,7 +100,7 @@
         <TreasuryDonationEvent v-if="event.eventType === EventTypes.TREASURY_DONATION.id" :event="event" />
         <DRepVoteEvent v-if="event.eventType === EventTypes.DREP_VOTE.id" :event="event" />
         <StakePoolVoteEvent v-if="event.eventType === EventTypes.SPO_VOTE.id" :event="event" />
-        <CommitteeVoteEvent v-if="event.eventType === EventTypes.CC_VOTE.id" :event="event" />
+        <CommitteeVoteEvent v-if="event.eventType === EventTypes.CC_VOTE.id" :event="event" />        
       </AccordionTab>
     </Accordion>
   </div>
@@ -113,6 +113,7 @@ import { useFetchTransaction } from '@/composables/useFetchTransactions'
 import Error from '@/components/common/Error'
 import TransactionWallets from '@/components/wallet/transactions/TransactionWallets'
 import VotingRegistrationEvent from '@/components/wallet/transactions/events/VotingRegistrationEvent'
+import VoteDelegationEvent from '@/components/wallet/transactions/events/VoteDelegationEvent'
 import StakeRegistrationEvent from '@/components/wallet/transactions/events/StakeRegistrationEvent'
 import StakeDelegationEvent from '@/components/wallet/transactions/events/StakeDelegationEvent'
 import StakeDeregistrationEvent from '@/components/wallet/transactions/events/StakeDeregistrationEvent'

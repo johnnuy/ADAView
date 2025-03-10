@@ -94,7 +94,9 @@ export const getTransactionDetails = (transaction) => {
       return EventTypes.SPO_VOTE.label
     } else if (transaction.events.some((e) => e.eventType === EventTypes.CC_VOTE.id)) {
       return EventTypes.CC_VOTE.label
-    }    
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.VOTE_DELEGATION.id)) {
+      return EventTypes.VOTE_DELEGATION.label
+    }   
   }
   return TransactionTypesById[transaction.type]
 }
