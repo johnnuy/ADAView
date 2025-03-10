@@ -1,8 +1,15 @@
 <template>
-  <div class="container">
+  <div class="container">    
     <div class="text-500">{{ L('Asset Name') }}:</div>
     <div>
       {{ event.burning.asset.name }}
+    </div>
+
+    <div v-if="event.burning.asset.cip67Label">
+      <div class="text-500">{{ L('Asset Label') }}:</div>
+      <div>
+        {{ event.burning.asset.cip67Label }}
+      </div>
     </div>
 
     <div class="text-500">{{ L('Policy') }}:</div>
@@ -28,7 +35,6 @@
 </template>
 
 <script setup>
-import AssetDetails from './AssetDetails'
 import CopyToClipboardLink from '../../../common/CopyToClipboardLink.vue'
 import { negate } from '@/utils/utils'
 

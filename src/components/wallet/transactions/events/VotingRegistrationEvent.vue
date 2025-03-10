@@ -2,7 +2,11 @@
   <div class="container">
     <div class="text-500">{{ L('Voting Key') }}:</div>
     <div class="break">
-      {{ event.votingKey }}
+      <ul>
+        <li v-for="(votingKey, index) in votingKeys" :key="index">
+          {{ votingKey.key }} [{{ votingKey.weight }}]
+        </li>
+      </ul>
     </div>
 
     <div class="text-500">{{ L('Rewards Address') }}:</div>

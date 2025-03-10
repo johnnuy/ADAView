@@ -157,6 +157,13 @@ const EventTypes = {
   ASSET_BURNING: { id: 8, label: 'Asset Burning' },
   VOTING_REGISTRATION: { id: 9, label: 'Voting Registration' },
   REWARDS_WITHDRAWAL: { id: 10, label: 'Reward Withdrawal' },
+  DREP_REGISTRATION: { id: 11, label: 'DRep Registration' },
+  DREP_RETIRE: { id: 12, label: 'DRep Retire' },
+  TREASURY_DONATION: { id: 13, label: 'Treasury Donation' },
+  DREP_VOTE: { id: 14, label: 'DRep Vote' },
+  SPO_VOTE: { id: 15, label: 'Stakepool Vote' },
+  CC_VOTE: { id: 16, label: 'Committee Vote' },
+
 }
 
 // object that lets you get a label quickly given that you have the id

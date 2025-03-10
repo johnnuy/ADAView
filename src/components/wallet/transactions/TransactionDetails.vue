@@ -83,8 +83,9 @@
         <TransactionWallets :transaction="transaction" />
       </AccordionTab>
 
-      <AccordionTab v-for="event in transaction.events" :key="event.eventType" :header="EventTypesById[event.eventType]">
+      <AccordionTab v-for="event in transaction.events" :key="event.eventType" :header="L(EventTypesById[event.eventType])">
         <VotingRegistrationEvent v-if="event.eventType === EventTypes.VOTING_REGISTRATION.id" :event="event" />
+        <VoteDelegationEvent v-if="event.eventType === EventTypes.VOTING_REGISTRATION.id" :event="event" />
         <StakeRegistrationEvent v-if="event.eventType === EventTypes.STAKE_REGISTRATION.id" :event="event" />
         <StakeDelegationEvent v-if="event.eventType === EventTypes.STAKE_DELEGATION.id" :event="event" />
         <StakeDeregistrationEvent v-if="event.eventType === EventTypes.STAKE_DEREGISTRATION.id" :event="event" />
@@ -94,6 +95,12 @@
         <AssetMintingEvent v-if="event.eventType === EventTypes.ASSET_MINTING.id" :event="event" />
         <AssetBurningEvent v-if="event.eventType === EventTypes.ASSET_BURNING.id" :event="event" />
         <RewardsWithdrawalEvent v-if="event.eventType === EventTypes.REWARDS_WITHDRAWAL.id" :event="event" />
+        <DRepRegistrationEvent v-if="event.eventType === EventTypes.DREP_REGISTRATION.id" :event="event" />
+        <DRepRetireEvent v-if="event.eventType === EventTypes.DREP_RETIRE.id" :event="event" />
+        <TreasuryDonationEvent v-if="event.eventType === EventTypes.TREASURY_DONATION.id" :event="event" />
+        <DRepVoteEvent v-if="event.eventType === EventTypes.DREP_VOTE.id" :event="event" />
+        <StakePoolVoteEvent v-if="event.eventType === EventTypes.SPO_VOTE.id" :event="event" />
+        <CommitteeVoteEvent v-if="event.eventType === EventTypes.CC_VOTE.id" :event="event" />
       </AccordionTab>
     </Accordion>
   </div>
@@ -115,8 +122,15 @@ import StakePoolUpdateEvent from '@/components/wallet/transactions/events/StakeP
 import AssetMintingEvent from '@/components/wallet/transactions/events/AssetMintingEvent'
 import AssetBurningEvent from '@/components/wallet/transactions/events/AssetBurningEvent'
 import RewardsWithdrawalEvent from '@/components/wallet/transactions/events/RewardsWithdrawalEvent'
+import DRepRegistrationEvent from './events/DRepRegistrationEvent.vue'
+import DRepRetireEvent from './events/DRepRetireEvent.vue'
+import TreasuryDonationEvent from './events/TreasuryDonationEvent.vue'
+import DRepVoteEvent from './events/DRepVoteEvent.vue'
+import StakePoolVoteEvent from './events/StakePoolVoteEvent.vue'
+import CommitteeVoteEvent from './events/CommitteeVoteEvent.vue'
 
 import router from '@/router'
+
 
 const props = defineProps({
   network: String,

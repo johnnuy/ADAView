@@ -586,5 +586,33 @@
   {
     "key": "Balance Help Text",
     "value": "The current balance in ADA after this transaction has been processed."
-  }
+  },
+  {
+    "key": "Stakepool Id",
+    "value": "Stakepool Id"
+  },
+  {
+    "key": "Governance Action Id",
+    "value": "Governance Action Id"
+  },
+  {
+    "key": "Vote",
+    "value": "Vote"
+  },
+  {
+    "key": "Committee Id",
+    "value": "Committee Id"
+  },
+  {
+    "key": "Stakepool Vote",
+    "value": "SPO Vote"
+  },
+  {
+    "key": "DRep Vote",
+    "value": "DRep Vote"
+  },
+  {
+    "key": "Committee Vote",
+    "value": "Committee Vote"
+  }  
 ]

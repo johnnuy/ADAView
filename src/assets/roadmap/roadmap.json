@@ -105,6 +105,62 @@
         "en": "Focused on additional legacy address compatibility, and asset metadata integration.",
         "fr": "Concentré sur la compatibilité des adresses héritées supplémentaires et l'intégration des métadonnées des actifs."
       }
+    },
+    {
+      "title": {
+        "en": "Release 1.2.0",
+        "fr": "Version 1.2.0"
+      },
+      "timeline": {
+        "en": "Summer 2024",
+        "fr": "Été 2024"
+      },
+      "description": {
+        "en": "Enhanced Asset integration.",
+        "fr": "Intégration améliorée des ressources."
+      }
+    },
+    {
+      "title": {
+        "en": "Release 2.0.0",
+        "fr": "Version 2.0.0"
+      },
+      "timeline": {
+        "en": "March 2025",
+        "fr": "Mars 2025"
+      },
+      "description": {
+        "en": "Complete backend rewrite for additional entity management.  Support for DReps, Voting events, and ADAHandles.",
+        "fr": "Réécriture complète du backend pour une gestion d’entité supplémentaire. Prise en charge des DReps, des événements de vote et des ADAHandles."
+      }
+    },
+    {
+      "title": {
+        "en": "Release 2.1.0",
+        "fr": "Version 2.1.0"
+      },
+      "timeline": {
+        "en": "Summer 2025",
+        "fr": "Été 2025"
+      },
+      "description": {
+        "en": "Additional support for Constitution Committee, ADAHandles, and Governance.",
+        "fr": "Soutien supplémentaire pour le Comité de la Constitution, les ADAHandles et la gouvernance."
+      }
+    },
+    {
+      "title": {
+        "en": "Release 2.2.0",
+        "fr": "Version 2.2.0"
+      },
+      "timeline": {
+        "en": "Winter 2025",
+        "fr": "Hiver 2025"
+      },
+      "description": {
+        "en": "UI Migration to Angular (proposal).",
+        "fr": "Migration de l’interface utilisateur vers Angular (proposition)"
+      }
     }
   ]
 }

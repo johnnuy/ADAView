@@ -82,7 +82,19 @@ export const getTransactionDetails = (transaction) => {
       return EventTypes.ASSET_BURNING.label
     } else if (transaction.events.some((e) => e.eventType === EventTypes.VOTING_REGISTRATION.id)) {
       return EventTypes.VOTING_REGISTRATION.label
-    }
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.DREP_REGISTRATION.id)) {
+      return EventTypes.DREP_REGISTRATION.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.DREP_RETIRE.id)) {
+      return EventTypes.DREP_RETIRE.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.TREASURY_DONATION.id)) {
+      return EventTypes.TREASURY_DONATION.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.DREP_VOTE.id)) {
+      return EventTypes.DREP_VOTE.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.SPO_VOTE.id)) {
+      return EventTypes.SPO_VOTE.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.CC_VOTE.id)) {
+      return EventTypes.CC_VOTE.label
+    }    
   }
   return TransactionTypesById[transaction.type]
 }
