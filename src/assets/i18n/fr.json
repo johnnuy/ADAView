@@ -590,5 +590,53 @@
   {
     "key": "Balance Help Text",
     "value": "Le solde actuel en ADA après le traitement de cette transaction."
+  },
+  {
+    "key": "Stakepool Id",
+    "value": "Stakepool Id"
+  },
+  {
+    "key": "Governance Action Id",
+    "value": "Governance Action Id"
+  },
+  {
+    "key": "Vote",
+    "value": "Vote"
+  },
+  {
+    "key": "Committee Id",
+    "value": "Committee Id"
+  },
+  {
+    "key": "Stakepool Vote",
+    "value": "SPO Vote"
+  },
+  {
+    "key": "DRep Vote",
+    "value": "DRep Vote"
+  },
+  {
+    "key": "Committee Vote",
+    "value": "Committee Vote"
+  },
+  {
+    "key": "Previous DRep Id",
+    "value": "Id du DRep précédent"
+  },
+  {
+    "key": "Treasury Donation",
+    "value": "Don du Trésor"
+  },
+  {
+    "key": "DRep Retire",
+    "value": "Retraite de DRep"
+  },
+  {
+    "key": "DRep Registration",
+    "value": "Registration de DRep"
+  },
+  {
+    "key": "Vote Delegation",
+    "value": "Délégation de vote"
   }
 ]

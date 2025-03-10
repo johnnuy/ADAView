@@ -163,7 +163,7 @@ const EventTypes = {
   DREP_VOTE: { id: 14, label: 'DRep Vote' },
   SPO_VOTE: { id: 15, label: 'Stakepool Vote' },
   CC_VOTE: { id: 16, label: 'Committee Vote' },
-
+  VOTE_DELEGATION: { id: 17, label: 'Vote Delegation' }
 }
 
 // object that lets you get a label quickly given that you have the id

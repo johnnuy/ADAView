@@ -614,5 +614,25 @@
   {
     "key": "Committee Vote",
     "value": "Committee Vote"
-  }  
+  },
+  {
+    "key": "Previous DRep Id",
+    "value": "Previous DRep Id"
+  },
+  {
+    "key": "Treasury Donation",
+    "value": "Treasury Donation"
+  },
+  {
+    "key": "DRep Retire",
+    "value": "DRep Retire"
+  },
+  {
+    "key": "DRep Registration",
+    "value": "DRep Registration"
+  },
+  {
+    "key": "Vote Delegation",
+    "value": "Vote Delegation"
+  }
 ]
