@@ -15,7 +15,11 @@
     @page="onPage($event)"
     @row-click="onClick"
   >
-    <Column field="transactionDate" :header="L('Date')"></Column>
+    <Column :header="L('Date')">
+      <template #body="{ data }">
+        <span>{{ formatDate(data.timeUTC) }}</span>
+      </template>"
+    </Column>
 
     <Column :header="L('Details')">
       <template #body="{ data }">
@@ -55,7 +59,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { formatLovelace, getTransactionDetails } from '@/utils/utils'
+import { getTransactionDetails, formatDate, formatLovelace } from '@/utils/utils'
 import { useFetchTransactions } from '@/composables/useFetchTransactions'
 import { TransactionTypes } from '@/utils/constants'
 

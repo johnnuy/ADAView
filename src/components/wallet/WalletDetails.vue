@@ -9,62 +9,109 @@
     <ErrorComp v-if="error" :error="error" />
 
     <div v-if="wallet">
+      <!-- Tool Bar -->
       <div class="card h-full">
         <Button class="p-button-text" :label="L('Refresh')" icon="pi pi-refresh" @click="() => fetchWallet(props.address)" />
       </div>
+
+      <!-- Wallet Details -->
       <div class="grid">
-        <div class="col-12" :class="isStakingWallet ? 'md:col-3' : 'md:col-6'">
-          <div class="card h-full">
-            <div class="flex flex-column justify-content-center h-full">
+
+        <!-- Overview -->
+        <div class="col-12" :class="isStakingWallet ? 'md:col-4' : 'md:col-12'">
+          <div class="card flex flex-column h-full">
+            <div>
+              <span class="block text-500 font-medium mb-3">{{ L('Wallet Overview') }}</span>
+            </div>
+
+            <div class="flex flex-column justify-content-center flex-grow-1">
               <div class="flex flex-column align-items-center">
                 <img :src="wallet.avatar.image" class="avatar" />
                 <span class="block text-500 font-medium">{{ wallet.avatar.name }} </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12" :class="isStakingWallet ? 'md:col-3' : 'md:col-6'">
-          <div class="card h-full">
-            <div class="flex flex-column justify-content-between h-full">
-              <div class="mb-3">
+                <hr/>
                 <span class="block text-500 font-medium mb-3">{{ L('Balance') }}</span>
                 <div class="text-900 font-medium text-xl">{{ formatLovelace(wallet.balance) }}</div>
+              </div>       
+            </div>
+
+            <div class="footer-section">
+              <hr v-if="wallet.stake.address"/>
+              <div v-if="wallet.stake.address">
+                <span class="text-500">{{ L('Staking Address') }}: </span>
+                <span class="font-medium">
+                  <WalletAddress :address="wallet.stake.address" />
+                </span>
+              </div>   
+            </div>              
+          </div>        
+        </div>
+
+        <!-- Staking -- only show this is the wallet supports staking, that is, if wallet.stake is defined -->
+        <div v-if="isStakingWallet" class="col-12 md:col-4">
+          <div class="card flex flex-column h-full my-0">
+            <div>
+              <span class="block text-500 font-medium mb-3">{{ L('Stake Delegation') }}</span>
+            </div>
+            
+            <!-- Center content vertically while allowing it to grow -->
+            <div class="flex-grow-1 flex flex-column justify-content-center">
+              <div v-if="wallet.currentStakeDelegation?.stakePool">              
+                <StakePoolCard :stake-pool="wallet.currentStakeDelegation.stakePool" class="my-0" />
+              </div>             
+            </div>
+
+            <div class="footer-section mt-auto">
+              <hr />
+              <div v-if="wallet.currentStakeDelegation?.stakePool?.poolId">
+                <span class="text-500">{{ L('Pool Id') }}: </span>
+                <span class="font-medium">
+                  <WalletAddress :address="wallet.currentStakeDelegation.stakePool.poolId" />
+                </span>
+              </div>
+              <div v-else>
+                <span class="text-500">{{ L('No Active Delegations') }}</span>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- only show this is the wallet supports staking, that is, if wallet.stake is defined -->
-        <div v-if="isStakingWallet" class="col-12 md:col-6">
-          <div class="card h-full my-0">
-            <div v-if="wallet.currentDelegation?.stakePool">
-              <div>
-                <span class="block text-500 font-medium mb-3">{{ L('Delegation') }}</span>
-              </div>
-              <StakePoolCard :stake-pool="wallet.currentDelegation.stakePool" class="my-0" />
-            </div>
-
-            <div v-else class="flex flex-column justify-content-between mb-3">
-              <div class="mb-3">
-                <span class="block text-500 font-medium mb-3">{{ L('Delegation') }}</span>
-                <div class="text-900 font-medium text-xl">{{ L('No Active Delegations') }}</div>
-              </div>
-            </div>
-            <hr />
-            <div v-if="wallet.currentDelegation?.epochActive">
-              <span class="text-500">{{ L('Since Epoch') }}: </span>
-              <span class="font-medium">{{ wallet.currentDelegation?.epochActive }} </span>
-            </div>
+        
+        <!-- Voting -- only show this is the wallet supports staking, that is, if wallet.stake is defined -->
+        <div v-if="isStakingWallet" class="col-12 md:col-4">
+          <div class="card flex flex-column h-full my-0">
             <div>
-              <span class="text-500">{{ L('Staking Address') }}: </span>
-              <span class="font-medium">
-                <WalletAddress :address="wallet.stake.address" />
-              </span>
+              <span class="block text-500 font-medium mb-3">{{ L('Vote Delegation') }}</span>
+            </div>
+
+            <!-- Center content vertically while allowing it to grow -->
+            <div class="flex-grow-1 flex flex-column justify-content-center">
+              <div v-if="wallet.currentVoteDelegation?.drep?.drepId">
+                <DRepCard :drep="wallet.currentVoteDelegation.drep" class="my-0"/>
+              </div>
+            </div>
+
+            <div class="footer-section mt-auto">
+              <hr />
+              <div v-if="wallet.currentVoteDelegation?.drep?.drepId">
+                <span class="text-500">{{ L('DRep Id') }}: </span>
+                <span class="font-medium">
+                  <DRepAddress :address="wallet.currentVoteDelegation?.drep?.drepId" />
+                </span>
+              </div>
+              <div v-else>
+                <span class="text-500">{{ L('No Active Delegations') }}</span>
+              </div>
+              <div v-if="wallet.currentVoteDelegation?.drep?.paymentAddress">
+                <span class="text-500">{{ L('Payment Address') }}: </span>
+                <span class="font-medium">
+                  <WalletAddress :address="wallet.currentVoteDelegation.drep.details.paymentAddress" />
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Details Table View -->
       <div>
         <div class="card mt-2">
           <router-view v-slot="{ Component }">
@@ -87,7 +134,9 @@ import { formatLovelace } from '@/utils/utils'
 import ErrorComp from '@/components/common/Error'
 import { useLexicon } from '@/composables/useLexicon'
 import StakePoolCard from '@/components/wallet/stakePools/StakePoolCard'
+import DRepCard from './dreps/DRepCard.vue'
 import { useSearchHistory } from '@/composables/useSearchHistory'
+import DRepAddress from './dreps/DRepAddress.vue'
 
 const { L } = useLexicon()
 
@@ -127,7 +176,7 @@ watch(wallet, () => {
   }
 })
 
-const isStakingWallet = computed(() => !!wallet.value.stake)
+const isStakingWallet = computed(() => !!wallet.value.stake.address)
 </script>
 
 <style lang="scss" scoped>
@@ -168,11 +217,4 @@ pre {
   background-color: var(--surface-card);
   border: none;
 }
-
-/* .container {
-  display: grid;
-  grid-template-columns: auto;
-  column-gap: 10px;
-  row-gap: 5px;
-} */
 </style>

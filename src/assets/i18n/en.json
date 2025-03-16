@@ -252,6 +252,22 @@
     "value": "Stake Delegation"
   },
   {
+    "key": "Vote Delegation",
+    "value": "Vote Delegation"
+  },
+  {
+    "key": "Vote Delegations",
+    "value": "Vote Delegations"
+  },
+  {
+    "key": "Active Slot",
+    "value": "Active Slot"
+  },
+  {
+    "key": "DRep Id",
+    "value": "DRep Id"
+  },
+  {
     "key": "Stake Registration",
     "value": "Stake Registration"
   },
@@ -296,8 +312,12 @@
     "value": "Refresh"
   },
   {
+    "key": "Wallet Overview",
+    "value": "Wallet Overview"
+  },
+  {
     "key": "Voting Key",
-    "value": "Voting Key"
+    "value": "Voting Key(s)"
   },
   {
     "key": "Rewards Address",
@@ -314,6 +334,30 @@
   {
     "key": "Source Wallets",
     "value": "Source Wallets"
+  },
+  {
+    "key": "Votes",
+    "value": "Votes Submitted"
+  },  
+  {
+    "key": "Payment Address",
+    "value": "Payment Address"
+  },
+  {
+    "key": "Delegators",
+    "value": "Delegators"
+  },
+  {
+    "key": "Objectives",
+    "value": "Objectives"
+  },
+  {
+    "key": "Motivations",
+    "value": "Motivations"
+  },
+  {
+    "key": "Qualifications",
+    "value": "Qualifications"
   },
   {
     "key": "Id",
@@ -542,5 +586,61 @@
   {
     "key": "Balance Help Text",
     "value": "The current balance in ADA after this transaction has been processed."
+  },
+  {
+    "key": "Stakepool Id",
+    "value": "Stakepool Id"
+  },
+  {
+    "key": "Governance Action Id",
+    "value": "Governance Action Id"
+  },
+  {
+    "key": "Vote",
+    "value": "Vote"
+  },
+  {
+    "key": "Committee Id",
+    "value": "Committee Id"
+  },
+  {
+    "key": "Stakepool Vote",
+    "value": "SPO Vote"
+  },
+  {
+    "key": "DRep Vote",
+    "value": "DRep Vote"
+  },
+  {
+    "key": "Committee Vote",
+    "value": "Committee Vote"
+  },
+  {
+    "key": "Previous DRep Id",
+    "value": "Previous DRep Id"
+  },
+  {
+    "key": "Treasury Donation",
+    "value": "Treasury Donation"
+  },
+  {
+    "key": "DRep Retire",
+    "value": "DRep Retire"
+  },
+  {
+    "key": "DRep Registration",
+    "value": "DRep Registration"
+  },
+  {
+    "key": "Vote Delegation",
+    "value": "Vote Delegation"
+  },
+  {
+    "key": "Reward Withdrawal",
+    "value": "Reward Withdrawal"
+  },
+  {
+    "key": "ADAHandle not Found",
+    "value": "ADAHandle not Found"
   }
 ]

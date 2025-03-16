@@ -1,4 +1,4 @@
-import { formatLovelace, getTransactionDetails } from '@/utils/utils'
+import { formatLovelace, formatDate, getTransactionDetails } from '@/utils/utils'
 import { useLexicon } from '@/composables/useLexicon'
 const { L } = useLexicon()
 
@@ -44,12 +44,7 @@ const TransactionFields = {
   DATE: new TransactionField({
     key: 'Date',
     helpText: 'Date Help Text',
-    getComponent: (t) => ({ template: `<span>${t.transactionDate}</span>` }),
-  }),
-  BLOCK: new TransactionField({
-    key: 'Block',
-    helpText: 'Block Help Text',
-    getComponent: (t) => ({ template: `<span>${t.block}</span>` }),
+    getComponent: (t) => ({ template: `<span>${ formatDate(t.timeUTC)}</span>` }),
   }),
   EPOCH: new TransactionField({
     key: 'Epoch',
@@ -117,12 +112,12 @@ const TransactionTypes = {
   RECEIPT: new TransactionType({
     id: 1,
     label: 'Receipt',
-    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.BLOCK, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.FUNDS_IN, TransactionFields.BALANCE],
+    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.FUNDS_IN, TransactionFields.BALANCE],
   }),
   PAYMENT: new TransactionType({
     id: 2,
     label: 'Payment',
-    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.BLOCK, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.FUNDS_OUT, TransactionFields.BALANCE],
+    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.FUNDS_OUT, TransactionFields.BALANCE],
   }),
   LEADER_REWARDS: new TransactionType({
     id: 3,
@@ -142,12 +137,12 @@ const TransactionTypes = {
   REFUND: new TransactionType({
     id: 6,
     label: 'Refund',
-    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.BLOCK, TransactionFields.EPOCH, TransactionFields.REFUND, TransactionFields.BALANCE],
+    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.EPOCH, TransactionFields.REFUND, TransactionFields.BALANCE],
   }),
   OTHER: new TransactionType({
     id: 7,
     label: 'Other',
-    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.BLOCK, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.BALANCE],
+    fields: [TransactionFields.TYPE, TransactionFields.DATE, TransactionFields.EPOCH, TransactionFields.HASH, TransactionFields.BALANCE],
   }),
 }
 
@@ -162,6 +157,13 @@ const EventTypes = {
   ASSET_BURNING: { id: 8, label: 'Asset Burning' },
   VOTING_REGISTRATION: { id: 9, label: 'Voting Registration' },
   REWARDS_WITHDRAWAL: { id: 10, label: 'Reward Withdrawal' },
+  DREP_REGISTRATION: { id: 11, label: 'DRep Registration' },
+  DREP_RETIRE: { id: 12, label: 'DRep Retire' },
+  TREASURY_DONATION: { id: 13, label: 'Treasury Donation' },
+  DREP_VOTE: { id: 14, label: 'DRep Vote' },
+  SPO_VOTE: { id: 15, label: 'Stakepool Vote' },
+  CC_VOTE: { id: 16, label: 'Committee Vote' },
+  VOTE_DELEGATION: { id: 17, label: 'Vote Delegation' }
 }
 
 // object that lets you get a label quickly given that you have the id

@@ -13,11 +13,11 @@
     :current-page-report-template="L('{first} to {last} of {totalRecords}')"
     @page="onPage($event)"
   >
-    <Column field="epochActive" :header="L('Epoch Active')"></Column>
-    <Column field="stakePool.details.ticker" :header="L('Ticker')"> </Column>
-    <Column :header="L('Pool Id')">
+    <Column field="chainPointer.slot" :header="L('Active Slot')"></Column>
+    <Column field="drep.details.givenName" :header="L('Name')"> </Column>
+    <Column :header="L('DRep Id')">
       <template #body="{ data }">
-        <CopyToClipboardLink :text="data.stakePool?.poolId" :copy-text="data.stakePool?.poolId" break />
+        <CopyToClipboardLink :text="data.drep?.drepId" :copy-text="data.drep?.drepId" break />
       </template>
     </Column>
   </DataTable>
@@ -25,7 +25,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { useFetchDelegations } from '@/composables/useFetchDelegations'
+import { useFetchVoteDelegations } from '@/composables/useFetchVoteDelegations'
 import CopyToClipboardLink from '@/components/common/CopyToClipboardLink'
 
 const props = defineProps({
@@ -35,11 +35,11 @@ const props = defineProps({
   },
 })
 
-const { delegations, count, loading, getDelegations } = useFetchDelegations()
+const { delegations, count, loading, getVoteDelegations } = useFetchVoteDelegations()
 
-onMounted(() => getDelegations(props.address, 1, 10))
+onMounted(() => getVoteDelegations(props.address, 1, 10))
 
-const onPage = (event) => getDelegations(props.address, event.page + 1, event.rows)
+const onPage = (event) => getVoteDelegations(props.address, event.page + 1, event.rows)
 
 </script>
 

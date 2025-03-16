@@ -3,7 +3,6 @@ import { ref } from 'vue'
 const setupNetworks = () => {
   const networks = [
     { name: 'Mainnet', url: import.meta.env.VITE_MAINNET_API_URL, palette: '#ffffff', epochLength: 432000, main: true },
-    { name: 'Testnet', url: import.meta.env.VITE_TESTNET_API_URL, palette: '#fcd34d', epochLength: 432000 },
     { name: 'Preview', url: import.meta.env.VITE_PREVIEW_API_URL, palette: '#e699ff', epochLength: 86400 },
     { name: 'Preprod', url: import.meta.env.VITE_PREPROD_API_URL, palette: '#80b3ff', epochLength: 432000 },
   ]

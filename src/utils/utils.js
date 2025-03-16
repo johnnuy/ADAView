@@ -25,6 +25,19 @@ export const negate = (value) => {
   return (value * -1);  
 }
 
+export const formatDate = (utcSeconds) => {
+  const date = new Date(utcSeconds * 1000); // Convert to milliseconds
+    return date.toLocaleString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: true,
+    });
+}
+
 export const formatTransaction = (transaction) => {
   var utc = new Date(transaction.timeUTC)
   const transactionDate = utc.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) + ' ' + utc.toLocaleTimeString('en-US')
@@ -33,6 +46,13 @@ export const formatTransaction = (transaction) => {
     ...transaction,
     transactionDate,
   }
+}
+
+export const formatSocialMediaHandle = (domain, handle) => {
+  console.log('handle: ' + handle);
+  console.log('domain: ' + domain);
+  console.log('startsWith: ' + handle.startsWith(domain));
+  return handle.startsWith(domain) ? handle : domain + handle;
 }
 
 export const calculatePercentageToEpoch = (slotNumber, slotsInAnEpoch) => {
@@ -62,7 +82,21 @@ export const getTransactionDetails = (transaction) => {
       return EventTypes.ASSET_BURNING.label
     } else if (transaction.events.some((e) => e.eventType === EventTypes.VOTING_REGISTRATION.id)) {
       return EventTypes.VOTING_REGISTRATION.label
-    }
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.DREP_REGISTRATION.id)) {
+      return EventTypes.DREP_REGISTRATION.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.DREP_RETIRE.id)) {
+      return EventTypes.DREP_RETIRE.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.TREASURY_DONATION.id)) {
+      return EventTypes.TREASURY_DONATION.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.DREP_VOTE.id)) {
+      return EventTypes.DREP_VOTE.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.SPO_VOTE.id)) {
+      return EventTypes.SPO_VOTE.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.CC_VOTE.id)) {
+      return EventTypes.CC_VOTE.label
+    } else if (transaction.events.some((e) => e.eventType === EventTypes.VOTE_DELEGATION.id)) {
+      return EventTypes.VOTE_DELEGATION.label
+    }   
   }
   return TransactionTypesById[transaction.type]
 }

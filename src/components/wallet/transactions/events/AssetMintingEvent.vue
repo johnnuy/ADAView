@@ -5,10 +5,17 @@
       {{ event.minting.asset.name }}
     </div>
 
+    <div v-if="event.burning.asset.cip67Label">
+      <div class="text-500">{{ L('Asset Label') }}:</div>
+      <div>
+        {{ event.burning.asset.cip67Label }}
+      </div>
+    </div>
+
     <div class="text-500">{{ L('Policy') }}:</div>
     <div>
       {{ event.minting.asset.policy }}
-    </div>
+    </div>    
 
     <div class="text-500">{{ L('Fingerprint') }}:</div>
     <div>
