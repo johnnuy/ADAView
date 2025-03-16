@@ -86,6 +86,9 @@ defineProps({
 <style lang="scss" scoped>
 .drep-logo {
   max-width: 100px;
+  min-width: 100px;
+  max-height: 100px;
+  min-height: 100px;  
   border: 2px solid var(--surface-500);
   border-radius: 15px;
 }

@@ -1,6 +1,7 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useSettings } from '@/composables/useSettings'
+import { useLexicon } from './useLexicon';
 
 const wallet = ref(null)
 const loading = ref(false)
@@ -9,6 +10,7 @@ const error = ref(null)
 export const useFetchWallet = () => {
   let abortController = new AbortController()
   const { network } = useSettings()
+  const { L } = useLexicon()
 
   const fetchWallet = async (address) => {
     // send an abort signal if there's already a request happening
@@ -35,6 +37,8 @@ export const useFetchWallet = () => {
         return
       } else if (err.response?.data) {
         error.value = { message: err.response.data.message + ' (' + err.response.data.network + ')' }
+      } else if (err.response?.status === 404 && address?.startsWith("$")) {
+        error.value = { message: L('ADAHandle not Found') }
       } else {
         error.value = { message: err.message }
       }

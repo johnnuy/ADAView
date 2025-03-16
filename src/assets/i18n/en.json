@@ -317,7 +317,7 @@
   },
   {
     "key": "Voting Key",
-    "value": "Voting Key"
+    "value": "Voting Key(s)"
   },
   {
     "key": "Rewards Address",
@@ -634,5 +634,13 @@
   {
     "key": "Vote Delegation",
     "value": "Vote Delegation"
+  },
+  {
+    "key": "Reward Withdrawal",
+    "value": "Reward Withdrawal"
+  },
+  {
+    "key": "ADAHandle not Found",
+    "value": "ADAHandle not Found"
   }
 ]
